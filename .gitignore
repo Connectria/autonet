@@ -1,0 +1,6 @@
+# IDE files
+autonet-ng.iml
+.idea/
+# venv
+venv/
+*/.pytest_cache/

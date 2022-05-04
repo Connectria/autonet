@@ -1,0 +1,3 @@
+INSERT INTO users (id, created_on, updated_on, username, email, description) VALUES ('2a575546b5d144f0a485301305ff1be4', '2022-04-26 14:10:11.0', '2022-04-26 14:10:11.0', 'testadmin2', 'testadmin2@localhost', 'Test Admin 2');
+INSERT INTO users (id, created_on, updated_on, username, email, description) VALUES ('5d76f0bc16874ed2b6c67c879d6db4b6', '2022-04-26 13:53:36.0', '2022-04-26 13:53:36.0', 'admin', 'admin@localhost', 'Default Admin');
+INSERT INTO users (id, created_on, updated_on, username, email, description) VALUES ('6317412767b548ce9492a5d347e517af', '2022-04-26 14:10:11.0', '2022-04-26 14:10:11.0', 'testadmin1', 'testadmin1@localhost', 'Test Admin 1');
