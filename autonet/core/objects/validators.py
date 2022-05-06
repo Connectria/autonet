@@ -1,6 +1,6 @@
 import typing
 
-from core.exceptions import RequestTypeError
+from autonet.core.exceptions import RequestTypeError
 
 
 def validate_union(value, tp):
@@ -11,13 +11,12 @@ def validate_union(value, tp):
 
 
 def validate(obj: object):
-    for attr, tp in typing.get_type_hints(obj):
+    for attr, tp in typing.get_type_hints(obj).items():
         value = getattr(obj, attr)
 
-        if typing.get_origin(tp) is typing.Union \
-                and not validate_union(value, tp):
-            raise RequestTypeError(attr, value, tp, valid_types=typing.get_args(tp))
-
-        if not isinstance(value, tp):
+        if typing.get_origin(tp) is typing.Union:
+                if not validate_union(value, tp):
+                    raise RequestTypeError(attr, value, tp, valid_types=typing.get_args(tp))
+        elif not isinstance(value, tp):
             raise RequestTypeError(attr, value, tp)
     return True
