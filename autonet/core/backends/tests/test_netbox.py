@@ -28,7 +28,7 @@ def test_get_secret_multi(netbox, netbox_multi_secret_mock):
 
 
 def test_get_device_credentials(netbox, netbox_single_secret_mock):
-    from core.device import AutonetDeviceCredentials
+    from autonet.core.device import AutonetDeviceCredentials
     creds = netbox.get_device_credentials(15)
     assert isinstance(creds, AutonetDeviceCredentials)
     assert creds.username == 'name_1'
@@ -36,7 +36,7 @@ def test_get_device_credentials(netbox, netbox_single_secret_mock):
 
 
 def test_get_device(netbox, netbox_device_and_credentials_mock):
-    from core.device import AutonetDevice, AutonetDeviceCredentials
+    from autonet.core.device import AutonetDevice, AutonetDeviceCredentials
     from ipaddress import IPv4Address
     device = netbox.get_device(25)
     assert isinstance(device, AutonetDevice)

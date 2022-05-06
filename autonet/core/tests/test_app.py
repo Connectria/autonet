@@ -16,7 +16,7 @@ def test_get_device_object():
 
 
 def test_append_exception_to_errors(flask_app, setup_request):
-    from core.app import append_exception_to_errors
+    from autonet.core.app import append_exception_to_errors
     from flask import g
     e_message = 'test exception'
     e = Exception(e_message)

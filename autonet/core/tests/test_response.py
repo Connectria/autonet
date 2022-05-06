@@ -1,4 +1,4 @@
-from core.response import autonet_response
+from autonet.core.response import autonet_response
 
 
 def test_autonet_response(flask_app, setup_request):

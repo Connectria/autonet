@@ -1,5 +1,5 @@
 def test_autonet_device_credentials():
-    from core.device import AutonetDeviceCredentials
+    from autonet.core.device import AutonetDeviceCredentials
     username = 'testuser'
     password = 'testpass'
     creds = AutonetDeviceCredentials(username=username, password=password)
@@ -10,7 +10,7 @@ def test_autonet_device_credentials():
 
 def test_autonet_device():
     from ipaddress import IPv4Address
-    from core.device import AutonetDevice, AutonetDeviceCredentials
+    from autonet.core.device import AutonetDevice, AutonetDeviceCredentials
     username = 'testuser'
     password = 'testpass'
     device_id = 100

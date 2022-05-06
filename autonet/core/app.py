@@ -86,4 +86,5 @@ def append_exception_to_errors(e):
     return autonet_response()
 
 
-run_wsgi_app()
+if __name__ == "__main__":
+    run_wsgi_app()

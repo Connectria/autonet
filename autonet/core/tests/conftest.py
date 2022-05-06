@@ -1,12 +1,12 @@
 import ipaddress
 import pytest
 
-from core.device import AutonetDevice, AutonetDeviceCredentials
+from autonet.core.device import AutonetDevice, AutonetDeviceCredentials
 
 
 @pytest.fixture
 def setup_request(flask_app):
-    from core.app import setup_request
+    from autonet.core.app import setup_request
     return setup_request
 
 
@@ -34,7 +34,7 @@ def generate_autonet_device(device_id, credentials: bool, driver: bool):
         address=ipaddress.IPv4Address('127.0.0.1'),
         device_name='Mock Device',
         enabled=True,
-        driver='dummy_driver' if driver else None,
+        driver='dummy' if driver else None,
         credentials=AutonetDeviceCredentials(
             username='dummy_driver',
             password='dummy_driver'

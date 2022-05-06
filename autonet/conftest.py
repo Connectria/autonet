@@ -33,7 +33,7 @@ def test_auth_header(test_token):
 
 @pytest.fixture
 def flask_app():
-    from core import flask_app
+    from autonet.core.app import flask_app
     flask_app.config.update({
         'TESTING': True
     })
@@ -54,8 +54,8 @@ def runner(app):
 @pytest.fixture()
 def db_session(populated=True):
     from sqlalchemy import text
-    from db import Session
-    from db.base import engine, mapper_registry
+    from autonet.db import Session
+    from autonet.db.base import engine, mapper_registry
     mapper_registry.metadata.create_all(bind=engine)
     session = Session()
     if populated:
