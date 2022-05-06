@@ -1,15 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Union
 
-import core.objects.validators as v
-
-from core.exceptions import RequestTypeError
-
-"""
-Here we use python dataclasses to define the structure of 
-given endpoints request/response data as well as implement
-validation logic in the `__post_init__()` method.
-"""
+import autonet.core.objects.validators as v
 
 
 @dataclass
