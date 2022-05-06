@@ -85,7 +85,7 @@ class DeviceDriver(object):
                     capabilities[capability][action] = hasattr(self, f_name)
             return capabilities
 
-        if self._enumerated_capabilities:
+        if not self._enumerated_capabilities:
             self._enumerated_capabilities = _enumerate_capabilities()
         return self._enumerated_capabilities
 
@@ -113,7 +113,7 @@ class DeviceDriver(object):
             raise DriverOperationUnsupported(self.__class__.__name__, f_name)
 
         f_name = self._generate_func_name(capability, action)
-        if hasattr(self, f_name) and self._enumerated_capabilities[capability][action]:
+        if hasattr(self, f_name) and self.capabilities[capability][action]:
             return getattr(self, f_name)
         else:
             return unsupported
