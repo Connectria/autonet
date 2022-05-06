@@ -9,7 +9,7 @@ def autonet_response(response=None, status=None, headers=None):
     for error in g.errors:
         if isinstance(error, MethodNotAllowed):
             status = 405
-        if isinstance(error, NotFound):
+        if isinstance(error, (NotFound, exc.ObjectNotFound)):
             status = 404
         if isinstance(error, exc.DriverOperationUnsupported) \
                 or isinstance(error, exc.DeviceOperationUnsupported):

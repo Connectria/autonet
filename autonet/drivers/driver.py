@@ -1,6 +1,6 @@
 from typing import Callable, Union
-#
-# from autonet.core.device import AutonetDevice
+
+from autonet.core.device import AutonetDevice
 from autonet.core.exceptions import DriverOperationUnsupported
 
 DRIVER_CAPABILITIES_ACTIONS = [
@@ -68,7 +68,7 @@ class DeviceDriver(object):
 
     _enumerated_capabilities = {}
 
-    def __init__(self, device):
+    def __init__(self, device: AutonetDevice):
         """
         :param device: An AutonetDevice object to act upon.
         """

@@ -68,6 +68,17 @@ class DriverOperationUnsupported(AutonetException):
         super().__init__(f"Device driver {driver} does not support {operation}")
 
 
+class DriverResponseInvalid(AutonetException):
+    """
+    Raised when a device driver returns a value that was unexpected or
+    incorrectly formatted.
+    """
+
+    def __init__(self, driver):
+        super().__init__(f"Device driver {driver} did not supply a "
+                         f"properly formatted reponse.")
+
+
 class RequestValueError(AutonetException):
     """
     Raised when invalid data is passed in a request.
@@ -92,3 +103,12 @@ class RequestTypeError(AutonetException):
         if valid_types:
             msg += f" Valid types are {valid_types}"
         super().__init__(msg)
+
+
+class ObjectNotFound(AutonetException):
+    """
+    Raised when a request for an object could no be completed
+    because the driver could not find the object as described.
+    """
+    def __init__(self):
+        super().__init__("Object not found.")
