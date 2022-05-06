@@ -1,5 +1,6 @@
 import logging
 
+from autonet.config import config
 from autonet.db import select, Session
 from autonet.db.models import Users, Tokens
 from autonet.util.auth import generate_token, hash_password
@@ -34,4 +35,5 @@ def create_admin():
         print(f"Failed to create default admin user.")
 
 
-create_admin()
+if __name__ == "__main__":
+    create_admin()
