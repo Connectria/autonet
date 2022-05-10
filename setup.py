@@ -6,7 +6,7 @@ with open("README.rst", "r", encoding="utf-8") as fh:
 
 here = os.path.abspath(os.path.dirname(__file__))
 about = {}
-with open(here+'/autonet/__version__.py', 'r') as f:
+with open(here+'/autonet_ng/__version__.py', 'r') as f:
     exec(f.read(), about)
 
 install_requires = [
@@ -20,7 +20,7 @@ test_requires = install_requires + [
 ]
 
 setuptools.setup(
-    name="autonet",
+    name="autonet_ng",
     version=about['__version__'],
     author="Ken Vondersaar",
     author_email="kvondersaar@connectria.com",
@@ -47,8 +47,8 @@ setuptools.setup(
     install_requires=install_requires,
     test_requires=test_requires,
     test_suite='pytest',
-    exclude_package_data={'': ['autonet/*/tests/test_*.py']},
+    exclude_package_data={'': ['autonet_ng/*/tests/test_*.py']},
     entry_points={
-        'autonet.drivers': ['dummy = autonet.drivers.dummy_driver.driver:DummyDriver']
+        'autonet_ng.drivers': ['dummy = autonet_ng.drivers.dummy_driver.driver:DummyDriver']
     }
 )

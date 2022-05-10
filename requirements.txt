@@ -5,3 +5,4 @@ pymysql>=1.0.2
 requests>=2.0.12
 requests-cache>=0.9.4
 SQLAlchemy>=1.4.36
+macaddress>=1.2.0
