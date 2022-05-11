@@ -63,7 +63,7 @@ class Interface(object):
     description: str
     virtual: bool
     mode: str
-    attributes: Union[InterfaceBridgeAttributes, InterfaceRouteAttributes]
+    attributes: Union[InterfaceBridgeAttributes, InterfaceRouteAttributes, None]
     admin_enabled: bool = field(default=True)
     physical_address: str = field(default='00:00:00:00:00:00')
     child: bool = field(default=False)
@@ -75,7 +75,7 @@ class Interface(object):
     def __post_init__(self):
         v.validate(self)
 
-        valid_modes = ['routed', 'bridged']
+        valid_modes = ['routed', 'bridged', 'aggregated']
         # Validate physical address and enforce format
         try:
             self.physical_address = str(macaddress.parse(
@@ -91,7 +91,10 @@ class Interface(object):
         # Validate attribute matches mode
         if self.mode == 'routed' and not isinstance(
                 self.attributes, InterfaceRouteAttributes):
-            raise exc.RequestTypeError('parent', self.attributes, type(self.attributes))
+            raise exc.RequestTypeError('attributes', self.attributes, type(self.attributes))
         if self.mode == 'bridged' and not isinstance(
                 self.attributes, InterfaceBridgeAttributes):
-            raise exc.RequestTypeError('parent', self.attributes, type(self.attributes))
+            raise exc.RequestTypeError('attributes', self.attributes, type(self.attributes))
+        if self.mode == 'aggregated' and self.attributes:
+            raise exc.RequestTypeError('mode', self.attributes, type(self.attributes),
+                                       None)
