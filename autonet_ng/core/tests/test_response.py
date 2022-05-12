@@ -75,11 +75,12 @@ def test_autonet_response_status_error_handling_explicit_status(flask_app, setup
 
 
 @pytest.mark.parametrize('exception, expected_status', [
+    (an_exc.RequestValueMissing('test'), 400),
     (an_exc.ObjectExists(), 409),
     (an_exc.ObjectNotFound(), 404),
-    (an_exc.DeviceOperationUnsupported('test', 'test_op', 1), 501),
-    (wz_exc.MethodNotAllowed(), 405),
     (wz_exc.NotFound(), 404),
+    (wz_exc.MethodNotAllowed(), 405),
+    (an_exc.DeviceOperationUnsupported('test', 'test_op', 1), 501),
 ])
 def test_autonet_response_status_error_handling(
         exception, expected_status, flask_app, setup_request):

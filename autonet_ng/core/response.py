@@ -8,10 +8,12 @@ def autonet_response(response=None, status=None, headers=None):
     if g.errors and not status:
         status = 500
     for error in g.errors:
-        if isinstance(error, MethodNotAllowed):
-            status = 405
+        if isinstance(error, exc.RequestValueMissing):
+            status = 400
         if isinstance(error, (NotFound, exc.ObjectNotFound)):
             status = 404
+        if isinstance(error, MethodNotAllowed):
+            status = 405
         if isinstance(error, exc.ObjectExists):
             status = 409
         if isinstance(error, exc.DriverOperationUnsupported) \

@@ -4,6 +4,7 @@ class AutonetException(Exception):
     class will be displayed in error messages even without debugging turned
     on.
     """
+
     def __init__(self, *args):
         super().__init__(*args)
 
@@ -85,10 +86,21 @@ class RequestValueError(AutonetException):
     """
 
     def __init__(self, field, value, valid_values: list = None):
-        valid_values = valid_values or []
         msg = f"Invalid value '{value}' for field '{field}'."
         if valid_values:
             msg += f" Valid values are {valid_values}"
+        super().__init__(msg)
+
+
+class RequestValueMissing(AutonetException):
+    """
+    Raised when a request is sent without the required data.
+    """
+
+    def __init__(self, field: str, valid_values: list = None):
+        valid_part = f" to one of these values {valid_values}"
+        msg = f"Missing field {field}.  Try resending the request" \
+              f"with {field} set{valid_part}."
         super().__init__(msg)
 
 
@@ -110,6 +122,7 @@ class ObjectNotFound(AutonetException):
     Raised when a request for an object could not be completed
     because the driver could not find the object as described.
     """
+
     def __init__(self):
         super().__init__("Object not found.")
 
@@ -119,5 +132,6 @@ class ObjectExists(AutonetException):
     Raised when a create requests attempts to create an object that
     already exists.
     """
+
     def __init__(self, name: str = None):
         super().__init__(f"Object {name + ' ' if name else ''}already exists.")
