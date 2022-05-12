@@ -3,6 +3,7 @@ from werkzeug.exceptions import MethodNotAllowed, NotFound
 
 import autonet_ng.core.exceptions as exc
 
+
 def autonet_response(response=None, status=None, headers=None):
     if g.errors and not status:
         status = 500
@@ -11,6 +12,8 @@ def autonet_response(response=None, status=None, headers=None):
             status = 405
         if isinstance(error, (NotFound, exc.ObjectNotFound)):
             status = 404
+        if isinstance(error, exc.ObjectExists):
+            status = 409
         if isinstance(error, exc.DriverOperationUnsupported) \
                 or isinstance(error, exc.DeviceOperationUnsupported):
             status = 501

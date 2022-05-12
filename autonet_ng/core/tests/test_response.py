@@ -1,4 +1,8 @@
+import pytest
+
+from autonet_ng.core import exceptions as an_exc
 from autonet_ng.core.response import autonet_response
+from werkzeug import exceptions as wz_exc
 
 
 def test_autonet_response(flask_app, setup_request):
@@ -70,17 +74,24 @@ def test_autonet_response_status_error_handling_explicit_status(flask_app, setup
         assert r.json['status'] == s == 404
 
 
-def test_autonet_response_status_error_handling_method_not_allowed(flask_app, setup_request):
+@pytest.mark.parametrize('exception, expected_status', [
+    (an_exc.ObjectExists(), 409),
+    (an_exc.ObjectNotFound(), 404),
+    (an_exc.DeviceOperationUnsupported('test', 'test_op', 1), 501),
+    (wz_exc.MethodNotAllowed(), 405),
+    (wz_exc.NotFound(), 404),
+])
+def test_autonet_response_status_error_handling(
+        exception, expected_status, flask_app, setup_request):
     """
     Verify that response propagates status code correctly.
     """
     with flask_app.app_context():
         setup_request()
         from flask import g
-        from werkzeug.exceptions import MethodNotAllowed
-        g.errors.append(MethodNotAllowed())
+        g.errors.append(exception)
         r, s, h = autonet_response(None)
-        assert r.json['status'] == s == 405
+        assert r.json['status'] == s == expected_status
 
 
 def test_autonet_response_error_list(flask_app, setup_request):

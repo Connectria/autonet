@@ -107,8 +107,17 @@ class RequestTypeError(AutonetException):
 
 class ObjectNotFound(AutonetException):
     """
-    Raised when a request for an object could no be completed
+    Raised when a request for an object could not be completed
     because the driver could not find the object as described.
     """
     def __init__(self):
         super().__init__("Object not found.")
+
+
+class ObjectExists(AutonetException):
+    """
+    Raised when a create requests attempts to create an object that
+    already exists.
+    """
+    def __init__(self, name: str = None):
+        super().__init__(f"Object {name + ' ' if name else ''}already exists.")
