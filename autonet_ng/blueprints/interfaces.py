@@ -1,10 +1,24 @@
-from flask import Blueprint, g, request
+from flask import Blueprint, g, request, Request
 
 from autonet_ng.core import exceptions as exc
 from autonet_ng.core.objects import interfaces as an_if
 from autonet_ng.core.response import autonet_response
 
 blueprint = Blueprint('interfaces', __name__)
+
+
+def _verify_name_match(flask_request: Request, interface_name: str):
+    """
+    Verify that the name, if provided, in the request payload matches
+    the name as presented in the URI.  Raises an exception if the
+    request is not well-formed
+    :param flask_request: The Flask `Request` object.
+    :param interface_name: The interface name from the URI
+    :return:
+    """
+    request_name = flask_request.json.get('name', None)
+    if request_name and request_name != interface_name:
+        raise exc.RequestValueError('name', request_name, [interface_name])
 
 
 def _verify_required_config_data(request_data: dict, put: bool = False):
@@ -103,9 +117,17 @@ def create_interface(device_id):
         raise exc.DriverResponseInvalid(g.driver)
 
 
+@blueprint.route('/<interface_name>', methods=['PUT', 'PATCH'])
+def update_interface(device_id, interface_name):
+    _verify_name_match(request, interface_name)
+    return _update_interface(device_id, interface_name)
+
+
 @blueprint.route('/', methods=['PUT', 'PATCH'])
-def update_interface(device_id):
+def _update_interface(device_id, interface_name: str = None):
     request_data = request.json
+    if interface_name and not request_data.get('name', None):
+        request_data['name'] = interface_name
 
     # Verify minimum data is sent with request
     update = request.method == 'PATCH'
@@ -120,4 +142,5 @@ def update_interface(device_id):
         return autonet_response(response)
     else:
         raise exc.DriverResponseInvalid(g.driver)
+
 
