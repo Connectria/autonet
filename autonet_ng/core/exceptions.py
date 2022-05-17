@@ -61,8 +61,7 @@ class DeviceOperationUnsupported(AutonetException):
 
 class DriverOperationUnsupported(AutonetException):
     """
-    Raised when the driver for a device determines that a device does not
-    support the requested operation.
+    Raised when the driver for a device does not support the requested operation.
     """
 
     def __init__(self, driver, operation):
@@ -78,6 +77,17 @@ class DriverResponseInvalid(AutonetException):
     def __init__(self, driver):
         super().__init__(f"Device driver {driver} did not supply a "
                          f"properly formatted reponse.")
+
+
+class DriverRequestError(AutonetException):
+    """
+    Raised by a driver when an otherwise well-formed request cannot be
+    fulfilled due to platform limitations.
+    """
+    def __init__(self, msg=None):
+        msg = msg or 'The driver cannot perform this request as presented' \
+                     'due to platform specific limitations.'
+        super().__init__(msg)
 
 
 class RequestValueError(AutonetException):
