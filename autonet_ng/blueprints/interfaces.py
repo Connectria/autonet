@@ -16,7 +16,7 @@ def _verify_required_config_data(request_data: dict, put: bool = False):
     :return:
     """
     # Verify minimum data is sent with request
-    fields = ['name'] if put else ['name', 'attributes', 'mode']
+    fields = ['name', 'attributes', 'mode'] if put else ['name']
     for field in fields:
         if request_data.get(field, None) is None:
             raise exc.RequestValueMissing(field)
