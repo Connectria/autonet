@@ -118,7 +118,7 @@ class DeviceDriver(object):
         else:
             return unsupported
 
-    def execute(self, capability: str, action: str, request_data: object = None):
+    def execute(self, capability: str, action: str, request_data: object = None, **kwargs):
         """
         Execute should be called on the driver from a given endpoint.  The capability and
         action should correspond to the endpoint called and be used by the execute method
@@ -137,4 +137,4 @@ class DeviceDriver(object):
         :return:
         """
         func = self._get_cap_function(capability, action)
-        return func(request_data=request_data)
+        return func(request_data=request_data, **kwargs)
