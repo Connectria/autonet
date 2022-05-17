@@ -101,3 +101,23 @@ def create_interface(device_id):
         return autonet_response(response)
     else:
         raise exc.DriverResponseInvalid(g.driver)
+
+
+@blueprint.route('/', methods=['PUT', 'PATCH'])
+def update_interface(device_id):
+    request_data = request.json
+
+    # Verify minimum data is sent with request
+    update = request.method == 'PATCH'
+    _verify_required_config_data(request_data, not update)
+    # Now we set default values as appropriate, if PUT request.
+    if not update:
+        request_data = _prepare_defaults(request_data)
+
+    an_if_object = _build_interface_from_request_data(request_data)
+    response = g.driver.execute('interface', 'update', request_data=an_if_object, update=update)
+    if isinstance(response, an_if.Interface):
+        return autonet_response(response)
+    else:
+        raise exc.DriverResponseInvalid(g.driver)
+
