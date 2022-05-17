@@ -144,3 +144,7 @@ def _update_interface(device_id, interface_name: str = None):
         raise exc.DriverResponseInvalid(g.driver)
 
 
+@blueprint.route('/<interface_name>', methods=['DELETE'])
+def delete_interface(device_id, interface_name):
+    g.driver.execute('interface', 'delete', request_data=interface_name)
+    return autonet_response(None, 204)
