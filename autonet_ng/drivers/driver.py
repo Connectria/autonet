@@ -14,19 +14,19 @@ DRIVER_CAPABILITIES_TYPES = [
     'interface:route',
     'interface:bridge',
     'interface',
-    'tunnels:vxlan'
-    'tunnels:gre'
-    'tunnels:geneve'
-    'tunnels:ipip'
-    'tunnels:mpls'
-    'vrf'
-    'bridge'
-    'bridge:domain'
-    'protocols:static'
-    'protocols:bgp'
-    'protocols:ospf'
-    'runtime:routing'
-    'runtime:bgp'
+    'tunnels:vxlan',
+    'tunnels:gre',
+    'tunnels:geneve',
+    'tunnels:ipip',
+    'tunnels:mpls',
+    'vrf',
+    'bridge',
+    'bridge:domain',
+    'protocols:static',
+    'protocols:bgp',
+    'protocols:ospf',
+    'runtime:routing',
+    'runtime:bgp',
 ]
 
 
