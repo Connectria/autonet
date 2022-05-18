@@ -7,6 +7,7 @@ from uuid import uuid4
 
 from autonet_ng.core.response import autonet_response
 from autonet_ng.blueprints.interfaces import blueprint as interfaces_blueprint
+from autonet_ng.blueprints.tunnels_vxlan import blueprint as tunnels_vxlan_blueprint
 from autonet_ng.blueprints.users import blueprint as admin_users_blueprint
 from autonet_ng.config import config
 from autonet_ng.db import init_db
@@ -26,6 +27,7 @@ config.register_options(opts)
 flask_app = Flask(__name__)
 flask_app.register_blueprint(interfaces_blueprint, url_prefix='/<device_id>/interfaces')
 flask_app.register_blueprint(admin_users_blueprint, url_prefix='/admin/users')
+flask_app.register_blueprint(tunnels_vxlan_blueprint, url_prefix='/<device_id>/tunnels/')
 print(flask_app.url_map)
 setup_logging()
 

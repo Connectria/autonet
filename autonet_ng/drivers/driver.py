@@ -2,6 +2,7 @@ from typing import Callable, Union
 
 from autonet_ng.core.device import AutonetDevice
 from autonet_ng.core.exceptions import DriverOperationUnsupported
+from autonet_ng.core.objects import interfaces as an_if
 
 DRIVER_CAPABILITIES_ACTIONS = [
     'create',
@@ -13,19 +14,19 @@ DRIVER_CAPABILITIES_TYPES = [
     'interface:route',
     'interface:bridge',
     'interface',
-    'tunnels:vxlan'
-    'tunnels:gre'
-    'tunnels:geneve'
-    'tunnels:ipip'
-    'tunnels:mpls'
-    'vrf'
-    'bridge'
-    'bridge:domain'
-    'protocols:static'
-    'protocols:bgp'
-    'protocols:ospf'
-    'runtime:routing'
-    'runtime:bgp'
+    'tunnels:vxlan',
+    'tunnels:gre',
+    'tunnels:geneve',
+    'tunnels:ipip',
+    'tunnels:mpls',
+    'vrf',
+    'bridge',
+    'bridge:domain',
+    'protocols:static',
+    'protocols:bgp',
+    'protocols:ospf',
+    'runtime:routing',
+    'runtime:bgp',
 ]
 
 
@@ -138,3 +139,54 @@ class DeviceDriver(object):
         """
         func = self._get_cap_function(capability, action)
         return func(request_data=request_data, **kwargs)
+
+    def _interface_read(self, request_data: str = None) -> an_if.Interface:
+        """
+        Interface read function may be called with `request_data` set to the
+        interface name provided by the user.  If so, then only that interface
+        should be returned.  Otherwise, the driver should return all
+        interfaces.
+        :param request_data: The name of the interface, if requested.
+        :return:
+        """
+        return an_if.Interface()
+
+    def _interface_create(self, request_data: an_if.Interface) -> an_if.Interface:
+        """
+        Interface create is to be called with an `Interface` object.  Autonet will
+        perform some basic input validation, but the driver may need to do
+        additional validations to ensure that the request can be completed by the
+        device.  The driver should return a completed `Interface` object that
+        represents the interface as created once any defaults or other modifications
+        have been made by the driver.
+        :param request_data: An `Interface` object.
+        :return:
+        """
+        return an_if.Interface()
+
+    def _interface_update(self, request_data: an_if.Interface, update) -> an_if.Interface:
+        """
+        Interface update may be called by either a PUT or PATCH request.  When called with
+        patch then `update` will be set to `True`.  PUT should be interpreted such that any
+        attributes not present in the request is defaulted, such as in a create operation.
+        PATCH operations, where `update` is `True`, should ignore any unset items and only
+        update attributes that are provided.
+
+        The driver should return a complete `Interface` object that represents the updated
+        configuration of the interface.
+        :param request_data: An `Interface` object.
+        :param update:
+        :return:
+        """
+        return an_if.Interface()
+
+    def _interface_delete(self, request_data: str):
+        """
+        Interface delete is called with only an interface name provided as `request_data`.
+        The driver should determine if the interface is virtual, or physical and then take
+        action to remove or reset to default respectively.  Return should be `None` on
+        success or an exception should be raised.
+        :param request_data:
+        :return:
+        """
+        return None

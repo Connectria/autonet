@@ -109,7 +109,7 @@ class RequestValueMissing(AutonetException):
 
     def __init__(self, field: str, valid_values: list = None):
         valid_part = f" to one of these values {valid_values}"
-        msg = f"Missing field {field}.  Try resending the request" \
+        msg = f"Missing field '{field}'.  Try resending the request " \
               f"with {field} set{valid_part}."
         super().__init__(msg)
 
