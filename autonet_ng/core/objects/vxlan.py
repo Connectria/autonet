@@ -8,7 +8,7 @@ from autonet_ng.core.objects import validators as v
 @dataclass
 class VXLAN(object):
     id: int = field(default=None)
-    source_address: str = field(default=None)
+    source_address: Optional[str] = field(default=None)
     layer: int = field(default=None)
     import_targets: Optional[List[str]] = field(default=None)
     export_targets: Optional[List[str]] = field(default=None)
