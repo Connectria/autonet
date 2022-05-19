@@ -56,9 +56,9 @@ def is_route_distinguisher(rd: str) -> bool:
     parts = rd.split(':')
     # There should be exactly two parts. First part can be an integer
     # or an IPv4 address.  The last part must be an integer.
-    case1 = is_ipv4_address(parts[0]), is_uint16(parts[1])
-    case2 = is_uint32(parts[0]), is_uint16(parts[1])
-    case3 = is_uint16(parts[0]), is_uint32(parts[1])
+    case1 = is_ipv4_address(parts[0]) and is_uint16(parts[1])
+    case2 = is_uint32(parts[0]) and is_uint16(parts[1])
+    case3 = is_uint16(parts[0]) and is_uint32(parts[1])
     return len(parts) == 2 and (case1 or case2 or case3)
 
 
