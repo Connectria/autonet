@@ -40,7 +40,7 @@ def test_is_ipv4_address(address, expected):
     ('198.18.0.1:65', True),
     ('65531:65531', True),
     ('rd:distingisher', False),
-    ('515555:82', False)
+    ('515555:82', True)
 ])
 def test_is_route_distinguisher(rd, expected):
     assert v.is_route_distinguisher(rd) == expected
