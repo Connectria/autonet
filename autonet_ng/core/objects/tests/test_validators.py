@@ -40,19 +40,21 @@ def test_is_ipv4_address(address, expected):
     ('198.18.0.1:65', True),
     ('65531:65531', True),
     ('rd:distingisher', False),
-    ('515555:82', False)
+    ('515555:82', True)
 ])
 def test_is_route_distinguisher(rd, expected):
     assert v.is_route_distinguisher(rd) == expected
 
 
-@pytest.mark.parametrize('rt, expected', [
-    ('198.18.0.1:65', False),
-    ('65531:65531', True),
-    ('route:target', False),
-    ('515555:82', True),
-    ('82:515555', True),
-    ('515555:515555', False)
+@pytest.mark.parametrize('rt, allow_auto, expected', [
+    ('198.18.0.1:65', True, False),
+    ('65531:65531', False, True),
+    ('route:target', True, False),
+    ('515555:82', False, True),
+    ('82:515555', True, True),
+    ('515555:515555', False, False),
+    ('auto', True, True),
+    ('auto', False, False)
 ])
-def test_is_route_target(rt, expected):
-    assert v.is_route_target(rt) == expected
+def test_is_route_target(rt, allow_auto, expected):
+    assert v.is_route_target(rt, allow_auto) == expected

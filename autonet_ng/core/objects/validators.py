@@ -56,26 +56,31 @@ def is_route_distinguisher(rd: str) -> bool:
     parts = rd.split(':')
     # There should be exactly two parts. First part can be an integer
     # or an IPv4 address.  The last part must be an integer.
-    case1 = is_ipv4_address(parts[0]), is_uint16(parts[1])
-    case2 = is_uint32(parts[0]), is_uint16(parts[1])
-    case3 = is_uint16(parts[0]), is_uint32(parts[1])
+    case1 = is_ipv4_address(parts[0]) and is_uint16(parts[1])
+    case2 = is_uint32(parts[0]) and is_uint16(parts[1])
+    case3 = is_uint16(parts[0]) and is_uint32(parts[1])
     return len(parts) == 2 and (case1 or case2 or case3)
 
 
-def is_route_target(rt: str) -> bool:
+def is_route_target(rt: str, allow_auto: bool = True) -> bool:
     """
     Verifies that the provided string is a valid route target.  Also
     accepts "auto" which is a special signal to an Autonet driver to
     derive the RT automatically as appropriate for the device.
+    :param rt: A route target string
+    :param allow_auto: Allow the special value `auto`.
     :return:
     """
-    if rt == 'auto':
+    if allow_auto and rt == 'auto':
         return True
+
     parts = rt.split(':')
     # There should be exactly 2 parts, both of which are integers.
+    if len(parts) != 2:
+        return False
     case1 = is_uint16(parts[0]) and is_uint32(parts[1])
     case2 = is_uint32(parts[0]) and is_uint16(parts[1])
-    return len(parts) == 2 and (case1 or case2)
+    return case1 or case2
 
 
 def validate_union(value, tp):
