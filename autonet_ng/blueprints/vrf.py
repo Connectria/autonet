@@ -33,8 +33,8 @@ def get_vrf(device_id, vrf_name):
 
 @blueprint.route('/', methods=['POST'])
 def create_vrf(device_id):
-    vxlan = an_vrf.VRF(**request.json)
-    response = g.driver.execute('vrf', 'create', request_data=vxlan)
+    vrf = an_vrf.VRF(**request.json)
+    response = g.driver.execute('vrf', 'create', request_data=vrf)
     if not isinstance(response, an_vrf.VRF):
         raise exc.DriverResponseInvalid(g.driver)
     return autonet_response(response)
