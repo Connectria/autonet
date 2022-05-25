@@ -85,19 +85,17 @@ def get_interfaces(device_id):
         return True
 
     response = g.driver.execute('interface', 'read')
-    if verify(response):
-        return autonet_response(response)
-    else:
+    if not verify(response):
         raise exc.DriverResponseInvalid(g.driver)
+    return autonet_response(response)
 
 
 @blueprint.route('/<interface_name>', methods=['GET'])
 def get_interface(device_id, interface_name):
     response = g.driver.execute('interface', 'read', request_data=interface_name)
-    if isinstance(response, an_if.Interface):
-        return autonet_response(response)
-    else:
+    if not isinstance(response, an_if.Interface):
         raise exc.DriverResponseInvalid(g.driver)
+    return autonet_response(response)
 
 
 @blueprint.route('/', methods=['POST'])
@@ -111,10 +109,9 @@ def create_interface(device_id):
 
     an_if_object = _build_interface_from_request_data(request_data)
     response = g.driver.execute('interface', 'create', request_data=an_if_object)
-    if isinstance(response, an_if.Interface):
-        return autonet_response(response)
-    else:
+    if not isinstance(response, an_if.Interface):
         raise exc.DriverResponseInvalid(g.driver)
+    return autonet_response(response)
 
 
 @blueprint.route('/<interface_name>', methods=['PUT', 'PATCH'])
@@ -138,13 +135,14 @@ def _update_interface(device_id, interface_name: str = None):
 
     an_if_object = _build_interface_from_request_data(request_data)
     response = g.driver.execute('interface', 'update', request_data=an_if_object, update=update)
-    if isinstance(response, an_if.Interface):
-        return autonet_response(response)
-    else:
+    if not isinstance(response, an_if.Interface):
         raise exc.DriverResponseInvalid(g.driver)
+    return autonet_response(response)
 
 
 @blueprint.route('/<interface_name>', methods=['DELETE'])
 def delete_interface(device_id, interface_name):
-    g.driver.execute('interface', 'delete', request_data=interface_name)
+    response = g.driver.execute('interface', 'delete', request_data=interface_name)
+    if response is not None:
+        raise exc.DriverResponseInvalid(g.driver)
     return autonet_response(None, 204)
