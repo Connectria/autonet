@@ -24,7 +24,7 @@ def get_vlans(device_id):
 
 
 @blueprint.route('/<vlan_id>', methods=['GET'])
-def get_vrf(device_id, vlan_id):
+def get_vlan(device_id, vlan_id):
     response = g.driver.execute('bridge:vlan', 'read', request_data=vlan_id)
     if not isinstance(response, an_vlan.VLAN):
         raise exc.DriverResponseInvalid(g.driver)
@@ -32,7 +32,7 @@ def get_vrf(device_id, vlan_id):
 
 
 @blueprint.route('/', methods=['POST'])
-def create_vrf(device_id):
+def create_vlan(device_id):
     vlan = an_vlan.VLAN(**request.json)
     response = g.driver.execute('bridge:vlan', 'create', request_data=vlan)
     if not isinstance(response, an_vlan.VLAN):
@@ -41,7 +41,7 @@ def create_vrf(device_id):
 
 
 @blueprint.route('/<vlan_id>', methods=['DELETE'])
-def delete_vrf(device_id, vlan_id):
+def delete_vlan(device_id, vlan_id):
     response = g.driver.execute('bridge:vlan', 'delete', request_data=vlan_id)
     if response is not None:
         raise exc.DriverResponseInvalid(g.driver)
