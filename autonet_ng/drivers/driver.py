@@ -20,7 +20,7 @@ DRIVER_CAPABILITIES_TYPES = [
     'tunnels:ipip',
     'tunnels:mpls',
     'vrf',
-    'bridge',
+    'bridge:vlan',
     'bridge:domain',
     'protocols:static',
     'protocols:bgp',
