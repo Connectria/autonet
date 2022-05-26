@@ -8,6 +8,7 @@ from uuid import uuid4
 from autonet_ng.core.response import autonet_response
 from autonet_ng.blueprints.bridge_vlan import blueprint as bridge_vlan_blueprint
 from autonet_ng.blueprints.interfaces import blueprint as interfaces_blueprint
+from autonet_ng.blueprints.interface_lag import blueprint as interface_lag_blueprint
 from autonet_ng.blueprints.tunnels_vxlan import blueprint as tunnels_vxlan_blueprint
 from autonet_ng.blueprints.vrf import blueprint as vrf_blueprint
 from autonet_ng.blueprints.users import blueprint as admin_users_blueprint
@@ -29,10 +30,13 @@ config.register_options(opts)
 flask_app = Flask(__name__)
 flask_app.register_blueprint(bridge_vlan_blueprint, url_prefix='/<device_id>/bridge/vlans')
 flask_app.register_blueprint(interfaces_blueprint, url_prefix='/<device_id>/interfaces')
+flask_app.register_blueprint(interface_lag_blueprint, url_prefix='/<device_id>/interfaces/lags')
 flask_app.register_blueprint(admin_users_blueprint, url_prefix='/admin/users')
 flask_app.register_blueprint(vrf_blueprint, url_prefix='/<device_id>/vrfs')
 flask_app.register_blueprint(tunnels_vxlan_blueprint, url_prefix='/<device_id>/tunnels/')
-print(flask_app.url_map)
+
+if config.debug:
+    print(flask_app.url_map)
 setup_logging()
 
 
