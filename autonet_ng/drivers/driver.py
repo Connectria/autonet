@@ -13,6 +13,7 @@ DRIVER_CAPABILITIES_ACTIONS = [
 DRIVER_CAPABILITIES_TYPES = [
     'interface:route',
     'interface:bridge',
+    'interface:lag',
     'interface',
     'tunnels:vxlan',
     'tunnels:gre',

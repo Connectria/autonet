@@ -1,4 +1,5 @@
 import ipaddress
+import re
 import typing
 
 from autonet_ng.core.exceptions import RequestTypeError
@@ -83,6 +84,24 @@ def is_route_target(rt: str, allow_auto: bool = True) -> bool:
     return case1 or case2
 
 
+def is_esi(esi: str) -> bool:
+    """
+    Verifies the provided string is a properly formatted 10 bytes
+    ESI.  Does not verify RFC compliance of ESI type/byte sequence, but
+    only the textual representation is valid.
+    :param esi:
+    :return:
+    """
+    try:
+        esi_bytes = bytes.fromhex(re.sub(r'[-_.:]', '', esi))
+    except ValueError:
+        return False
+    if len(esi_bytes) != 10:
+        return False
+    else:
+        return True
+
+
 def validate_union(value, tp):
     """
     Determines if the value is one of the possible inner types of a Union Type.
@@ -91,7 +110,12 @@ def validate_union(value, tp):
     """
     for t in typing.get_args(tp):
         if typing.get_origin(t) is list:
-            return validate_list(value, t)
+            if isinstance(value, list):
+                return validate_list(value, t)
+            else:
+                # We abort here because an isinstance() check will cause
+                # an exception when used on subscripted generics like List
+                continue
         if isinstance(value, t):
             return True
     return False
