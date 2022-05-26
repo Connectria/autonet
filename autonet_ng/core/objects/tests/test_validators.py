@@ -58,3 +58,15 @@ def test_is_route_distinguisher(rd, expected):
 ])
 def test_is_route_target(rt, allow_auto, expected):
     assert v.is_route_target(rt, allow_auto) == expected
+
+
+@pytest.mark.parametrize('test_esi, expected', [
+    ('no:t0:a0:va:li:d0:es:i0:00:00', False),
+    ('00:01:22:ea:fb:99:ed:00:00:00', True),
+    ('0001:22ea:fb99:ed00:0000', True),
+    ('00_01_22_ea_fb_99_ed_00_00_00', True),
+    ('00-01-22-ea-fb-99-ed-00-00-00', True),
+    ('00.01.22.ea.fb.99.ed.00.00.00', True)
+])
+def test_is_esi(test_esi, expected):
+    assert v.is_esi(test_esi) == expected
