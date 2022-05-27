@@ -41,7 +41,7 @@ def create_tunnel(device_id):
     response = g.driver.execute('tunnels:vxlan', 'create', request_data=vxlan)
     if not isinstance(response, an_vxlan.VXLAN):
         raise exc.DriverResponseInvalid(g.driver)
-    return autonet_response(response)
+    return autonet_response(response, 201)
 
 
 @blueprint.route('/vxlan/<object_id>', methods=['DELETE'])

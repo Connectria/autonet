@@ -116,7 +116,7 @@ def create_interface(device_id):
     response = g.driver.execute('interface', 'create', request_data=an_if_object)
     if not isinstance(response, an_if.Interface):
         raise exc.DriverResponseInvalid(g.driver)
-    return autonet_response(response)
+    return autonet_response(response, 201)
 
 
 @blueprint.route('/<interface_name>', methods=['PUT', 'PATCH'])

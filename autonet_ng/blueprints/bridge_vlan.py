@@ -54,7 +54,7 @@ def create_vlan(device_id):
     response = g.driver.execute('bridge:vlan', 'create', request_data=vlan)
     if not isinstance(response, an_vlan.VLAN):
         raise exc.DriverResponseInvalid(g.driver)
-    return autonet_response(response)
+    return autonet_response(response, 201)
 
 
 @blueprint.route('/', methods=['PUT', 'PATCH'])

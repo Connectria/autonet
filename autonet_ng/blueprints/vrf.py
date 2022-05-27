@@ -41,7 +41,7 @@ def create_vrf(device_id):
     response = g.driver.execute('vrf', 'create', request_data=vrf)
     if not isinstance(response, an_vrf.VRF):
         raise exc.DriverResponseInvalid(g.driver)
-    return autonet_response(response)
+    return autonet_response(response, 201)
 
 
 @blueprint.route('/<vrf_name>', methods=['DELETE'])
