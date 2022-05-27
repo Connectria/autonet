@@ -7,7 +7,7 @@ from uuid import uuid4
 
 from autonet_ng.core.response import autonet_response
 from autonet_ng.blueprints.bridge_vlan import blueprint as bridge_vlan_blueprint
-from autonet_ng.blueprints.interfaces import blueprint as interfaces_blueprint
+from autonet_ng.blueprints.interface import blueprint as interfaces_blueprint
 from autonet_ng.blueprints.interface_lag import blueprint as interface_lag_blueprint
 from autonet_ng.blueprints.tunnels_vxlan import blueprint as tunnels_vxlan_blueprint
 from autonet_ng.blueprints.vrf import blueprint as vrf_blueprint
