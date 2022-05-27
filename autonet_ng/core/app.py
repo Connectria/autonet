@@ -22,8 +22,8 @@ from autonet_ng.db.models import Tokens, Users
 from autonet_ng.util.auth import verify_password
 
 opts = [
-    StringOption('bind_host'),
-    NumberOption('port', minimum=1, maximum=65535)
+    StringOption('bind_host', default='0.0.0.0'),
+    NumberOption('port', minimum=1, maximum=65535, default=80)
 ]
 config.register_options(opts)
 
