@@ -4,4 +4,4 @@ autonet-ng.iml
 # venv
 venv/
 */.pytest_cache/
-/autonet.egg-info/
+/autonet_ng.egg-info/
