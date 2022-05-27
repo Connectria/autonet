@@ -48,7 +48,7 @@ def create_lag(device_id):
 def update_lag(device_id, lag_id):
     update = request.method == 'PATCH'
     if update and not g.driver.execute('interface:lag', 'read', request_data=lag_id):
-        raise exc.ObjectNotFound
+        raise exc.ObjectNotFound()
     lag = an_lag.LAG(**request.json)
     response = g.driver.execute('interface:lag', 'update', request_data=lag, update=update)
     if not isinstance(response, an_lag.LAG):
