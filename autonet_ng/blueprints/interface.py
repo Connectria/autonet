@@ -7,18 +7,17 @@ from autonet_ng.core.response import autonet_response
 blueprint = Blueprint('interfaces', __name__)
 
 
-def _verify_name_match(flask_request: Request, interface_name: str):
+def _verify_name_match(request_if_name: str, uri_if_name: str):
     """
     Verify that the name, if provided, in the request payload matches
     the name as presented in the URI.  Raises an exception if the
     request is not well-formed
-    :param flask_request: The Flask `Request` object.
-    :param interface_name: The interface name from the URI
+    :param request_if_name: The name from the request payload.
+    :param uri_if_name: The interface name from the URI.
     :return:
     """
-    request_name = flask_request.json.get('name', None)
-    if request_name and request_name != interface_name:
-        raise exc.RequestValueError('name', request_name, [interface_name])
+    if request_if_name and request_if_name != uri_if_name:
+        raise exc.RequestValueError('name', request_if_name, [uri_if_name])
 
 
 def _verify_required_config_data(request_data: dict, put: bool = False):
@@ -121,7 +120,7 @@ def create_interface(device_id):
 
 @blueprint.route('/<interface_name>', methods=['PUT', 'PATCH'])
 def update_interface(device_id, interface_name):
-    _verify_name_match(request, interface_name)
+    _verify_name_match(flask_request.json.get('name', None), interface_name)
     return _update_interface(device_id, interface_name)
 
 
