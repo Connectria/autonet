@@ -1,4 +1,5 @@
 from flask import Blueprint, g, request, Request
+from typing import Union
 
 from autonet_ng.core import exceptions as exc
 from autonet_ng.core.objects import interfaces as an_if
@@ -7,32 +8,36 @@ from autonet_ng.core.response import autonet_response
 blueprint = Blueprint('interfaces', __name__)
 
 
-def _verify_name_match(request_if_name: str, uri_if_name: str):
+def _verify_name_match(request_if_name: str, uri_if_name: str) -> bool:
     """
     Verify that the name, if provided, in the request payload matches
-    the name as presented in the URI.  Raises an exception if the
+    the name as presented in the URI.  Returns False if the
     request is not well-formed
     :param request_if_name: The name from the request payload.
     :param uri_if_name: The interface name from the URI.
     :return:
     """
     if request_if_name and request_if_name != uri_if_name:
-        raise exc.RequestValueError('name', request_if_name, [uri_if_name])
+        return False
+    return True
 
 
-def _verify_required_config_data(request_data: dict, put: bool = False):
+def _required_config_data_missing(request_data: dict, update: bool = False) -> Union[str, bool]:
     """
     Verify that the minimum data required for a POST or PUT operation
-    is present.  Raises an exception if data set is insufficient.
+    is present.  Returns the missing field name, or False if all fields
+    are present.
     :param request_data: The raw reqeust data sent to the endpoint.
-    :param put: Set True for PUT operation, which has less stringent checking.
+    :param update: Set True for PATCH operation, which has less stringent checking.
     :return:
     """
     # Verify minimum data is sent with request
-    fields = ['name', 'attributes', 'mode'] if put else ['name']
+    fields = ['name'] if update else ['name', 'attributes', 'mode']
     for field in fields:
         if request_data.get(field, None) is None:
-            raise exc.RequestValueMissing(field)
+            return field
+
+    return False
 
 
 def _prepare_defaults(request_data: dict) -> dict:
@@ -106,7 +111,9 @@ def create_interface(device_id):
         raise exc.ObjectExists()
 
     # Verify minimum data is sent with request
-    _verify_required_config_data(request_data)
+    missing = _required_config_data_missing(request_data)
+    if missing:
+        raise exc.RequestValueMissing(missing)
 
     # Now we set default values as appropriate.
     request_data = _prepare_defaults(request_data)
@@ -120,7 +127,9 @@ def create_interface(device_id):
 
 @blueprint.route('/<interface_name>', methods=['PUT', 'PATCH'])
 def update_interface(device_id, interface_name):
-    _verify_name_match(flask_request.json.get('name', None), interface_name)
+    request_if_name = flask_request.json.get('name', None)
+    if not _verify_name_match(request_if_name, interface_name):
+        raise exc.RequestValueError('name', request_if_name, [interface_name])
     return _update_interface(device_id, interface_name)
 
 
@@ -132,7 +141,9 @@ def _update_interface(device_id, interface_name: str = None):
 
     # Verify minimum data is sent with request
     update = request.method == 'PATCH'
-    _verify_required_config_data(request_data, not update)
+    missing = _required_config_data_missing(request_data, update)
+    if missing:
+        raise exc.RequestValueMissing(missing)
 
     if update and not g.driver.execute('interface', 'read', request_data=request_data['name']):
         raise exc.ObjectNotFound()
