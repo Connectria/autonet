@@ -3,6 +3,10 @@ from typing import Callable, List, Union
 from autonet_ng.core.device import AutonetDevice
 from autonet_ng.core.exceptions import DriverOperationUnsupported
 from autonet_ng.core.objects import interfaces as an_if
+from autonet_ng.core.objects import lag as an_lag
+from autonet_ng.core.objects import vlan as an_vlan
+from autonet_ng.core.objects import vrf as an_vrf
+from autonet_ng.core.objects import vxlan as an_vxlan
 
 DRIVER_CAPABILITIES_ACTIONS = [
     'create',
