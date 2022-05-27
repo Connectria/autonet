@@ -74,7 +74,7 @@ def _build_interface_from_request_data(request_data: dict) -> an_if.Interface:
     return an_if.Interface(**request_data)
 
 
-@blueprint.route('', methods=['GET'])
+@blueprint.route('/', methods=['GET'])
 def get_interfaces(device_id):
     def verify(driver_response):
         if not isinstance(driver_response, list):
