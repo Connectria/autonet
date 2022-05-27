@@ -93,6 +93,8 @@ def get_interfaces(device_id):
 @blueprint.route('/<interface_name>', methods=['GET'])
 def get_interface(device_id, interface_name):
     response = g.driver.execute('interface', 'read', request_data=interface_name)
+    if not response:
+        raise exc.ObjectNotFound()
     if not isinstance(response, an_if.Interface):
         raise exc.DriverResponseInvalid(g.driver)
     return autonet_response(response)
@@ -101,6 +103,9 @@ def get_interface(device_id, interface_name):
 @blueprint.route('/', methods=['POST'])
 def create_interface(device_id):
     request_data = request.json
+    if g.driver.execute('interface', 'read', request_data=request_data['name']):
+        raise exc.ObjectExists()
+
     # Verify minimum data is sent with request
     _verify_required_config_data(request_data)
 
@@ -129,6 +134,9 @@ def _update_interface(device_id, interface_name: str = None):
     # Verify minimum data is sent with request
     update = request.method == 'PATCH'
     _verify_required_config_data(request_data, not update)
+
+    if update and not g.driver.execute('interface', 'read', request_data=request_data['name']):
+        raise exc.ObjectNotFound()
     # Now we set default values as appropriate, if PUT request.
     if not update:
         request_data = _prepare_defaults(request_data)
@@ -142,6 +150,8 @@ def _update_interface(device_id, interface_name: str = None):
 
 @blueprint.route('/<interface_name>', methods=['DELETE'])
 def delete_interface(device_id, interface_name):
+    if not g.driver.execute('interface', 'read', request_data=interface_name):
+        raise exc.ObjectNotFound()
     response = g.driver.execute('interface', 'delete', request_data=interface_name)
     if response is not None:
         raise exc.DriverResponseInvalid(g.driver)

@@ -38,6 +38,8 @@ def get_vlans(device_id):
 @blueprint.route('/<vlan_id>', methods=['GET'])
 def get_vlan(device_id, vlan_id):
     response = g.driver.execute('bridge:vlan', 'read', request_data=vlan_id)
+    if not response:
+        raise exc.ObjectNotFound()
     if not isinstance(response, an_vlan.VLAN):
         raise exc.DriverResponseInvalid(g.driver)
     return autonet_response(response)
@@ -47,6 +49,8 @@ def get_vlan(device_id, vlan_id):
 def create_vlan(device_id):
     request_data = _prepare_defaults(request.json)
     vlan = an_vlan.VLAN(**request_data)
+    if g.driver.execute('bridge:vlan', 'read', request_data=vlan.id):
+        raise exc.ObjectExists()
     response = g.driver.execute('bridge:vlan', 'create', request_data=vlan)
     if not isinstance(response, an_vlan.VLAN):
         raise exc.DriverResponseInvalid(g.driver)
@@ -66,6 +70,8 @@ def update_vlan(device_id, vlan_id=None):
         request_data['id'] = int(vlan_id)
 
     update = request.method == 'PATCH'
+    if update and not g.driver.execute('bridge:vlan', 'read', request_data=request_data['id']):
+        raise exc.ObjectNotFound()
     vlan = an_vlan.VLAN(**request_data)
     response = g.driver.execute('bridge:vlan', 'update', request_data=vlan, update=update)
     if not isinstance(response, an_vlan.VLAN):
@@ -75,6 +81,8 @@ def update_vlan(device_id, vlan_id=None):
 
 @blueprint.route('/<vlan_id>', methods=['DELETE'])
 def delete_vlan(device_id, vlan_id):
+    if not g.driver.execute('bridge:vlan', 'read', request_data=vlan_id):
+        raise exc.ObjectNotFound()
     response = g.driver.execute('bridge:vlan', 'delete', request_data=vlan_id)
     if response is not None:
         raise exc.DriverResponseInvalid(g.driver)
