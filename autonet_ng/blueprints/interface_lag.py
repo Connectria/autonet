@@ -42,8 +42,18 @@ def create_lag(device_id):
     response = g.driver.execute('interface:lag', 'create', request_data=lag)
     if not isinstance(response, an_lag.LAG):
         raise exc.DriverResponseInvalid(g.driver)
-    return autonet_response(response)
+    return autonet_response(response, 201)
 
+@blueprint.route('/<lag_id>', methods=['PUT', 'PATCH'])
+def update_lag(device_id, lag_id):
+    update = request.method == 'PATCH'
+    if update and not g.driver.execute('interface:lag', 'read', request_data=lag_id):
+        raise exc.ObjectNotFound
+    lag = an_lag.LAG(**request.json)
+    response = g.driver.execute('interface:lag', 'update', request_data=lag, update=update)
+    if not isinstance(response, an_lag.LAG):
+        raise exc.DriverResponseInvalid(g.driver)
+    return autonet_response(response)
 
 @blueprint.route('/<lag_id>', methods=['DELETE'])
 def delete_lag(device_id, lag_id):
