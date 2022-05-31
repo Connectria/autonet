@@ -16,7 +16,7 @@ from autonet.config import config
 from autonet.db import init_db
 from autonet.core.exceptions import AutonetException
 from autonet.core.logging import setup_logging
-from autonet.core.marshal import marshal_device, marshal_device_driver
+from autonet.core.marshal import marshal_device, marshal_driver
 from autonet.db import Session
 from autonet.db.models import Tokens, Users
 from autonet.util.auth import verify_password
@@ -61,7 +61,7 @@ def setup_device_object():
     """
     if request.view_args and 'device_id' in request.view_args:
         g.device = marshal_device(request.view_args['device_id'])
-        driver = marshal_device_driver(g.device)
+        driver = marshal_driver('autonet.drivers', g.device.driver)
         g.driver = driver(g.device)
 
 

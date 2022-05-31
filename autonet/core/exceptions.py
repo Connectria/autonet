@@ -38,14 +38,13 @@ class DeviceDriverNotDefined(AutonetException):
                          f"device_id: {device_id} from backend: {backend}")
 
 
-class DeviceDriverNotFound(AutonetException):
+class DriverNotFound(AutonetException):
     """
-    Raised when the driver for a device cannot be determined.
+    Raised when a driver could not be loaded.
     """
 
-    def __init__(self, device_id, backend):
-        super().__init__(f"Could not load driver {backend} "
-                         f"for device_id: {device_id}")
+    def __init__(self, driver_name):
+        super().__init__(f"Could not load driver {driver_name}")
 
 
 class DeviceOperationUnsupported(AutonetException):

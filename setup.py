@@ -55,6 +55,16 @@ setuptools.setup(
     test_suite='pytest',
     exclude_package_data={'': ['autonet/*/tests/test_*.py']},
     entry_points={
-        'autonet.drivers': ['dummy = autonet.drivers.dummy_driver.driver:DummyDriver']
+        'console_scripts': [
+            'autonet-server = autonet.core.app:run_wsgi_app',
+            'autonet-createadmin = autonet.commands.createadmin:create_admin'
+                            ],
+        'autonet.drivers': [
+            'dummy = autonet.drivers.device.dummy_driver.driver:DummyDriver'
+        ],
+        'autonet.backends': [
+            'yamlfile = autonet.drivers.backend.yamlfile.yamlfile:YAMLFile',
+            'netbox = autonet.drivers.backend.netbox.netbox:NetBox'
+        ]
     }
 )

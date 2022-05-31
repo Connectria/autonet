@@ -1,11 +1,31 @@
 import logging
 
-import autonet.core.exceptions as exc
+from conf_engine.options import StringOption
 
-from autonet.core.backends.netbox import NetBox
-from autonet.core.device import AutonetDevice
+from autonet.core import exceptions as exc
+from autonet.config import config
 
-DEVICE_BACKEND = NetBox()
+opts = [
+    StringOption('backend', default='yamlfile')
+]
+config.register_options(opts)
+
+
+def marshal_driver(driver_ns: str, driver_name: str):
+    """
+    Returns the class defined by the driver's registered entrypoint.
+    :return:
+    """
+    try:
+        for driver_ep in __import__('pkg_resources').iter_entry_points(group=driver_ns):
+            if driver_ep.name == driver_name:
+                return driver_ep.load()
+    except Exception as e:
+        logging.exception(e)
+    raise exc.DriverNotFound(driver_name)
+
+
+DEVICE_BACKEND = marshal_driver('autonet.backends', config.backend)()
 
 
 def marshal_device(device_id):
@@ -22,21 +42,6 @@ def marshal_device(device_id):
     if not nb_device.credentials:
         raise exc.DeviceCredentialsNotFound(device_id, DEVICE_BACKEND)
     if not nb_device.driver:
-        raise exc.DeviceDriverNotFound(device_id, DEVICE_BACKEND)
+        raise exc.AutonetException(f"Device driver for device_id "
+                                   f"{device_id} is not defined.")
     return nb_device
-
-
-def marshal_device_driver(device: AutonetDevice):
-    """
-    Returns the class defined by the driver package's entry point.
-    :param device:
-    :return:
-    """
-    try:
-        for driver_ep in __import__('pkg_resources').iter_entry_points(group='autonet.drivers'):
-            if driver_ep.name == device.driver:
-                return driver_ep.load()
-    except Exception as e:
-        logging.exception(e)
-    raise exc.DeviceDriverNotFound(device.device_id, device.driver)
-
