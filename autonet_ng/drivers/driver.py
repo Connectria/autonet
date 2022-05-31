@@ -228,10 +228,10 @@ class DeviceDriver(object):
 
     def _tunnels_vxlan_delete(self, request_data: str):
         """
-        VXLAN tunnel delete recieves the VNID as a string via `request_data`.  The
+        VXLAN tunnel delete receives the VNID as a string via `request_data`.  The
         driver should take care of any tunnel configuration removal as well as
         removal of any related BGP EVPN configuration.  VRF configuration should
-        be left in-tact, execpt as relates to EVPN-VXLAN.
+        be left in-tact, except as relates to EVPN-VXLAN.
         :param request_data: The VXLAN VNID, as a string.
         :return:
         """
@@ -240,15 +240,15 @@ class DeviceDriver(object):
         """
         VRF read may be passed a specific VRF name via `request_data`.  If
         `request_data` is set, then only the requested VRF should be returned.
-        Otherwise a list of all mutable VRFs should be returned.  Immutable VRFs,
-        such as the default VRF, or a management-only VRF, should be ommitted.
+        Otherwise, a list of all mutable VRFs should be returned.  Immutable VRFs,
+        such as the default VRF, or a management-only VRF, should be omitted.
         :param request_data: The VRF name, as a string.
         :return:
         """
 
     def _vrf_create(self, request_data: an_vrf.VRF) -> an_vrf.VRF:
         """
-        VRF create will recieve a `VRF` object as it's `request_data`.  When
+        VRF create will receive a `VRF` object as it's `request_data`.  When
         the driver has completed configuration of the VRF it should return
         a `VRF` object representative of the created VRF including any
         default values that may have been set during the request process.
@@ -258,8 +258,8 @@ class DeviceDriver(object):
 
     def _vrf_update(self, request_data: an_vrf.VRF, update: bool) -> an_vrf.VRF:
         """
-        VRF update recieves a `VRF` object as it's `request_data` as well as
-        having `update` set as a flag to inidicate if the request is a replace
+        VRF update receives a `VRF` object as it's `request_data` as well as
+        having `update` set as a flag to indicate if the request is a replace
         or update operation.  Replace operations should set any attributes set
         to `None` to their defaults or remove the configuration entirely, as
         appropriate.  Update operations should ignore attributes set to `None`.
@@ -273,7 +273,7 @@ class DeviceDriver(object):
 
     def _vrf_delete(self, request_data: str) -> None:
         """
-        VRF delete will recieve the name of the VRF to be deleted as a
+        VRF delete will receive the name of the VRF to be deleted as a
         string via `request_data`.  A successful delete operation should
         return `None`
         :param request_data: The VRF name, as a string.
@@ -282,9 +282,9 @@ class DeviceDriver(object):
 
     def _bridge_vlan_read(self, request_data: Union[str, int]) -> Union[List[an_vlan.VLAN], an_vlan.VLAN]:
         """
-        VLAN read requests may recieve a VLAN ID as `request_data`.  If a VLAN ID is
-        recieved then only the `VLAN` object for that VLAN ID should be returned.
-        Otherwise a list of all mutable VLANs should be returned.  Immutable VLANs
+        VLAN read requests may receive a VLAN ID as `request_data`.  If a VLAN ID is
+        received then only the `VLAN` object for that VLAN ID should be returned.
+        Otherwise, a list of all mutable VLANs should be returned.  Immutable VLANs
         such as dynamic VLANs and device reserved VLANs should not be exposed.
         :param request_data: The VLAN ID requested, or `None` for all VLANs.
         :return:
@@ -292,7 +292,7 @@ class DeviceDriver(object):
 
     def _bridge_vlan_create(self, request_data: an_vlan.VLAN) -> an_vlan.VLAN:
         """
-        VLAN create will recieve a `VLAN` object as `request_data`.  The driver should
+        VLAN create will receive a `VLAN` object as `request_data`.  The driver should
         return a `VLAN` object that represents the final configured state of the VLAN
         including any default values.
         :param request_data: A `VLAN` object.
@@ -301,11 +301,11 @@ class DeviceDriver(object):
 
     def _bridge_vlan_update(self, request_data: an_vlan.VLAN, update: bool) -> an_vlan.VLAN:
         """
-        VLAN update recieves a `VLAN` object as `request_data` as well as the `update`
+        VLAN update receives a `VLAN` object as `request_data` as well as the `update`
         flag which indicates if the operation is a replace or update operation.  For
         replace operations any attributes set to `None` should default or remove the
         related configuration, as appropriate.  Update operations should ignore `None`
-        values any only modify configuration related to attributes that have a value
+        values any only modify configuration related to attribute that have a value
         other than `None`.  The driver should return a `VLAN` object that reflects the
         final configuration state.
         :param request_data: A `VLAN` object.
@@ -316,7 +316,7 @@ class DeviceDriver(object):
     def _bridge_vlan_delete(self, request_data: str) -> None:
         """
         VLAN delete receives the VLAN ID of the vlan to be removed via `request_data`.
-        Removal of the VLAN is required, and removal of any related configuratoin is
+        Removal of the VLAN is required, and removal of any related configuration is
         up to the driver implementation as required by the target device's constraints.
         The driver should return `None` on success.
         :param request_data: The VLAN ID, as a string.
@@ -326,14 +326,14 @@ class DeviceDriver(object):
     def _interface_lag_read(self, request_data: str) -> Union[List[an_lag.LAG], an_lag.LAG]:
         """
         LAG read may receive a LAG name as a string via `request_data`.  If so, then only
-        the requested LAG should be returned.  Otherwise all LAGs should be returned.
+        the requested LAG should be returned.  Otherwise, all LAGs should be returned.
         :param request_data: The LAG name, or `None` for all LAGs.
         :return:
         """
 
     def _interface_lag_create(self, request_data: an_lag.LAG) -> an_lag.LAG:
         """
-        LAG create will recieve a `LAG` object as `request_data`.  Once
+        LAG create will receive a `LAG` object as `request_data`.  Once
         configuration is completed the driver needs to return a `LAG` object
         that represents the final configuration state on the device including
         any generated defaults.
@@ -343,10 +343,10 @@ class DeviceDriver(object):
 
     def _interface_lag_update(self, request_data: an_lag.LAG, update: bool) -> an_lag.LAG:
         """
-        LAG update recieves a `LAG` object as `request_data` and an `update` flag which
+        LAG update receives a `LAG` object as `request_data` and an `update` flag which
         indicates if the request is a replace or update operation.  Replace operations
         should default or remove configuration for any attributes that are set to `None`.
-        Update operatons should ignore attributes that are set to `None`.
+        Update operations should ignore attributes that are set to `None`.
         :param request_data: A `LAG` object.
         :param update: True if called with HTTP PATCH. False if called with HTTP PUT.
         :return:
@@ -354,7 +354,7 @@ class DeviceDriver(object):
 
     def _interface_lag_delete(self, request_data: str) -> None:
         """
-        LAG delete recieves the lag name as a string.  Removal of the LAG
+        LAG delete receives the lag name as a string.  Removal of the LAG
         configuration should include resetting or defaulting the configuration
         of any member interfaces as well.  The driver should return `None` in
         the event of a successful removal.
