@@ -1,7 +1,6 @@
 import pytest
 
 from autonet.blueprints import interface as if_bp
-from autonet.core import exceptions as exc
 from autonet.core.objects import interfaces as an_if
 
 
