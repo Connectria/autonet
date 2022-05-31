@@ -1,4 +1,4 @@
-from config_engine.options import StringOption
+from conf_engine.options import StringOption
 from sqlalchemy import create_engine
 from sqlalchemy.orm import registry, sessionmaker
 

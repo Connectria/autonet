@@ -1,4 +1,4 @@
-from config_engine import config, options
+from conf_engine import config, options
 
 opts = [
     options.BooleanOption('debug', default=False)

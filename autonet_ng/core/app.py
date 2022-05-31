@@ -1,7 +1,7 @@
 import logging
 import traceback
 
-from config_engine.options import NumberOption, StringOption
+from conf_engine.options import NumberOption, StringOption
 from flask import g, Flask, request
 from uuid import uuid4
 
