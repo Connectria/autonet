@@ -1,4 +1,4 @@
-from flask import Blueprint, g, request, Request
+from flask import Blueprint, g, request
 from typing import Union
 
 from autonet.core import exceptions as exc
@@ -127,7 +127,7 @@ def create_interface(device_id):
 
 @blueprint.route('/<interface_name>', methods=['PUT', 'PATCH'])
 def update_interface(device_id, interface_name):
-    request_if_name = flask_request.json.get('name', None)
+    request_if_name = request.json.get('name', None)
     if not _verify_name_match(request_if_name, interface_name):
         raise exc.RequestValueError('name', request_if_name, [interface_name])
     return _update_interface(device_id, interface_name)
