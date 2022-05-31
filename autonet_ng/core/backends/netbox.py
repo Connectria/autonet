@@ -2,7 +2,7 @@ import os
 import requests_cache
 import requests
 
-from config_engine.options import BooleanOption, NumberOption, StringOption
+from conf_engine.options import BooleanOption, NumberOption, StringOption
 from ipaddress import ip_interface
 from typing import Union
 
