@@ -1,3 +1,4 @@
+import os
 import pytest
 
 
@@ -60,7 +61,8 @@ def db_session(request):
     session = Session()
     populated = request.param if hasattr(request, 'param') else True
     if populated:
-        for sql_file in ['./tests/sql/users.sql', './tests/sql/tokens.sql']:
+        cwd = os.path.dirname(os.path.abspath(__file__))
+        for sql_file in [f'{cwd}/tests/sql/users.sql', f'{cwd}/tests/sql/tokens.sql']:
             with open(sql_file, 'r') as sql_fh:
                 for sql in sql_fh.readlines():
                     session.execute(text(sql))
