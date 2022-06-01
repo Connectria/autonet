@@ -2,19 +2,10 @@ import os
 import pytest
 
 
-@pytest.fixture
-def test_cwd(request):
-    fp = ''
-    for part in request.path.parts[1:]:
-        fp += '/' + part
-        if part == 'autonet':
-            return fp
-
-
 @pytest.fixture(autouse=True)
-def use_test_config(monkeypatch, test_cwd):
-    monkeypatch.chdir(test_cwd)
-    monkeypatch.setattr('sys.argv', ['program', '--config-file', './tests/test_config.ini'])
+def use_test_config(monkeypatch):
+    cwd = os.path.dirname(os.path.abspath(__file__))
+    monkeypatch.setattr('sys.argv', ['program', '--config-file', f'{cwd}/tests/test_config.ini'])
 
 
 @pytest.fixture
