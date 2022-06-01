@@ -52,12 +52,13 @@ def runner(app):
 
 
 @pytest.fixture()
-def db_session(populated=True):
+def db_session(request):
     from sqlalchemy import text
     from autonet.db import Session
     from autonet.db.base import engine, mapper_registry
     mapper_registry.metadata.create_all(bind=engine)
     session = Session()
+    populated = request.param if hasattr(request, 'param') else True
     if populated:
         for sql_file in ['./tests/sql/users.sql', './tests/sql/tokens.sql']:
             with open(sql_file, 'r') as sql_fh:

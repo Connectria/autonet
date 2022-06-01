@@ -1,7 +1,9 @@
+import pytest
 import string
 
 
-def test_create_admin(db_session):
+@pytest.mark.parametrize('db_session', [True, False], indirect=True)
+def test_create_admin(db_session, monkeypatch):
     from autonet.commands import createadmin
     token = createadmin._create_admin()
     assert len(token) == 32
