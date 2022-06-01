@@ -14,6 +14,7 @@ install_requires = [
     'Flask>=2.1.2',
     'passlib>=1.7.0',
     'pymysql>=1.0.2',
+    'PyYAML~=6.0',
     'requests>=2.0.12',
     'requests-cache>=0.9.4',
     'SQLAlchemy>=1.4.36',
@@ -63,6 +64,7 @@ setuptools.setup(
             'dummy = autonet.drivers.device.dummy_driver.driver:DummyDriver'
         ],
         'autonet.backends': [
+            'config = autonet.drivers.backend.deviceconf:DeviceConf',
             'yamlfile = autonet.drivers.backend.yamlfile.yamlfile:YAMLFile',
             'netbox = autonet.drivers.backend.netbox.netbox:NetBox'
         ]

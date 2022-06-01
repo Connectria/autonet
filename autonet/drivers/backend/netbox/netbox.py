@@ -6,7 +6,7 @@ from conf_engine.options import BooleanOption, NumberOption, StringOption
 from ipaddress import ip_interface
 from typing import Union
 
-from autonet.core.backends.base import AutonetDeviceBackend
+from autonet.drivers.backend.base import AutonetDeviceBackend
 from autonet.core.device import AutonetDevice, AutonetDeviceCredentials
 from autonet.config import config
 
@@ -18,7 +18,7 @@ netbox_opts = [
     NumberOption('secret_role_id', default=1)
 ]
 
-config.register_options(netbox_opts, 'netbox')
+config.register_options(netbox_opts, 'backend_netbox')
 
 
 class NetBox(AutonetDeviceBackend):
@@ -27,12 +27,12 @@ class NetBox(AutonetDeviceBackend):
     """
 
     def __init__(self):
-        self._api = config.netbox.url + '/api'
-        self._auth_header = {'Authorization': f'Token {config.netbox.token}'}
-        self._private_key = config.netbox.private_key
+        self._api = config.backend_netbox.url + '/api'
+        self._auth_header = {'Authorization': f'Token {config.backend_netbox.token}'}
+        self._private_key = config.backend_netbox.private_key
         self.__session_key = None
         self._session = self._setup_session()
-        self._session.verify = config.netbox.tls_verify
+        self._session.verify = config.backend_netbox.tls_verify
 
     def __str__(self):
         return f"{self.__class__.__name__}@{self._api}"
@@ -71,7 +71,7 @@ class NetBox(AutonetDeviceBackend):
         url = f'{self._api}{uri}'
         headers = headers or {}
         headers = {**headers, **{'Accept': 'application/json'}, **self._auth_header}
-        kwargs = {'headers': headers, 'params': params, 'verify': config.netbox.tls_verify}
+        kwargs = {'headers': headers, 'params': params, 'verify': config.backend_netbox.tls_verify}
         if json:
             kwargs['json'] = json
         if data:
@@ -117,7 +117,7 @@ class NetBox(AutonetDeviceBackend):
         """
         return self._exec_request(f'/dcim/devices/{device_id}')
 
-    def _get_secret(self, device_id, secret_role_id: int = config.netbox.secret_role_id
+    def _get_secret(self, device_id, secret_role_id: int = config.backend_netbox.secret_role_id
                     ) -> Union[None, dict]:
         """
         Fetch a secret from the NetBox secretstore plugin.

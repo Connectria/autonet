@@ -13,7 +13,7 @@ def netbox_api_url():
 
 @pytest.fixture
 def netbox():
-    from autonet.core.backends.netbox import NetBox
+    from autonet.drivers.backend.netbox.netbox import NetBox
     return NetBox()
 
 
