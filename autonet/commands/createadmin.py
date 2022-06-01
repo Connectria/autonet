@@ -1,7 +1,8 @@
 import logging
 
-from autonet.config import config
-from autonet.db import select, Session
+from sqlalchemy import select
+
+from autonet.db import Session
 from autonet.db.models import Users, Tokens
 from autonet.util.auth import generate_token, hash_password
 
