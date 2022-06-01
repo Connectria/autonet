@@ -1,0 +1,469 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>autonet.drivers.device.driver &#8212; autonet 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-autonet.drivers.device.driver">
+<span id="autonet-drivers-device-driver"></span><h1><a class="reference internal" href="#module-autonet.drivers.device.driver" title="autonet.drivers.device.driver"><code class="xref py py-mod docutils literal notranslate"><span class="pre">autonet.drivers.device.driver</span></code></a><a class="headerlink" href="#module-autonet.drivers.device.driver" title="Permalink to this heading">¶</a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading">¶</a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#autonet.drivers.device.driver.DeviceDriver" title="autonet.drivers.device.driver.DeviceDriver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeviceDriver</span></code></a></p></td>
+<td><p>Base class that defines the interface for a device driver.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#autonet.drivers.device.driver.DRIVER_CAPABILITIES_ACTIONS" title="autonet.drivers.device.driver.DRIVER_CAPABILITIES_ACTIONS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DRIVER_CAPABILITIES_ACTIONS</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#autonet.drivers.device.driver.DRIVER_CAPABILITIES_TYPES" title="autonet.drivers.device.driver.DRIVER_CAPABILITIES_TYPES"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DRIVER_CAPABILITIES_TYPES</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DRIVER_CAPABILITIES_ACTIONS">
+<span class="sig-prename descclassname"><span class="pre">autonet.drivers.device.driver.</span></span><span class="sig-name descname"><span class="pre">DRIVER_CAPABILITIES_ACTIONS</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">['create',</span> <span class="pre">'read',</span> <span class="pre">'update',</span> <span class="pre">'delete']</span></em><a class="headerlink" href="#autonet.drivers.device.driver.DRIVER_CAPABILITIES_ACTIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DRIVER_CAPABILITIES_TYPES">
+<span class="sig-prename descclassname"><span class="pre">autonet.drivers.device.driver.</span></span><span class="sig-name descname"><span class="pre">DRIVER_CAPABILITIES_TYPES</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">['interface:route',</span> <span class="pre">'interface:bridge',</span> <span class="pre">'interface:lag',</span> <span class="pre">'interface',</span> <span class="pre">'tunnels:vxlan',...</span></em><a class="headerlink" href="#autonet.drivers.device.driver.DRIVER_CAPABILITIES_TYPES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.drivers.device.driver.</span></span><span class="sig-name descname"><span class="pre">DeviceDriver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../core/device/index.html#autonet.core.device.AutonetDevice" title="autonet.core.device.AutonetDevice"><span class="pre">autonet.core.device.AutonetDevice</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class that defines the interface for a device driver.</p>
+<p>The class <cite>__init__()</cite> method will be passed an <cite>AutonetDevice</cite> object to
+be used to establish communication with the device.  Any specialized
+information that the driver may need should be passed via the metadata
+dictionary on the <cite>AutonetDevice</cite>.</p>
+<p>The DeviceDriver class implements the <cite>execute()</cite> method for asking
+the driver to execute pre-defined task on the device and the <cite>capabilities</cite>
+property for enumerating what tasks the driver can support.  <cite>capabilities</cite>
+is defined as a class level attribute and should remain as such in child
+classes since its enumeration may be used to build documentation.</p>
+<p>The <cite>DeviceDriver</cite> class creates a reference implementation where each request
+type is mapped to a method on the class itself.  This allows for an easy starting
+point for inheriting from the base class and moving straight to implementing
+device specific functionality without having to work through any boilerplate
+requirements from Autonet. However, these things are optional and the driver
+author may override them since implementation details of the driver are
+ultimately up to the driver’s author.</p>
+<p>Device drivers need not support any specific subset of capabilities, though
+at a minimum it would be preferable to support basic interface and VLAN
+configuration actions.  If a driver does not support a given capability then
+it should raise a <cite>DriverOperationUnsupported</cite> exception.</p>
+<p>It’s important to note that <cite>capabilities</cite> defines what the driver is capable
+of doing and not necessarily the capabilities of the device itself.  For example
+a driver for Juniper Junos can be used to drive a QFX series or EX series switch.
+The driver can implement the <cite>vxlan*</cite> capability set for QFX switches, but would
+not be able to use it with EX series switches.  In this case the driver would
+report that it’s capable of performing <cite>vxlan*</cite> actions, but when asked to operate
+on an EX series switch it would raise a <cite>DeviceOperationUnsupported</cite> exception.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._enumerated_capabilities">
+<span class="sig-name descname"><span class="pre">_enumerated_capabilities</span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._enumerated_capabilities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver.capabilities">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">capabilities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver.capabilities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._generate_func_name">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_generate_func_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">capability</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._generate_func_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine the function name to call for a given capability and action.
+:param capability: The capability to be utilized
+:param action: The requested action.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._get_cap_function">
+<span class="sig-name descname"><span class="pre">_get_cap_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capability</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._get_cap_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the function appropriate to the capability and action requested.
+If the function doesn’t exist (or the capability isn’t mapped) then it will
+return a factory that raises the appropriate exception.
+:param capability: The capability to be utilized
+:param action: The requested action.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capability</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute should be called on the driver from a given endpoint.  The capability and
+action should correspond to the endpoint called and be used by the execute method
+to determine the action or actions the driver must take.  Optionally (and likely)
+request data will be passed in as well which will be a pre-defined dataclass
+appropriate to the endpoint called.</p>
+<p>For example, if a user issues an HTTP POST to <cite>/device/{id}/interfaces</cite> then
+execute will be called with <cite>capability=interface</cite> and <cite>action=create</cite>.  The
+request_data object will be a <cite>Interface</cite> object with appropriate details
+filled out.  The function would then need to return an appropriate object
+and response or raise (or bubble up) and appropriate exception.
+:param capability: The capability to be utilized
+:param action: The request action
+:param request_data: The request data
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._interface_read">
+<span class="sig-name descname"><span class="pre">_interface_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../core/objects/interfaces/index.html#autonet.core.objects.interfaces.Interface" title="autonet.core.objects.interfaces.Interface"><span class="pre">autonet.core.objects.interfaces.Interface</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._interface_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface read function may be called with <cite>request_data</cite> set to the
+interface name provided by the user.  If so, then only that interface
+should be returned.  Otherwise, the driver should return all
+interfaces.
+:param request_data: The name of the interface, if requested.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._interface_create">
+<span class="sig-name descname"><span class="pre">_interface_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../core/objects/interfaces/index.html#autonet.core.objects.interfaces.Interface" title="autonet.core.objects.interfaces.Interface"><span class="pre">autonet.core.objects.interfaces.Interface</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../core/objects/interfaces/index.html#autonet.core.objects.interfaces.Interface" title="autonet.core.objects.interfaces.Interface"><span class="pre">autonet.core.objects.interfaces.Interface</span></a></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._interface_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface create is to be called with an <cite>Interface</cite> object.  Autonet will
+perform some basic input validation, but the driver may need to do
+additional validations to ensure that the request can be completed by the
+device.  The driver should return a completed <cite>Interface</cite> object that
+represents the interface as created once any defaults or other modifications
+have been made by the driver.
+:param request_data: An <cite>Interface</cite> object.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._interface_update">
+<span class="sig-name descname"><span class="pre">_interface_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../core/objects/interfaces/index.html#autonet.core.objects.interfaces.Interface" title="autonet.core.objects.interfaces.Interface"><span class="pre">autonet.core.objects.interfaces.Interface</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../core/objects/interfaces/index.html#autonet.core.objects.interfaces.Interface" title="autonet.core.objects.interfaces.Interface"><span class="pre">autonet.core.objects.interfaces.Interface</span></a></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._interface_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface update may be called by either a PUT or PATCH request.  When called with
+patch then <cite>update</cite> will be set to <cite>True</cite>.  PUT should be interpreted such that any
+attributes not present in the request is defaulted, such as in a create operation.
+PATCH operations, where <cite>update</cite> is <cite>True</cite>, should ignore any unset items and only
+update attributes that are provided.</p>
+<p>The driver should return a complete <cite>Interface</cite> object that represents the updated
+configuration of the interface.
+:param request_data: An <cite>Interface</cite> object.
+:param update: True if called with HTTP PATCH. False if called with HTTP PUT.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._interface_delete">
+<span class="sig-name descname"><span class="pre">_interface_delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._interface_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface delete is called with only an interface name provided as <cite>request_data</cite>.
+The driver should determine if the interface is virtual, or physical and then take
+action to remove or reset to default respectively.  Return should be <cite>None</cite> on
+success or an exception should be raised.
+:param request_data: Interface name, as a string.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._tunnels_vxlan_read">
+<span class="sig-name descname"><span class="pre">_tunnels_vxlan_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../core/objects/vxlan/index.html#autonet.core.objects.vxlan.VXLAN" title="autonet.core.objects.vxlan.VXLAN"><span class="pre">autonet.core.objects.vxlan.VXLAN</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../core/objects/vxlan/index.html#autonet.core.objects.vxlan.VXLAN" title="autonet.core.objects.vxlan.VXLAN"><span class="pre">autonet.core.objects.vxlan.VXLAN</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._tunnels_vxlan_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>VXLAN read should return a list of all VXLAN objects present on the device
+unless called with <cite>request_data</cite> set, in which case only the requested
+VXLAN should be returned. Autonet will check for None or [] and raise an
+appropriate exception if the requested VXLAN is not defined.
+:param request_data: The VXLAN VNID, as a string.  Used to filter results</p>
+<blockquote>
+<div><p>for a specific VXLAN object.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._tunnels_vxlan_create">
+<span class="sig-name descname"><span class="pre">_tunnels_vxlan_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../core/objects/vxlan/index.html#autonet.core.objects.vxlan.VXLAN" title="autonet.core.objects.vxlan.VXLAN"><span class="pre">autonet.core.objects.vxlan.VXLAN</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../core/objects/vxlan/index.html#autonet.core.objects.vxlan.VXLAN" title="autonet.core.objects.vxlan.VXLAN"><span class="pre">autonet.core.objects.vxlan.VXLAN</span></a></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._tunnels_vxlan_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>VXLAN tunnel create method is called with <cite>request_data</cite> set to a fully
+formed <cite>VXLAN</cite> object.  The driver should process the object accordingly
+and return a <cite>VXLAN</cite> object that is complete with any default values that
+may have been applied during the resultant configuration process.
+:param request_data: A <cite>VXLAN</cite> object.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._tunnels_vxlan_update">
+<span class="sig-name descname"><span class="pre">_tunnels_vxlan_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../core/objects/vxlan/index.html#autonet.core.objects.vxlan.VXLAN" title="autonet.core.objects.vxlan.VXLAN"><span class="pre">autonet.core.objects.vxlan.VXLAN</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../core/objects/vxlan/index.html#autonet.core.objects.vxlan.VXLAN" title="autonet.core.objects.vxlan.VXLAN"><span class="pre">autonet.core.objects.vxlan.VXLAN</span></a></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._tunnels_vxlan_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>VXLAN tunnel update will be passed two arguments: <cite>request_data</cite> which
+is a possibly partially complete <cite>VXLAN</cite> object, and update, which is
+boolean flag to signal if request was called with PUT or PATCH as the
+HTTP verb. Rreplace operations should set to their default values or
+removed, as appropriate. any attributes passed as <cite>None</cite> Update
+operations should ignore attributes set to <cite>None</cite>.
+:param request_data: A <cite>VXLAN</cite> object.
+:param update: True if called with HTTP PATCH. False if called with HTTP PUT.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._tunnels_vxlan_delete">
+<span class="sig-name descname"><span class="pre">_tunnels_vxlan_delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._tunnels_vxlan_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>VXLAN tunnel delete receives the VNID as a string via <cite>request_data</cite>.  The
+driver should take care of any tunnel configuration removal as well as
+removal of any related BGP EVPN configuration.  VRF configuration should
+be left in-tact, except as relates to EVPN-VXLAN.
+:param request_data: The VXLAN VNID, as a string.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._vrf_read">
+<span class="sig-name descname"><span class="pre">_vrf_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../core/objects/vrf/index.html#autonet.core.objects.vrf.VRF" title="autonet.core.objects.vrf.VRF"><span class="pre">autonet.core.objects.vrf.VRF</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../core/objects/vrf/index.html#autonet.core.objects.vrf.VRF" title="autonet.core.objects.vrf.VRF"><span class="pre">autonet.core.objects.vrf.VRF</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._vrf_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>VRF read may be passed a specific VRF name via <cite>request_data</cite>.  If
+<cite>request_data</cite> is set, then only the requested VRF should be returned.
+Otherwise, a list of all mutable VRFs should be returned.  Immutable VRFs,
+such as the default VRF, or a management-only VRF, should be omitted.
+:param request_data: The VRF name, as a string.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._vrf_create">
+<span class="sig-name descname"><span class="pre">_vrf_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../core/objects/vrf/index.html#autonet.core.objects.vrf.VRF" title="autonet.core.objects.vrf.VRF"><span class="pre">autonet.core.objects.vrf.VRF</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../core/objects/vrf/index.html#autonet.core.objects.vrf.VRF" title="autonet.core.objects.vrf.VRF"><span class="pre">autonet.core.objects.vrf.VRF</span></a></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._vrf_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>VRF create will receive a <cite>VRF</cite> object as it’s <cite>request_data</cite>.  When
+the driver has completed configuration of the VRF it should return
+a <cite>VRF</cite> object representative of the created VRF including any
+default values that may have been set during the request process.
+:param request_data: A <cite>VRF</cite> object.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._vrf_update">
+<span class="sig-name descname"><span class="pre">_vrf_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../core/objects/vrf/index.html#autonet.core.objects.vrf.VRF" title="autonet.core.objects.vrf.VRF"><span class="pre">autonet.core.objects.vrf.VRF</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../core/objects/vrf/index.html#autonet.core.objects.vrf.VRF" title="autonet.core.objects.vrf.VRF"><span class="pre">autonet.core.objects.vrf.VRF</span></a></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._vrf_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>VRF update receives a <cite>VRF</cite> object as it’s <cite>request_data</cite> as well as
+having <cite>update</cite> set as a flag to indicate if the request is a replace
+or update operation.  Replace operations should set any attributes set
+to <cite>None</cite> to their defaults or remove the configuration entirely, as
+appropriate.  Update operations should ignore attributes set to <cite>None</cite>.</p>
+<p>When the configuration is complete the driver should return a <cite>VRF</cite>
+object that represents the resultant configuration state for the VRF.
+:param request_data: A <cite>VRF</cite> object.
+:param update: True if called with HTTP PATCH. False if called with HTTP PUT.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._vrf_delete">
+<span class="sig-name descname"><span class="pre">_vrf_delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._vrf_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>VRF delete will receive the name of the VRF to be deleted as a
+string via <cite>request_data</cite>.  A successful delete operation should
+return <cite>None</cite>
+:param request_data: The VRF name, as a string.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._bridge_vlan_read">
+<span class="sig-name descname"><span class="pre">_bridge_vlan_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../core/objects/vlan/index.html#autonet.core.objects.vlan.VLAN" title="autonet.core.objects.vlan.VLAN"><span class="pre">autonet.core.objects.vlan.VLAN</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../core/objects/vlan/index.html#autonet.core.objects.vlan.VLAN" title="autonet.core.objects.vlan.VLAN"><span class="pre">autonet.core.objects.vlan.VLAN</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._bridge_vlan_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>VLAN read requests may receive a VLAN ID as <cite>request_data</cite>.  If a VLAN ID is
+received then only the <cite>VLAN</cite> object for that VLAN ID should be returned.
+Otherwise, a list of all mutable VLANs should be returned.  Immutable VLANs
+such as dynamic VLANs and device reserved VLANs should not be exposed.
+:param request_data: The VLAN ID requested, or <cite>None</cite> for all VLANs.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._bridge_vlan_create">
+<span class="sig-name descname"><span class="pre">_bridge_vlan_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../core/objects/vlan/index.html#autonet.core.objects.vlan.VLAN" title="autonet.core.objects.vlan.VLAN"><span class="pre">autonet.core.objects.vlan.VLAN</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../core/objects/vlan/index.html#autonet.core.objects.vlan.VLAN" title="autonet.core.objects.vlan.VLAN"><span class="pre">autonet.core.objects.vlan.VLAN</span></a></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._bridge_vlan_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>VLAN create will receive a <cite>VLAN</cite> object as <cite>request_data</cite>.  The driver should
+return a <cite>VLAN</cite> object that represents the final configured state of the VLAN
+including any default values.
+:param request_data: A <cite>VLAN</cite> object.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._bridge_vlan_update">
+<span class="sig-name descname"><span class="pre">_bridge_vlan_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../core/objects/vlan/index.html#autonet.core.objects.vlan.VLAN" title="autonet.core.objects.vlan.VLAN"><span class="pre">autonet.core.objects.vlan.VLAN</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../core/objects/vlan/index.html#autonet.core.objects.vlan.VLAN" title="autonet.core.objects.vlan.VLAN"><span class="pre">autonet.core.objects.vlan.VLAN</span></a></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._bridge_vlan_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>VLAN update receives a <cite>VLAN</cite> object as <cite>request_data</cite> as well as the <cite>update</cite>
+flag which indicates if the operation is a replace or update operation.  For
+replace operations any attributes set to <cite>None</cite> should default or remove the
+related configuration, as appropriate.  Update operations should ignore <cite>None</cite>
+values any only modify configuration related to attribute that have a value
+other than <cite>None</cite>.  The driver should return a <cite>VLAN</cite> object that reflects the
+final configuration state.
+:param request_data: A <cite>VLAN</cite> object.
+:param update: True if called with HTTP PATCH. False if called with HTTP PUT.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._bridge_vlan_delete">
+<span class="sig-name descname"><span class="pre">_bridge_vlan_delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._bridge_vlan_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>VLAN delete receives the VLAN ID of the vlan to be removed via <cite>request_data</cite>.
+Removal of the VLAN is required, and removal of any related configuration is
+up to the driver implementation as required by the target device’s constraints.
+The driver should return <cite>None</cite> on success.
+:param request_data: The VLAN ID, as a string.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._interface_lag_read">
+<span class="sig-name descname"><span class="pre">_interface_lag_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../core/objects/lag/index.html#autonet.core.objects.lag.LAG" title="autonet.core.objects.lag.LAG"><span class="pre">autonet.core.objects.lag.LAG</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../core/objects/lag/index.html#autonet.core.objects.lag.LAG" title="autonet.core.objects.lag.LAG"><span class="pre">autonet.core.objects.lag.LAG</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._interface_lag_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>LAG read may receive a LAG name as a string via <cite>request_data</cite>.  If so, then only
+the requested LAG should be returned.  Otherwise, all LAGs should be returned.
+:param request_data: The LAG name, or <cite>None</cite> for all LAGs.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._interface_lag_create">
+<span class="sig-name descname"><span class="pre">_interface_lag_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../core/objects/lag/index.html#autonet.core.objects.lag.LAG" title="autonet.core.objects.lag.LAG"><span class="pre">autonet.core.objects.lag.LAG</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../core/objects/lag/index.html#autonet.core.objects.lag.LAG" title="autonet.core.objects.lag.LAG"><span class="pre">autonet.core.objects.lag.LAG</span></a></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._interface_lag_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>LAG create will receive a <cite>LAG</cite> object as <cite>request_data</cite>.  Once
+configuration is completed the driver needs to return a <cite>LAG</cite> object
+that represents the final configuration state on the device including
+any generated defaults.
+:param request_data: A <cite>LAG</cite> object.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._interface_lag_update">
+<span class="sig-name descname"><span class="pre">_interface_lag_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../core/objects/lag/index.html#autonet.core.objects.lag.LAG" title="autonet.core.objects.lag.LAG"><span class="pre">autonet.core.objects.lag.LAG</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../core/objects/lag/index.html#autonet.core.objects.lag.LAG" title="autonet.core.objects.lag.LAG"><span class="pre">autonet.core.objects.lag.LAG</span></a></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._interface_lag_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>LAG update receives a <cite>LAG</cite> object as <cite>request_data</cite> and an <cite>update</cite> flag which
+indicates if the request is a replace or update operation.  Replace operations
+should default or remove configuration for any attributes that are set to <cite>None</cite>.
+Update operations should ignore attributes that are set to <cite>None</cite>.
+:param request_data: A <cite>LAG</cite> object.
+:param update: True if called with HTTP PATCH. False if called with HTTP PUT.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.device.driver.DeviceDriver._interface_lag_delete">
+<span class="sig-name descname"><span class="pre">_interface_lag_delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#autonet.drivers.device.driver.DeviceDriver._interface_lag_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>LAG delete receives the lag name as a string.  Removal of the LAG
+configuration should include resetting or defaulting the configuration
+of any member interfaces as well.  The driver should return <cite>None</cite> in
+the event of a successful removal.
+:param request_data: The LAG name, as as string.
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../../index.html">autonet</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../installation.html">Installation and Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../drivers.html">Drivers</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Connectria, LLC.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../../../_sources/autoapi/autonet/drivers/device/driver/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,51 @@
+:py:mod:`autonet.blueprints.interface_lag`
+==========================================
+
+.. py:module:: autonet.blueprints.interface_lag
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.blueprints.interface_lag.get_lags
+   autonet.blueprints.interface_lag.get_lag
+   autonet.blueprints.interface_lag.create_lag
+   autonet.blueprints.interface_lag.update_lag
+   autonet.blueprints.interface_lag.delete_lag
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.blueprints.interface_lag.blueprint
+
+
+.. py:data:: blueprint
+   
+
+   
+
+.. py:function:: get_lags(device_id)
+
+
+.. py:function:: get_lag(device_id, lag_id)
+
+
+.. py:function:: create_lag(device_id)
+
+
+.. py:function:: update_lag(device_id, lag_id)
+
+
+.. py:function:: delete_lag(device_id, lag_id)
+
+

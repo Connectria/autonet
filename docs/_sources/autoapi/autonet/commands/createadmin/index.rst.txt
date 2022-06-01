@@ -1,0 +1,45 @@
+:py:mod:`autonet.commands.createadmin`
+======================================
+
+.. py:module:: autonet.commands.createadmin
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.commands.createadmin._create_admin
+   autonet.commands.createadmin.create_admin
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.commands.createadmin.LOG
+   autonet.commands.createadmin.DEFAULT_ADMIN_NAME
+
+
+.. py:data:: LOG
+   
+
+   
+
+.. py:data:: DEFAULT_ADMIN_NAME
+   :annotation: = admin
+
+   
+
+.. py:function:: _create_admin() -> str
+
+
+.. py:function:: create_admin()
+
+

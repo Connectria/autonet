@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Installation and Setup &#8212; autonet 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Configuration" href="configuration.html" />
+    <link rel="prev" title="Welcome to Autonet’s Documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="installation-and-setup">
+<h1>Installation and Setup<a class="headerlink" href="#installation-and-setup" title="Permalink to this heading">¶</a></h1>
+<p>Autonet is packages as a WSGI application and is available via PyPI.  Autonet
+can be run by itself, but it’s recommended to be run with a production ready
+WSGI server such as <a class="reference external" href="https://gunicorn.org/">Gunicorn</a>.</p>
+<section id="pip-install">
+<h2>Pip Install<a class="headerlink" href="#pip-install" title="Permalink to this heading">¶</a></h2>
+<p>There are two ways to install the module via Pip:  Via PyPI, or install
+directly from <cite>Github &lt;https://github.com</cite>.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Install from PyPI</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span> ~/# pip install autonet-api
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Install direct from Github.</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span> ~/# pip install git+https://github.com/Connectira/autonet
+</pre></div>
+</div>
+</div>
+<p>Once Autonet is installed it can be run directly.  If this is not
+desirable then integration with a WSGI server and other
+front end proxy applications is an exercise left up to the needs of
+the user.</p>
+</section>
+<section id="quickstart-configuration">
+<h2>Quickstart Configuration<a class="headerlink" href="#quickstart-configuration" title="Permalink to this heading">¶</a></h2>
+<p>To get started Autonet will require a small amount of configuration.
+Autonet ships with the <cite>conf</cite> backend driver, as well as support for SQLite
+as it’s user DB.  The following example demonstrates how to get Autonet up
+and going with minimal fuss to manage a single Arista switch.  Modify the
+configuration according to your environment.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Quickstart!</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>~# <span class="nb">export</span> <span class="nv">DEVICE_ID</span><span class="o">=</span><span class="m">1</span>
+~# <span class="nb">export</span> <span class="nv">DEVICE_ADDRESS</span><span class="o">=</span><span class="m">127</span>.0.0.1
+~# <span class="nb">export</span> <span class="nv">DEVICE_USERNAME</span><span class="o">=</span>username
+~# <span class="nb">export</span> <span class="nv">DEVICE_PASSWORD</span><span class="o">=</span>password
+~# <span class="nb">export</span> <span class="nv">DEVICE_DRIVER</span><span class="o">=</span>dummy
+~# <span class="nb">export</span> <span class="nv">DATABASE_CONNECTION</span><span class="o">=</span>sqlite://autonet_quickstart.db
+~# autonet-createadmin <span class="o">&amp;&amp;</span> autonet-server <span class="p">&amp;</span>
+Created token: d9725ebc9cb64f71b49a4a581bc8ed67
+ * Serving Flask app <span class="s1">&#39;autonet.core.app&#39;</span> <span class="o">(</span>lazy loading<span class="o">)</span>
+ * Environment: production
+   WARNING: This is a development server. Do not use it <span class="k">in</span> a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+INFO:werkzeug: * Running on all addresses <span class="o">(</span><span class="m">0</span>.0.0.0<span class="o">)</span>
+   WARNING: This is a development server. Do not use it <span class="k">in</span> a production deployment.
+ * Running on http://127.0.0.1:80
+ * Running on http://192.168.0.8:80 <span class="o">(</span>Press CTRL+C to quit<span class="o">)</span>
+
+~# curl -H <span class="s1">&#39;X-API-Key: admin:d9725ebc9cb64f71b49a4a581bc8ed67&#39;</span> http://localhost/36/interfaces/
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">autonet</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation and Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pip-install">Pip Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quickstart-configuration">Quickstart Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drivers.html">Drivers</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Autonet’s Documentation!</a></li>
+      <li>Next: <a href="configuration.html" title="next chapter">Configuration</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Connectria, LLC.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/installation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

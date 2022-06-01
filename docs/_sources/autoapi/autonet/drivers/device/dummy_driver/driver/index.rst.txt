@@ -1,0 +1,58 @@
+:py:mod:`autonet.drivers.device.dummy_driver.driver`
+====================================================
+
+.. py:module:: autonet.drivers.device.dummy_driver.driver
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   autonet.drivers.device.dummy_driver.driver.DummyDriver
+
+
+
+
+.. py:class:: DummyDriver(device: autonet.core.device.AutonetDevice)
+
+   Bases: :py:obj:`autonet.drivers.device.driver.DeviceDriver`
+
+   Base class that defines the interface for a device driver.
+
+   The class `__init__()` method will be passed an `AutonetDevice` object to
+   be used to establish communication with the device.  Any specialized
+   information that the driver may need should be passed via the metadata
+   dictionary on the `AutonetDevice`.
+
+   The DeviceDriver class implements the `execute()` method for asking
+   the driver to execute pre-defined task on the device and the `capabilities`
+   property for enumerating what tasks the driver can support.  `capabilities`
+   is defined as a class level attribute and should remain as such in child
+   classes since its enumeration may be used to build documentation.
+
+   The `DeviceDriver` class creates a reference implementation where each request
+   type is mapped to a method on the class itself.  This allows for an easy starting
+   point for inheriting from the base class and moving straight to implementing
+   device specific functionality without having to work through any boilerplate
+   requirements from Autonet. However, these things are optional and the driver
+   author may override them since implementation details of the driver are
+   ultimately up to the driver's author.
+
+   Device drivers need not support any specific subset of capabilities, though
+   at a minimum it would be preferable to support basic interface and VLAN
+   configuration actions.  If a driver does not support a given capability then
+   it should raise a `DriverOperationUnsupported` exception.
+
+   It's important to note that `capabilities` defines what the driver is capable
+   of doing and not necessarily the capabilities of the device itself.  For example
+   a driver for Juniper Junos can be used to drive a QFX series or EX series switch.
+   The driver can implement the `vxlan*` capability set for QFX switches, but would
+   not be able to use it with EX series switches.  In this case the driver would
+   report that it's capable of performing `vxlan*` actions, but when asked to operate
+   on an EX series switch it would raise a `DeviceOperationUnsupported` exception.
+
+

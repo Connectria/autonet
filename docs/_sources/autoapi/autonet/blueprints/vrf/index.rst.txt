@@ -1,0 +1,47 @@
+:py:mod:`autonet.blueprints.vrf`
+================================
+
+.. py:module:: autonet.blueprints.vrf
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.blueprints.vrf.get_vrfs
+   autonet.blueprints.vrf.get_vrf
+   autonet.blueprints.vrf.create_vrf
+   autonet.blueprints.vrf.delete_vrf
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.blueprints.vrf.blueprint
+
+
+.. py:data:: blueprint
+   
+
+   
+
+.. py:function:: get_vrfs(device_id)
+
+
+.. py:function:: get_vrf(device_id, vrf_name)
+
+
+.. py:function:: create_vrf(device_id)
+
+
+.. py:function:: delete_vrf(device_id, vrf_name)
+
+

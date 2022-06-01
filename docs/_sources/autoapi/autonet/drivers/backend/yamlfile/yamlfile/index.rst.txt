@@ -1,0 +1,58 @@
+:py:mod:`autonet.drivers.backend.yamlfile.yamlfile`
+===================================================
+
+.. py:module:: autonet.drivers.backend.yamlfile.yamlfile
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   autonet.drivers.backend.yamlfile.yamlfile.YAMLFile
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.drivers.backend.yamlfile.yamlfile.yamlfile_opts
+
+
+.. py:data:: yamlfile_opts
+   
+
+   
+
+.. py:class:: YAMLFile
+
+   Bases: :py:obj:`autonet.drivers.backend.base.AutonetDeviceBackend`
+
+   Reference implementation of a backend device driver.  The driver must
+   implement two methods: `get_device` and `get_device_credentials`, which must
+   return an `AutonetDevice` and `AutonetDeviceCredentials` object respectively,
+   None if the lookup fails.  At present `get_device_credentials` is not used
+   explicitly by Autonet but there maybe be core changes in the future which
+   will use the method.
+
+   .. py:method:: _verify_inventory(devices: dict) -> bool
+      :staticmethod:
+
+      Verify that inventory loaded from YAML file is properly
+      formatted.  Returns `True` or `False` accordingly.
+      :param devices: Devices dictionary loaded from YAML inventory file.
+
+
+   .. py:method:: get_device(self, device_id) -> Union[None, autonet.core.device.AutonetDevice]
+
+
+   .. py:method:: get_device_credentials(self, device_id) -> Union[None, autonet.core.device.AutonetDeviceCredentials]
+
+
+

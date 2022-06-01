@@ -1,0 +1,94 @@
+:py:mod:`autonet.core.objects.validators`
+=========================================
+
+.. py:module:: autonet.core.objects.validators
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.core.objects.validators.is_uint16
+   autonet.core.objects.validators.is_uint32
+   autonet.core.objects.validators.is_ipv4_address
+   autonet.core.objects.validators.is_route_distinguisher
+   autonet.core.objects.validators.is_route_target
+   autonet.core.objects.validators.is_esi
+   autonet.core.objects.validators.validate_union
+   autonet.core.objects.validators.validate_list
+   autonet.core.objects.validators.validate
+
+
+
+.. py:function:: is_uint16(number: str) -> bool
+
+   Verify that the provided string is a 16bit unsigned integer.
+   :param number: An unsigned 16bit integers, as a string.
+
+
+.. py:function:: is_uint32(number: str) -> bool
+
+   Verify that the provided string is a 32bit unsigned integer.
+   :param number: An unsigned 32bit integer, as a string
+   :return:
+
+
+.. py:function:: is_ipv4_address(address: str) -> bool
+
+   Verify that string represents a valid IPv4 address.
+   :param address: An IPv4 address string.
+
+
+.. py:function:: is_route_distinguisher(rd: str) -> bool
+
+   Verifies that the provided string is a properly formatted route
+   distinguisher.  Also accepts "auto" which is a special signal
+   to an Autonet driver to derive the RD automatically using methods
+   appropriate to the device.
+   :param rd: Route distinguisher, as a string.
+   :return:
+
+
+.. py:function:: is_route_target(rt: str, allow_auto: bool = True) -> bool
+
+   Verifies that the provided string is a valid route target.  Also
+   accepts "auto" which is a special signal to an Autonet driver to
+   derive the RT automatically as appropriate for the device.
+   :param rt: A route target string
+   :param allow_auto: Allow the special value `auto`.
+   :return:
+
+
+.. py:function:: is_esi(esi: str) -> bool
+
+   Verifies the provided string is a properly formatted 10 bytes
+   ESI.  Does not verify RFC compliance of ESI type/byte sequence, but
+   only the textual representation is valid.
+   :param esi:
+   :return:
+
+
+.. py:function:: validate_union(value, tp)
+
+   Determines if the value is one of the possible inner types of a Union Type.
+   :param value: The value to be validated.
+   :param tp: The Union type to validate against.
+
+
+.. py:function:: validate_list(value, tp)
+
+   Determines if the values inside a list are of the proper inner
+   type.  This function takes the outer list type hint as defined and
+   will determine the proper inner type to validate against.
+   :param value: The list to be validated.
+   :param tp: The list type to validate against.
+
+
+.. py:function:: validate(obj: object)
+
+

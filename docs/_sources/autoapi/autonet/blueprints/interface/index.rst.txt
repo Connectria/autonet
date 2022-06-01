@@ -1,0 +1,94 @@
+:py:mod:`autonet.blueprints.interface`
+======================================
+
+.. py:module:: autonet.blueprints.interface
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.blueprints.interface._verify_name_match
+   autonet.blueprints.interface._required_config_data_missing
+   autonet.blueprints.interface._prepare_defaults
+   autonet.blueprints.interface._build_interface_from_request_data
+   autonet.blueprints.interface.get_interfaces
+   autonet.blueprints.interface.get_interface
+   autonet.blueprints.interface.create_interface
+   autonet.blueprints.interface.update_interface
+   autonet.blueprints.interface._update_interface
+   autonet.blueprints.interface.delete_interface
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.blueprints.interface.blueprint
+
+
+.. py:data:: blueprint
+   
+
+   
+
+.. py:function:: _verify_name_match(request_if_name: str, uri_if_name: str) -> bool
+
+   Verify that the name, if provided, in the request payload matches
+   the name as presented in the URI.  Returns False if the
+   request is not well-formed
+   :param request_if_name: The name from the request payload.
+   :param uri_if_name: The interface name from the URI.
+   :return:
+
+
+.. py:function:: _required_config_data_missing(request_data: dict, update: bool = False) -> Union[str, bool]
+
+   Verify that the minimum data required for a POST or PUT operation
+   is present.  Returns the missing field name, or False if all fields
+   are present.
+   :param request_data: The raw reqeust data sent to the endpoint.
+   :param update: Set True for PATCH operation, which has less stringent checking.
+   :return:
+
+
+.. py:function:: _prepare_defaults(request_data: dict) -> dict
+
+   Prepares the defaults for any undefined attributes.
+   :param request_data: The raw reqeust data sent to the endpoint.
+   :return:
+
+
+.. py:function:: _build_interface_from_request_data(request_data: dict) -> autonet.core.objects.interfaces.Interface
+
+   Creates an `Interface` object to provide to the driver based on
+   well-formed request data.
+   :param request_data:
+   :return:
+
+
+.. py:function:: get_interfaces(device_id)
+
+
+.. py:function:: get_interface(device_id, interface_name)
+
+
+.. py:function:: create_interface(device_id)
+
+
+.. py:function:: update_interface(device_id, interface_name)
+
+
+.. py:function:: _update_interface(device_id, interface_name: str = None)
+
+
+.. py:function:: delete_interface(device_id, interface_name)
+
+

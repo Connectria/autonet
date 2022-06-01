@@ -1,0 +1,53 @@
+:py:mod:`autonet.db.base`
+=========================
+
+.. py:module:: autonet.db.base
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.db.base.init_db
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.db.base.db_opts
+   autonet.db.base.mapper_registry
+   autonet.db.base.engine
+   autonet.db.base.Session
+
+
+.. py:data:: db_opts
+   
+
+   
+
+.. py:data:: mapper_registry
+   
+
+   
+
+.. py:data:: engine
+   
+
+   
+
+.. py:data:: Session
+   
+
+   
+
+.. py:function:: init_db()
+
+

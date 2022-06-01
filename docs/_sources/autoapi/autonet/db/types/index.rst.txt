@@ -1,0 +1,49 @@
+:py:mod:`autonet.db.types`
+==========================
+
+.. py:module:: autonet.db.types
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   autonet.db.types.GUID
+
+
+
+
+.. py:class:: GUID
+
+   Bases: :py:obj:`sqlalchemy.TypeDecorator`
+
+   Platform-independent GUID type.
+
+   Uses PostgreSQL's UUID type, otherwise uses
+   CHAR(32), storing as stringified hex values.
+
+
+   .. py:attribute:: impl
+      
+
+      
+
+   .. py:attribute:: cache_ok
+      :annotation: = True
+
+      
+
+   .. py:method:: load_dialect_impl(self, dialect)
+
+
+   .. py:method:: process_bind_param(self, value, dialect)
+
+
+   .. py:method:: process_result_value(self, value, dialect)
+
+
+

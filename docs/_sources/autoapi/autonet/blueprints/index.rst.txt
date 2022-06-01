@@ -1,0 +1,20 @@
+:py:mod:`autonet.blueprints`
+============================
+
+.. py:module:: autonet.blueprints
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   bridge_vlan/index.rst
+   interface/index.rst
+   interface_lag/index.rst
+   tunnels_vxlan/index.rst
+   users/index.rst
+   vrf/index.rst
+
+

@@ -1,0 +1,31 @@
+:py:mod:`autonet`
+=================
+
+.. py:module:: autonet
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   blueprints/index.rst
+   commands/index.rst
+   core/index.rst
+   db/index.rst
+   drivers/index.rst
+   util/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   __version__/index.rst
+   config/index.rst
+   conftest/index.rst
+
+

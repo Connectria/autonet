@@ -1,0 +1,114 @@
+:py:mod:`autonet.core.exceptions`
+=================================
+
+.. py:module:: autonet.core.exceptions
+
+
+Module Contents
+---------------
+
+.. py:exception:: AutonetException(*args)
+
+   Bases: :py:obj:`Exception`
+
+   A passthrough of the `Exception` class.  Classes that inherit from this
+   class will be displayed in error messages even without debugging turned
+   on.
+
+
+.. py:exception:: DeviceNotFound(device_id, backend)
+
+   Bases: :py:obj:`AutonetException`
+
+   Raised when a device cannot be found in the backend database.
+
+
+.. py:exception:: DeviceCredentialsNotFound(device_id, backend)
+
+   Bases: :py:obj:`AutonetException`
+
+   Raised when a device's credentials cannot be found in the backend database.
+
+
+.. py:exception:: DeviceDriverNotDefined(device_id, backend)
+
+   Bases: :py:obj:`AutonetException`
+
+   Raised when the driver for a device cannot be determined.
+
+
+.. py:exception:: DriverNotFound(driver_name)
+
+   Bases: :py:obj:`AutonetException`
+
+   Raised when a driver could not be loaded.
+
+
+.. py:exception:: DeviceOperationUnsupported(driver, operation, device_id)
+
+   Bases: :py:obj:`AutonetException`
+
+   Raised when the driver for a device determines that a device does not
+   support the requested operation.
+
+
+.. py:exception:: DriverOperationUnsupported(driver, operation)
+
+   Bases: :py:obj:`AutonetException`
+
+   Raised when the driver for a device does not support the requested operation.
+
+
+.. py:exception:: DriverResponseInvalid(driver)
+
+   Bases: :py:obj:`AutonetException`
+
+   Raised when a device driver returns a value that was unexpected or
+   incorrectly formatted.
+
+
+.. py:exception:: DriverRequestError(msg=None)
+
+   Bases: :py:obj:`AutonetException`
+
+   Raised by a driver when an otherwise well-formed request cannot be
+   fulfilled due to platform limitations.
+
+
+.. py:exception:: RequestValueError(field, value, valid_values: list = None)
+
+   Bases: :py:obj:`AutonetException`
+
+   Raised when invalid data is passed in a request.
+
+
+.. py:exception:: RequestValueMissing(field: str, valid_values: list = None)
+
+   Bases: :py:obj:`AutonetException`
+
+   Raised when a request is sent without the required data.
+
+
+.. py:exception:: RequestTypeError(field, value, data_type, valid_types: tuple = None)
+
+   Bases: :py:obj:`AutonetException`
+
+   Raised when data in a field is of the wrong type.
+
+
+.. py:exception:: ObjectNotFound
+
+   Bases: :py:obj:`AutonetException`
+
+   Raised when a request for an object could not be completed
+   because the driver could not find the object as described.
+
+
+.. py:exception:: ObjectExists(name: str = None)
+
+   Bases: :py:obj:`AutonetException`
+
+   Raised when a create requests attempts to create an object that
+   already exists.
+
+

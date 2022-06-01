@@ -1,0 +1,52 @@
+:py:mod:`autonet.core.marshal`
+==============================
+
+.. py:module:: autonet.core.marshal
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.core.marshal.marshal_driver
+   autonet.core.marshal.marshal_device
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.core.marshal.opts
+   autonet.core.marshal.DEVICE_BACKEND
+
+
+.. py:data:: opts
+   
+
+   
+
+.. py:function:: marshal_driver(driver_ns: str, driver_name: str)
+
+   Returns the class defined by the driver's registered entrypoint.
+   :return:
+
+
+.. py:data:: DEVICE_BACKEND
+   
+
+   
+
+.. py:function:: marshal_device(device_id)
+
+   Fetch the device info from the backing database.
+   :param device_id:
+   :return:
+
+

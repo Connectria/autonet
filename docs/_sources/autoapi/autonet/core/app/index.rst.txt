@@ -1,0 +1,61 @@
+:py:mod:`autonet.core.app`
+==========================
+
+.. py:module:: autonet.core.app
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.core.app.run_wsgi_app
+   autonet.core.app.setup_request
+   autonet.core.app.setup_device_object
+   autonet.core.app.auth_user
+   autonet.core.app.append_exception_to_errors
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.core.app.opts
+   autonet.core.app.flask_app
+
+
+.. py:data:: opts
+   
+
+   
+
+.. py:data:: flask_app
+   
+
+   
+
+.. py:function:: run_wsgi_app()
+
+
+.. py:function:: setup_request()
+
+
+.. py:function:: setup_device_object()
+
+   Middleware will retrieve the AutonetDevice object for any request
+   that has a `device_id` arg defined and place it in `g.device`
+   :return:
+
+
+.. py:function:: auth_user()
+
+
+.. py:function:: append_exception_to_errors(e)
+
+

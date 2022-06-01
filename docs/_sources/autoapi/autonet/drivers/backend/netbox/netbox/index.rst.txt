@@ -1,0 +1,105 @@
+:py:mod:`autonet.drivers.backend.netbox.netbox`
+===============================================
+
+.. py:module:: autonet.drivers.backend.netbox.netbox
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   autonet.drivers.backend.netbox.netbox.NetBox
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.drivers.backend.netbox.netbox.netbox_opts
+
+
+.. py:data:: netbox_opts
+   
+
+   
+
+.. py:class:: NetBox
+
+   Bases: :py:obj:`autonet.drivers.backend.base.AutonetDeviceBackend`
+
+   Class that implements NetBox as a device backend.
+
+   .. py:method:: __str__(self)
+
+      Return str(self).
+
+
+   .. py:method:: __repr__(self)
+
+      Return repr(self).
+
+
+   .. py:method:: _setup_session()
+      :staticmethod:
+
+      Determines if execution is inside the testing infrastructure.  During
+      testing, it's not desirable to utilize requests_cache so the session
+      object will be setup using classic requests.
+      :return:
+
+
+   .. py:method:: _exec_request(self, uri, params: dict = None, headers=None, json: dict = None, data: dict = None, method: str = 'GET')
+
+      Execute a request against the NetBox API.  This helper function will
+      apply all necessary headers for auth and content-type, etc.
+      :param uri: NetBox API URI to call.
+      :param params: URI query parameters.
+      :param headers: Additional request headers.
+      :param json: Payload to send as JSON.
+      :param data: Payload to send as URL encoded form.
+      :param method: HTTP Method.
+      :return: NetBox response as `dict`.
+
+
+   .. py:method:: _session_key(self)
+      :property:
+
+      The session key to be used in credential requests from secretstore plugin.
+      :return:
+
+
+   .. py:method:: _get_session_key(self)
+
+      Fetch and store the session key.
+      :return:
+
+
+   .. py:method:: _get_device_from_netbox(self, device_id) -> dict
+
+      Returns the device identified by `device_id`
+      :param device_id:
+      :return:
+
+
+   .. py:method:: _get_secret(self, device_id, secret_role_id: int = config.backend_netbox.secret_role_id) -> Union[None, dict]
+
+      Fetch a secret from the NetBox secretstore plugin.
+      :param device_id: Fetch secrets for the device identified by device_id.
+      :param secret_role_id: Prefer secrets assigned to this role id.
+      :return:
+
+
+   .. py:method:: get_device(self, device_id) -> Union[None, autonet.core.device.AutonetDevice]
+
+
+   .. py:method:: get_device_credentials(self, device_id) -> Union[None, autonet.core.device.AutonetDeviceCredentials]
+
+
+

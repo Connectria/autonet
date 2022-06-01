@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>autonet.core.exceptions &#8212; autonet 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-autonet.core.exceptions">
+<span id="autonet-core-exceptions"></span><h1><a class="reference internal" href="#module-autonet.core.exceptions" title="autonet.core.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">autonet.core.exceptions</span></code></a><a class="headerlink" href="#module-autonet.core.exceptions" title="Permalink to this heading">¶</a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading">¶</a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="autonet.core.exceptions.AutonetException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">AutonetException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.exceptions.AutonetException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>A passthrough of the <cite>Exception</cite> class.  Classes that inherit from this
+class will be displayed in error messages even without debugging turned
+on.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="autonet.core.exceptions.DeviceNotFound">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">DeviceNotFound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.exceptions.DeviceNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#autonet.core.exceptions.AutonetException" title="autonet.core.exceptions.AutonetException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutonetException</span></code></a></p>
+<p>Raised when a device cannot be found in the backend database.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="autonet.core.exceptions.DeviceCredentialsNotFound">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">DeviceCredentialsNotFound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.exceptions.DeviceCredentialsNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#autonet.core.exceptions.AutonetException" title="autonet.core.exceptions.AutonetException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutonetException</span></code></a></p>
+<p>Raised when a device’s credentials cannot be found in the backend database.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="autonet.core.exceptions.DeviceDriverNotDefined">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">DeviceDriverNotDefined</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.exceptions.DeviceDriverNotDefined" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#autonet.core.exceptions.AutonetException" title="autonet.core.exceptions.AutonetException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutonetException</span></code></a></p>
+<p>Raised when the driver for a device cannot be determined.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="autonet.core.exceptions.DriverNotFound">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">DriverNotFound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.exceptions.DriverNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#autonet.core.exceptions.AutonetException" title="autonet.core.exceptions.AutonetException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutonetException</span></code></a></p>
+<p>Raised when a driver could not be loaded.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="autonet.core.exceptions.DeviceOperationUnsupported">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">DeviceOperationUnsupported</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.exceptions.DeviceOperationUnsupported" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#autonet.core.exceptions.AutonetException" title="autonet.core.exceptions.AutonetException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutonetException</span></code></a></p>
+<p>Raised when the driver for a device determines that a device does not
+support the requested operation.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="autonet.core.exceptions.DriverOperationUnsupported">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">DriverOperationUnsupported</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.exceptions.DriverOperationUnsupported" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#autonet.core.exceptions.AutonetException" title="autonet.core.exceptions.AutonetException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutonetException</span></code></a></p>
+<p>Raised when the driver for a device does not support the requested operation.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="autonet.core.exceptions.DriverResponseInvalid">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">DriverResponseInvalid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.exceptions.DriverResponseInvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#autonet.core.exceptions.AutonetException" title="autonet.core.exceptions.AutonetException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutonetException</span></code></a></p>
+<p>Raised when a device driver returns a value that was unexpected or
+incorrectly formatted.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="autonet.core.exceptions.DriverRequestError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">DriverRequestError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.exceptions.DriverRequestError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#autonet.core.exceptions.AutonetException" title="autonet.core.exceptions.AutonetException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutonetException</span></code></a></p>
+<p>Raised by a driver when an otherwise well-formed request cannot be
+fulfilled due to platform limitations.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="autonet.core.exceptions.RequestValueError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">RequestValueError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.exceptions.RequestValueError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#autonet.core.exceptions.AutonetException" title="autonet.core.exceptions.AutonetException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutonetException</span></code></a></p>
+<p>Raised when invalid data is passed in a request.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="autonet.core.exceptions.RequestValueMissing">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">RequestValueMissing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.exceptions.RequestValueMissing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#autonet.core.exceptions.AutonetException" title="autonet.core.exceptions.AutonetException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutonetException</span></code></a></p>
+<p>Raised when a request is sent without the required data.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="autonet.core.exceptions.RequestTypeError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">RequestTypeError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.exceptions.RequestTypeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#autonet.core.exceptions.AutonetException" title="autonet.core.exceptions.AutonetException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutonetException</span></code></a></p>
+<p>Raised when data in a field is of the wrong type.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="autonet.core.exceptions.ObjectNotFound">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">ObjectNotFound</span></span><a class="headerlink" href="#autonet.core.exceptions.ObjectNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#autonet.core.exceptions.AutonetException" title="autonet.core.exceptions.AutonetException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutonetException</span></code></a></p>
+<p>Raised when a request for an object could not be completed
+because the driver could not find the object as described.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="autonet.core.exceptions.ObjectExists">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">ObjectExists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.exceptions.ObjectExists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#autonet.core.exceptions.AutonetException" title="autonet.core.exceptions.AutonetException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutonetException</span></code></a></p>
+<p>Raised when a create requests attempts to create an object that
+already exists.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">autonet</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation and Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../drivers.html">Drivers</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Connectria, LLC.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../../_sources/autoapi/autonet/core/exceptions/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

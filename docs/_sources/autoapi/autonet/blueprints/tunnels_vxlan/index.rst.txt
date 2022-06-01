@@ -1,0 +1,47 @@
+:py:mod:`autonet.blueprints.tunnels_vxlan`
+==========================================
+
+.. py:module:: autonet.blueprints.tunnels_vxlan
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.blueprints.tunnels_vxlan.get_tunnels
+   autonet.blueprints.tunnels_vxlan.get_tunnel
+   autonet.blueprints.tunnels_vxlan.create_tunnel
+   autonet.blueprints.tunnels_vxlan.delete_tunnel
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.blueprints.tunnels_vxlan.blueprint
+
+
+.. py:data:: blueprint
+   
+
+   
+
+.. py:function:: get_tunnels(device_id)
+
+
+.. py:function:: get_tunnel(device_id, object_id)
+
+
+.. py:function:: create_tunnel(device_id)
+
+
+.. py:function:: delete_tunnel(device_id, object_id)
+
+

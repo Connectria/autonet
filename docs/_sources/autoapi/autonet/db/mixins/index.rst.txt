@@ -1,0 +1,86 @@
+:py:mod:`autonet.db.mixins`
+===========================
+
+.. py:module:: autonet.db.mixins
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   autonet.db.mixins.GUIDMixin
+   autonet.db.mixins.TimestampMixin
+   autonet.db.mixins.Updatable
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.db.mixins.read_only_validator
+
+
+
+.. py:function:: read_only_validator(cls, k, v)
+
+   Raise an error if an update to a read-only field is requested.
+   :param k: The attribute name.
+   :param v: The value to be validated.
+   :return:
+
+
+.. py:class:: GUIDMixin
+
+   Bases: :py:obj:`object`
+
+   .. py:attribute:: __sa_dataclass_metadata_key__
+      :annotation: = sa
+
+      
+
+   .. py:attribute:: id
+      :annotation: :str
+
+      
+
+   .. py:method:: read_only(self, k, v)
+
+
+
+.. py:class:: TimestampMixin
+
+   Bases: :py:obj:`object`
+
+   .. py:attribute:: __sa_dataclass_metadata_key__
+      :annotation: = sa
+
+      
+
+   .. py:attribute:: created_on
+      :annotation: :datetime.datetime
+
+      
+
+   .. py:attribute:: updated_on
+      :annotation: :datetime.datetime
+
+      
+
+   .. py:method:: read_only(self, k, v)
+
+
+
+.. py:class:: Updatable
+
+   Bases: :py:obj:`object`
+
+   .. py:method:: update(self, update: dict)
+
+
+

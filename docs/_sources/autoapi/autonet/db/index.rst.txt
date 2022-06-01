@@ -1,0 +1,53 @@
+:py:mod:`autonet.db`
+====================
+
+.. py:module:: autonet.db
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   base/index.rst
+   mixins/index.rst
+   models/index.rst
+   types/index.rst
+
+
+Package Contents
+----------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.db.init_db
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.db.engine
+   autonet.db.Session
+
+
+.. py:data:: engine
+   
+
+   
+
+.. py:function:: init_db()
+
+
+.. py:data:: Session
+   
+
+   
+

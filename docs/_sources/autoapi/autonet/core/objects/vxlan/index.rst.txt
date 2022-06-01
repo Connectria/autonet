@@ -1,0 +1,62 @@
+:py:mod:`autonet.core.objects.vxlan`
+====================================
+
+.. py:module:: autonet.core.objects.vxlan
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   autonet.core.objects.vxlan.VXLAN
+
+
+
+
+.. py:class:: VXLAN
+
+   Bases: :py:obj:`object`
+
+   .. py:attribute:: id
+      :annotation: :int
+
+      
+
+   .. py:attribute:: source_address
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: layer
+      :annotation: :int
+
+      
+
+   .. py:attribute:: import_targets
+      :annotation: :Optional[List[str]]
+
+      
+
+   .. py:attribute:: export_targets
+      :annotation: :Optional[List[str]]
+
+      
+
+   .. py:attribute:: route_distinguisher
+      :annotation: :str
+
+      
+
+   .. py:attribute:: bound_object_id
+      :annotation: :Optional[Union[str, int]]
+
+      
+
+   .. py:method:: __post_init__(self)
+
+
+

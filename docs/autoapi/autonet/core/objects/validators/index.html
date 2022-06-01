@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>autonet.core.objects.validators &#8212; autonet 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-autonet.core.objects.validators">
+<span id="autonet-core-objects-validators"></span><h1><a class="reference internal" href="#module-autonet.core.objects.validators" title="autonet.core.objects.validators"><code class="xref py py-mod docutils literal notranslate"><span class="pre">autonet.core.objects.validators</span></code></a><a class="headerlink" href="#module-autonet.core.objects.validators" title="Permalink to this heading">¶</a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading">¶</a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#autonet.core.objects.validators.is_uint16" title="autonet.core.objects.validators.is_uint16"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_uint16</span></code></a>(number: str) → bool</p></td>
+<td><p>Verify that the provided string is a 16bit unsigned integer.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#autonet.core.objects.validators.is_uint32" title="autonet.core.objects.validators.is_uint32"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_uint32</span></code></a>(number: str) → bool</p></td>
+<td><p>Verify that the provided string is a 32bit unsigned integer.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#autonet.core.objects.validators.is_ipv4_address" title="autonet.core.objects.validators.is_ipv4_address"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_ipv4_address</span></code></a>(address: str) → bool</p></td>
+<td><p>Verify that string represents a valid IPv4 address.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#autonet.core.objects.validators.is_route_distinguisher" title="autonet.core.objects.validators.is_route_distinguisher"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_route_distinguisher</span></code></a>(rd: str) → bool</p></td>
+<td><p>Verifies that the provided string is a properly formatted route</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#autonet.core.objects.validators.is_route_target" title="autonet.core.objects.validators.is_route_target"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_route_target</span></code></a>(rt: str, allow_auto: bool = True) → bool</p></td>
+<td><p>Verifies that the provided string is a valid route target.  Also</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#autonet.core.objects.validators.is_esi" title="autonet.core.objects.validators.is_esi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_esi</span></code></a>(esi: str) → bool</p></td>
+<td><p>Verifies the provided string is a properly formatted 10 bytes</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#autonet.core.objects.validators.validate_union" title="autonet.core.objects.validators.validate_union"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_union</span></code></a>(value, tp)</p></td>
+<td><p>Determines if the value is one of the possible inner types of a Union Type.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#autonet.core.objects.validators.validate_list" title="autonet.core.objects.validators.validate_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_list</span></code></a>(value, tp)</p></td>
+<td><p>Determines if the values inside a list are of the proper inner</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#autonet.core.objects.validators.validate" title="autonet.core.objects.validators.validate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate</span></code></a>(obj: object)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="autonet.core.objects.validators.is_uint16">
+<span class="sig-prename descclassname"><span class="pre">autonet.core.objects.validators.</span></span><span class="sig-name descname"><span class="pre">is_uint16</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#autonet.core.objects.validators.is_uint16" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify that the provided string is a 16bit unsigned integer.
+:param number: An unsigned 16bit integers, as a string.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autonet.core.objects.validators.is_uint32">
+<span class="sig-prename descclassname"><span class="pre">autonet.core.objects.validators.</span></span><span class="sig-name descname"><span class="pre">is_uint32</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#autonet.core.objects.validators.is_uint32" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify that the provided string is a 32bit unsigned integer.
+:param number: An unsigned 32bit integer, as a string
+:return:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autonet.core.objects.validators.is_ipv4_address">
+<span class="sig-prename descclassname"><span class="pre">autonet.core.objects.validators.</span></span><span class="sig-name descname"><span class="pre">is_ipv4_address</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#autonet.core.objects.validators.is_ipv4_address" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify that string represents a valid IPv4 address.
+:param address: An IPv4 address string.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autonet.core.objects.validators.is_route_distinguisher">
+<span class="sig-prename descclassname"><span class="pre">autonet.core.objects.validators.</span></span><span class="sig-name descname"><span class="pre">is_route_distinguisher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#autonet.core.objects.validators.is_route_distinguisher" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifies that the provided string is a properly formatted route
+distinguisher.  Also accepts “auto” which is a special signal
+to an Autonet driver to derive the RD automatically using methods
+appropriate to the device.
+:param rd: Route distinguisher, as a string.
+:return:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autonet.core.objects.validators.is_route_target">
+<span class="sig-prename descclassname"><span class="pre">autonet.core.objects.validators.</span></span><span class="sig-name descname"><span class="pre">is_route_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_auto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#autonet.core.objects.validators.is_route_target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifies that the provided string is a valid route target.  Also
+accepts “auto” which is a special signal to an Autonet driver to
+derive the RT automatically as appropriate for the device.
+:param rt: A route target string
+:param allow_auto: Allow the special value <cite>auto</cite>.
+:return:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autonet.core.objects.validators.is_esi">
+<span class="sig-prename descclassname"><span class="pre">autonet.core.objects.validators.</span></span><span class="sig-name descname"><span class="pre">is_esi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">esi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#autonet.core.objects.validators.is_esi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifies the provided string is a properly formatted 10 bytes
+ESI.  Does not verify RFC compliance of ESI type/byte sequence, but
+only the textual representation is valid.
+:param esi:
+:return:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autonet.core.objects.validators.validate_union">
+<span class="sig-prename descclassname"><span class="pre">autonet.core.objects.validators.</span></span><span class="sig-name descname"><span class="pre">validate_union</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.objects.validators.validate_union" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if the value is one of the possible inner types of a Union Type.
+:param value: The value to be validated.
+:param tp: The Union type to validate against.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autonet.core.objects.validators.validate_list">
+<span class="sig-prename descclassname"><span class="pre">autonet.core.objects.validators.</span></span><span class="sig-name descname"><span class="pre">validate_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.objects.validators.validate_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if the values inside a list are of the proper inner
+type.  This function takes the outer list type hint as defined and
+will determine the proper inner type to validate against.
+:param value: The list to be validated.
+:param tp: The list type to validate against.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autonet.core.objects.validators.validate">
+<span class="sig-prename descclassname"><span class="pre">autonet.core.objects.validators.</span></span><span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.objects.validators.validate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../../index.html">autonet</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../installation.html">Installation and Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../drivers.html">Drivers</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Connectria, LLC.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../../../_sources/autoapi/autonet/core/objects/validators/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

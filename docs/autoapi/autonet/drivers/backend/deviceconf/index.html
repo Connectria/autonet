@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>autonet.drivers.backend.deviceconf &#8212; autonet 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-autonet.drivers.backend.deviceconf">
+<span id="autonet-drivers-backend-deviceconf"></span><h1><a class="reference internal" href="#module-autonet.drivers.backend.deviceconf" title="autonet.drivers.backend.deviceconf"><code class="xref py py-mod docutils literal notranslate"><span class="pre">autonet.drivers.backend.deviceconf</span></code></a><a class="headerlink" href="#module-autonet.drivers.backend.deviceconf" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="deviceconf/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">autonet.drivers.backend.deviceconf.deviceconf</span></code></a></li>
+</ul>
+</div>
+</section>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this heading">¶</a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#autonet.drivers.backend.deviceconf.DeviceConf" title="autonet.drivers.backend.deviceconf.DeviceConf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeviceConf</span></code></a></p></td>
+<td><p>Reference implementation of a backend device driver.  The driver must</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="autonet.drivers.backend.deviceconf.DeviceConf">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.drivers.backend.deviceconf.</span></span><span class="sig-name descname"><span class="pre">DeviceConf</span></span><a class="headerlink" href="#autonet.drivers.backend.deviceconf.DeviceConf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../base/index.html#autonet.drivers.backend.base.AutonetDeviceBackend" title="autonet.drivers.backend.base.AutonetDeviceBackend"><code class="xref py py-obj docutils literal notranslate"><span class="pre">autonet.drivers.backend.base.AutonetDeviceBackend</span></code></a></p>
+<p>Reference implementation of a backend device driver.  The driver must
+implement two methods: <cite>get_device</cite> and <cite>get_device_credentials</cite>, which must
+return an <cite>AutonetDevice</cite> and <cite>AutonetDeviceCredentials</cite> object respectively,
+None if the lookup fails.  At present <cite>get_device_credentials</cite> is not used
+explicitly by Autonet but there maybe be core changes in the future which
+will use the method.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.backend.deviceconf.DeviceConf._verify_device_id_format">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_verify_device_id_format</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#autonet.drivers.backend.deviceconf.DeviceConf._verify_device_id_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if the device ID matches the one configured and device ID
+is properly formatted, otherwise returns False.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.backend.deviceconf.DeviceConf.get_device">
+<span class="sig-name descname"><span class="pre">get_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device_id</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../core/device/index.html#autonet.core.device.AutonetDevice" title="autonet.core.device.AutonetDevice"><span class="pre">autonet.core.device.AutonetDevice</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#autonet.drivers.backend.deviceconf.DeviceConf.get_device" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.drivers.backend.deviceconf.DeviceConf.get_device_credentials">
+<span class="sig-name descname"><span class="pre">get_device_credentials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device_id</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../core/device/index.html#autonet.core.device.AutonetDeviceCredentials" title="autonet.core.device.AutonetDeviceCredentials"><span class="pre">autonet.core.device.AutonetDeviceCredentials</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#autonet.drivers.backend.deviceconf.DeviceConf.get_device_credentials" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../../index.html">autonet</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../installation.html">Installation and Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../drivers.html">Drivers</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Connectria, LLC.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../../../_sources/autoapi/autonet/drivers/backend/deviceconf/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

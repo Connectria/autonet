@@ -1,0 +1,63 @@
+:py:mod:`autonet.blueprints.users`
+==================================
+
+.. py:module:: autonet.blueprints.users
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.blueprints.users.get_users
+   autonet.blueprints.users.get_user
+   autonet.blueprints.users.create_user
+   autonet.blueprints.users.update_user
+   autonet.blueprints.users.delete_user
+   autonet.blueprints.users.get_user_tokens
+   autonet.blueprints.users.create_user_token
+   autonet.blueprints.users.delete_user_token
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.blueprints.users.blueprint
+
+
+.. py:data:: blueprint
+   
+
+   
+
+.. py:function:: get_users()
+
+
+.. py:function:: get_user(user_id: str)
+
+
+.. py:function:: create_user()
+
+
+.. py:function:: update_user(user_id: str)
+
+
+.. py:function:: delete_user(user_id: str)
+
+
+.. py:function:: get_user_tokens(user_id: str)
+
+
+.. py:function:: create_user_token(user_id: str)
+
+
+.. py:function:: delete_user_token(user_id: str, token_id: str)
+
+

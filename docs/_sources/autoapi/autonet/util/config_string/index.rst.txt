@@ -1,0 +1,35 @@
+:py:mod:`autonet.util.config_string`
+====================================
+
+.. py:module:: autonet.util.config_string
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.util.config_string.vlan_list_to_glob
+   autonet.util.config_string.glob_to_vlan_list
+
+
+
+.. py:function:: vlan_list_to_glob(vlans: list[int]) -> str
+
+   Converts a VLAN ID list into a glob string commonly used by
+   Cisco-like CLIs.
+   :param vlans: The list of VLANs to convert to a glob.
+   :return:
+
+
+.. py:function:: glob_to_vlan_list(glob: str) -> list[int]
+
+   Convert a Cisco-like CLI VLAN glob into a list of vlans.
+   :param glob: The config glob.
+   :return:
+
+

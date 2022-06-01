@@ -1,0 +1,30 @@
+:py:mod:`autonet.util.auth`
+===========================
+
+.. py:module:: autonet.util.auth
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.util.auth.hash_password
+   autonet.util.auth.verify_password
+   autonet.util.auth.generate_token
+
+
+
+.. py:function:: hash_password(password: str)
+
+
+.. py:function:: verify_password(password: str, password_hash: str)
+
+
+.. py:function:: generate_token()
+
+

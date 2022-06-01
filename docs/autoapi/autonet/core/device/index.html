@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>autonet.core.device &#8212; autonet 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-autonet.core.device">
+<span id="autonet-core-device"></span><h1><a class="reference internal" href="#module-autonet.core.device" title="autonet.core.device"><code class="xref py py-mod docutils literal notranslate"><span class="pre">autonet.core.device</span></code></a><a class="headerlink" href="#module-autonet.core.device" title="Permalink to this heading">¶</a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading">¶</a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#autonet.core.device.AutonetDeviceCredentials" title="autonet.core.device.AutonetDeviceCredentials"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutonetDeviceCredentials</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#autonet.core.device.AutonetDevice" title="autonet.core.device.AutonetDevice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutonetDevice</span></code></a></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param device_id<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Object ID for the device.</p>
+</dd>
+</dl>
+</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="autonet.core.device.AutonetDeviceCredentials">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.core.device.</span></span><span class="sig-name descname"><span class="pre">AutonetDeviceCredentials</span></span><a class="headerlink" href="#autonet.core.device.AutonetDeviceCredentials" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="autonet.core.device.AutonetDeviceCredentials.username">
+<span class="sig-name descname"><span class="pre">username</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#autonet.core.device.AutonetDeviceCredentials.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autonet.core.device.AutonetDeviceCredentials.password">
+<span class="sig-name descname"><span class="pre">password</span></span><em class="property"><span class="w"> </span><span class="pre">:Optional[str]</span></em><a class="headerlink" href="#autonet.core.device.AutonetDeviceCredentials.password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autonet.core.device.AutonetDeviceCredentials.private_key">
+<span class="sig-name descname"><span class="pre">private_key</span></span><em class="property"><span class="w"> </span><span class="pre">:Optional[str]</span></em><a class="headerlink" href="#autonet.core.device.AutonetDeviceCredentials.private_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="autonet.core.device.AutonetDevice">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.core.device.</span></span><span class="sig-name descname"><span class="pre">AutonetDevice</span></span><a class="headerlink" href="#autonet.core.device.AutonetDevice" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_id</strong> – Object ID for the device.</p></li>
+<li><p><strong>address</strong> – Management address.</p></li>
+<li><p><strong>credentials</strong> – AutonetDeviceCredentials object.</p></li>
+<li><p><strong>device_name</strong> – Optional friendly name for the device, may be used in logs.</p></li>
+<li><p><strong>driver</strong> – The driver used to manage the network device.</p></li>
+<li><p><strong>metadata</strong> – Autonet specific metadata.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autonet.core.device.AutonetDevice.device_id">
+<span class="sig-name descname"><span class="pre">device_id</span></span><em class="property"><span class="w"> </span><span class="pre">:Union[str,</span> <span class="pre">int]</span></em><a class="headerlink" href="#autonet.core.device.AutonetDevice.device_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autonet.core.device.AutonetDevice.address">
+<span class="sig-name descname"><span class="pre">address</span></span><em class="property"><span class="w"> </span><span class="pre">:Union[str,</span> <span class="pre">ipaddress.IPv4Address]</span></em><a class="headerlink" href="#autonet.core.device.AutonetDevice.address" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autonet.core.device.AutonetDevice.credentials">
+<span class="sig-name descname"><span class="pre">credentials</span></span><em class="property"><span class="w"> </span><span class="pre">:AutonetDeviceCredentials</span></em><a class="headerlink" href="#autonet.core.device.AutonetDevice.credentials" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autonet.core.device.AutonetDevice.driver">
+<span class="sig-name descname"><span class="pre">driver</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#autonet.core.device.AutonetDevice.driver" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autonet.core.device.AutonetDevice.enabled">
+<span class="sig-name descname"><span class="pre">enabled</span></span><em class="property"><span class="w"> </span><span class="pre">:Optional[bool]</span></em><a class="headerlink" href="#autonet.core.device.AutonetDevice.enabled" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autonet.core.device.AutonetDevice.device_name">
+<span class="sig-name descname"><span class="pre">device_name</span></span><em class="property"><span class="w"> </span><span class="pre">:Optional[str]</span></em><a class="headerlink" href="#autonet.core.device.AutonetDevice.device_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autonet.core.device.AutonetDevice.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="w"> </span><span class="pre">:Optional[dict]</span></em><a class="headerlink" href="#autonet.core.device.AutonetDevice.metadata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.core.device.AutonetDevice.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.core.device.AutonetDevice.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">autonet</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation and Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../drivers.html">Drivers</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Connectria, LLC.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../../_sources/autoapi/autonet/core/device/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

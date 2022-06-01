@@ -1,0 +1,24 @@
+:py:mod:`autonet.drivers.device`
+================================
+
+.. py:module:: autonet.drivers.device
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   dummy_driver/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   driver/index.rst
+
+

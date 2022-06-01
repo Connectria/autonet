@@ -1,0 +1,47 @@
+:py:mod:`autonet.core.objects.vlan`
+===================================
+
+.. py:module:: autonet.core.objects.vlan
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   autonet.core.objects.vlan.VLAN
+
+
+
+
+.. py:class:: VLAN
+
+   Bases: :py:obj:`object`
+
+   .. py:attribute:: id
+      :annotation: :int
+
+      
+
+   .. py:attribute:: name
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: bridge_domain
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: admin_enabled
+      :annotation: :Optional[bool]
+
+      
+
+   .. py:method:: __post_init__(self)
+
+
+

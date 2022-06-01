@@ -1,0 +1,173 @@
+:py:mod:`autonet.core.objects.interfaces`
+=========================================
+
+.. py:module:: autonet.core.objects.interfaces
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   autonet.core.objects.interfaces.InterfaceAddress
+   autonet.core.objects.interfaces.InterfaceBridgeAttributes
+   autonet.core.objects.interfaces.InterfaceRouteAttributes
+   autonet.core.objects.interfaces.Interface
+
+
+
+
+.. py:class:: InterfaceAddress
+
+   Bases: :py:obj:`object`
+
+   .. py:attribute:: family
+      :annotation: :str
+
+      
+
+   .. py:attribute:: address
+      :annotation: :str
+
+      
+
+   .. py:attribute:: virtual
+      :annotation: :bool
+
+      
+
+   .. py:attribute:: virtual_type
+      :annotation: :Union[str, None]
+
+      
+
+   .. py:method:: __post_init__(self)
+
+
+
+.. py:class:: InterfaceBridgeAttributes
+
+   Bases: :py:obj:`object`
+
+   .. py:attribute:: dot1q_enabled
+      :annotation: :bool
+
+      
+
+   .. py:attribute:: dot1q_vids
+      :annotation: :list[int]
+
+      
+
+   .. py:attribute:: dot1q_pvid
+      :annotation: :Optional[int]
+
+      
+
+   .. py:method:: __post_init__(self)
+
+
+   .. py:method:: merge(self, update: InterfaceBridgeAttributes)
+
+
+
+.. py:class:: InterfaceRouteAttributes
+
+   Bases: :py:obj:`object`
+
+   .. py:attribute:: addresses
+      :annotation: :list[InterfaceAddress]
+
+      
+
+   .. py:attribute:: vrf
+      :annotation: :Optional[str]
+
+      
+
+   .. py:method:: __post_init__(self)
+
+
+   .. py:method:: merge(self, update: InterfaceRouteAttributes)
+
+
+
+.. py:class:: Interface
+
+   Bases: :py:obj:`object`
+
+   .. py:attribute:: name
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: mode
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: description
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: virtual
+      :annotation: :Optional[bool]
+
+      
+
+   .. py:attribute:: attributes
+      :annotation: :Optional[Union[InterfaceBridgeAttributes, InterfaceRouteAttributes]]
+
+      
+
+   .. py:attribute:: admin_enabled
+      :annotation: :Optional[bool]
+
+      
+
+   .. py:attribute:: physical_address
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: child
+      :annotation: :bool
+
+      
+
+   .. py:attribute:: parent
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: speed
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: duplex
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: mtu
+      :annotation: :Optional[int]
+
+      
+
+   .. py:method:: __post_init__(self)
+
+
+   .. py:method:: merge(self, update: Interface)
+
+      Performs a merge of the "updated" object into this one.  Any attributes
+      on `update` that are set to `None` will be ignored.
+      :param update:
+      :return:
+
+
+

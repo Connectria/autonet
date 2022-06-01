@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>autonet.db.mixins &#8212; autonet 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-autonet.db.mixins">
+<span id="autonet-db-mixins"></span><h1><a class="reference internal" href="#module-autonet.db.mixins" title="autonet.db.mixins"><code class="xref py py-mod docutils literal notranslate"><span class="pre">autonet.db.mixins</span></code></a><a class="headerlink" href="#module-autonet.db.mixins" title="Permalink to this heading">¶</a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading">¶</a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#autonet.db.mixins.GUIDMixin" title="autonet.db.mixins.GUIDMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GUIDMixin</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#autonet.db.mixins.TimestampMixin" title="autonet.db.mixins.TimestampMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampMixin</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#autonet.db.mixins.Updatable" title="autonet.db.mixins.Updatable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Updatable</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#autonet.db.mixins.read_only_validator" title="autonet.db.mixins.read_only_validator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_only_validator</span></code></a>(cls, k, v)</p></td>
+<td><p>Raise an error if an update to a read-only field is requested.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="autonet.db.mixins.read_only_validator">
+<span class="sig-prename descclassname"><span class="pre">autonet.db.mixins.</span></span><span class="sig-name descname"><span class="pre">read_only_validator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.db.mixins.read_only_validator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raise an error if an update to a read-only field is requested.
+:param k: The attribute name.
+:param v: The value to be validated.
+:return:</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="autonet.db.mixins.GUIDMixin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.db.mixins.</span></span><span class="sig-name descname"><span class="pre">GUIDMixin</span></span><a class="headerlink" href="#autonet.db.mixins.GUIDMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autonet.db.mixins.GUIDMixin.__sa_dataclass_metadata_key__">
+<span class="sig-name descname"><span class="pre">__sa_dataclass_metadata_key__</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">sa</span></em><a class="headerlink" href="#autonet.db.mixins.GUIDMixin.__sa_dataclass_metadata_key__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autonet.db.mixins.GUIDMixin.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#autonet.db.mixins.GUIDMixin.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.db.mixins.GUIDMixin.read_only">
+<span class="sig-name descname"><span class="pre">read_only</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.db.mixins.GUIDMixin.read_only" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="autonet.db.mixins.TimestampMixin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.db.mixins.</span></span><span class="sig-name descname"><span class="pre">TimestampMixin</span></span><a class="headerlink" href="#autonet.db.mixins.TimestampMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autonet.db.mixins.TimestampMixin.__sa_dataclass_metadata_key__">
+<span class="sig-name descname"><span class="pre">__sa_dataclass_metadata_key__</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">sa</span></em><a class="headerlink" href="#autonet.db.mixins.TimestampMixin.__sa_dataclass_metadata_key__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autonet.db.mixins.TimestampMixin.created_on">
+<span class="sig-name descname"><span class="pre">created_on</span></span><em class="property"><span class="w"> </span><span class="pre">:datetime.datetime</span></em><a class="headerlink" href="#autonet.db.mixins.TimestampMixin.created_on" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autonet.db.mixins.TimestampMixin.updated_on">
+<span class="sig-name descname"><span class="pre">updated_on</span></span><em class="property"><span class="w"> </span><span class="pre">:datetime.datetime</span></em><a class="headerlink" href="#autonet.db.mixins.TimestampMixin.updated_on" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.db.mixins.TimestampMixin.read_only">
+<span class="sig-name descname"><span class="pre">read_only</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.db.mixins.TimestampMixin.read_only" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="autonet.db.mixins.Updatable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.db.mixins.</span></span><span class="sig-name descname"><span class="pre">Updatable</span></span><a class="headerlink" href="#autonet.db.mixins.Updatable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="autonet.db.mixins.Updatable.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.db.mixins.Updatable.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">autonet</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation and Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../drivers.html">Drivers</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Connectria, LLC.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../../_sources/autoapi/autonet/db/mixins/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

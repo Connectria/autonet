@@ -1,0 +1,90 @@
+:py:mod:`autonet.db.models`
+===========================
+
+.. py:module:: autonet.db.models
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   autonet.db.models.Users
+   autonet.db.models.Tokens
+
+
+
+
+.. py:class:: Users
+
+   Bases: :py:obj:`autonet.db.mixins.GUIDMixin`, :py:obj:`autonet.db.mixins.TimestampMixin`, :py:obj:`autonet.db.mixins.Updatable`
+
+   .. py:attribute:: __tablename__
+      :annotation: = users
+
+      
+
+   .. py:attribute:: __table_args__
+      
+
+      
+
+   .. py:attribute:: __sa_dataclass_metadata_key__
+      :annotation: = sa
+
+      
+
+   .. py:attribute:: username
+      :annotation: :str
+
+      
+
+   .. py:attribute:: email
+      :annotation: :str
+
+      
+
+   .. py:attribute:: description
+      :annotation: :str
+
+      
+
+   .. py:attribute:: tokens
+      :annotation: :[Tokens]
+
+      
+
+
+.. py:class:: Tokens
+
+   Bases: :py:obj:`autonet.db.mixins.GUIDMixin`, :py:obj:`autonet.db.mixins.TimestampMixin`, :py:obj:`autonet.db.mixins.Updatable`
+
+   .. py:attribute:: __tablename__
+      :annotation: = tokens
+
+      
+
+   .. py:attribute:: __sa_dataclass_metadata_key__
+      :annotation: = sa
+
+      
+
+   .. py:attribute:: user_id
+      :annotation: :str
+
+      
+
+   .. py:attribute:: description
+      :annotation: :str
+
+      
+
+   .. py:attribute:: token
+      :annotation: :str
+
+      
+
+

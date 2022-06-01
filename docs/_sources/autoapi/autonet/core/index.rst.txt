@@ -1,0 +1,29 @@
+:py:mod:`autonet.core`
+======================
+
+.. py:module:: autonet.core
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   objects/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   app/index.rst
+   device/index.rst
+   exceptions/index.rst
+   logging/index.rst
+   marshal/index.rst
+   response/index.rst
+
+

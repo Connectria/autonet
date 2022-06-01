@@ -1,0 +1,88 @@
+:py:mod:`autonet.core.device`
+=============================
+
+.. py:module:: autonet.core.device
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   autonet.core.device.AutonetDeviceCredentials
+   autonet.core.device.AutonetDevice
+
+
+
+
+.. py:class:: AutonetDeviceCredentials
+
+   .. py:attribute:: username
+      :annotation: :str
+
+      
+
+   .. py:attribute:: password
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: private_key
+      :annotation: :Optional[str]
+
+      
+
+
+.. py:class:: AutonetDevice
+
+   :param device_id: Object ID for the device.
+   :param address: Management address.
+   :param credentials: AutonetDeviceCredentials object.
+   :param device_name: Optional friendly name for the device, may be used in logs.
+   :param driver: The driver used to manage the network device.
+   :param metadata: Autonet specific metadata.
+
+   .. py:attribute:: device_id
+      :annotation: :Union[str, int]
+
+      
+
+   .. py:attribute:: address
+      :annotation: :Union[str, ipaddress.IPv4Address]
+
+      
+
+   .. py:attribute:: credentials
+      :annotation: :AutonetDeviceCredentials
+
+      
+
+   .. py:attribute:: driver
+      :annotation: :str
+
+      
+
+   .. py:attribute:: enabled
+      :annotation: :Optional[bool]
+
+      
+
+   .. py:attribute:: device_name
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: metadata
+      :annotation: :Optional[dict]
+
+      
+
+   .. py:method:: __repr__(self)
+
+      Return repr(self).
+
+
+

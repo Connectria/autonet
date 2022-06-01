@@ -1,0 +1,26 @@
+:py:mod:`autonet.drivers.backend`
+=================================
+
+.. py:module:: autonet.drivers.backend
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   deviceconf/index.rst
+   netbox/index.rst
+   yamlfile/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   base/index.rst
+
+

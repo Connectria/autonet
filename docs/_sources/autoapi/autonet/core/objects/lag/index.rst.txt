@@ -1,0 +1,42 @@
+:py:mod:`autonet.core.objects.lag`
+==================================
+
+.. py:module:: autonet.core.objects.lag
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   autonet.core.objects.lag.LAG
+
+
+
+
+.. py:class:: LAG
+
+   Bases: :py:obj:`object`
+
+   .. py:attribute:: name
+      :annotation: :str
+
+      
+
+   .. py:attribute:: members
+      :annotation: :Optional[List[str]]
+
+      
+
+   .. py:attribute:: evpn_esi
+      :annotation: :Optional[str]
+
+      
+
+   .. py:method:: __post_init__(self)
+
+
+

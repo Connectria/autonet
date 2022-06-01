@@ -1,0 +1,63 @@
+:py:mod:`autonet.blueprints.bridge_vlan`
+========================================
+
+.. py:module:: autonet.blueprints.bridge_vlan
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.blueprints.bridge_vlan._prepare_defaults
+   autonet.blueprints.bridge_vlan.get_vlans
+   autonet.blueprints.bridge_vlan.get_vlan
+   autonet.blueprints.bridge_vlan.create_vlan
+   autonet.blueprints.bridge_vlan._update_vlan
+   autonet.blueprints.bridge_vlan.update_vlan
+   autonet.blueprints.bridge_vlan.delete_vlan
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   autonet.blueprints.bridge_vlan.blueprint
+
+
+.. py:data:: blueprint
+   
+
+   
+
+.. py:function:: _prepare_defaults(request_data: dict) -> dict
+
+   Setup default parameters for a given request if they are not supplied.
+   :param request_data: The request body.
+   :return:
+
+
+.. py:function:: get_vlans(device_id)
+
+
+.. py:function:: get_vlan(device_id, vlan_id)
+
+
+.. py:function:: create_vlan(device_id)
+
+
+.. py:function:: _update_vlan(device_id)
+
+
+.. py:function:: update_vlan(device_id, vlan_id=None)
+
+
+.. py:function:: delete_vlan(device_id, vlan_id)
+
+

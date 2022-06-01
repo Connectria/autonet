@@ -1,0 +1,37 @@
+:py:mod:`autonet.drivers.backend.base`
+======================================
+
+.. py:module:: autonet.drivers.backend.base
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   autonet.drivers.backend.base.AutonetDeviceBackend
+
+
+
+
+.. py:class:: AutonetDeviceBackend
+
+   Reference implementation of a backend device driver.  The driver must
+   implement two methods: `get_device` and `get_device_credentials`, which must
+   return an `AutonetDevice` and `AutonetDeviceCredentials` object respectively,
+   None if the lookup fails.  At present `get_device_credentials` is not used
+   explicitly by Autonet but there maybe be core changes in the future which
+   will use the method.
+
+   .. py:method:: get_device(self, device_id) -> Union[None, autonet.core.device.AutonetDevice]
+      :staticmethod:
+
+
+   .. py:method:: get_device_credentials(self, device_id) -> Union[None, autonet.core.device.AutonetDeviceCredentials]
+      :staticmethod:
+
+
+

@@ -1,0 +1,27 @@
+:py:mod:`autonet.core.objects`
+==============================
+
+.. py:module:: autonet.core.objects
+
+.. autoapi-nested-parse::
+
+   Here we use python dataclasses to define the structure of
+   given endpoints request/response data as well as implement
+   validation logic in the `__post_init__()` method.
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   interfaces/index.rst
+   lag/index.rst
+   validators/index.rst
+   vlan/index.rst
+   vrf/index.rst
+   vxlan/index.rst
+
+

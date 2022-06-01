@@ -1,0 +1,16 @@
+:py:mod:`autonet.util`
+======================
+
+.. py:module:: autonet.util
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   auth/index.rst
+   config_string/index.rst
+
+

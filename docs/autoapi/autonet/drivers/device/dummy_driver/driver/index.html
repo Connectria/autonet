@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>autonet.drivers.device.dummy_driver.driver &#8212; autonet 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../../../" id="documentation_options" src="../../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../../_static/jquery.js"></script>
+    <script src="../../../../../../_static/underscore.js"></script>
+    <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-autonet.drivers.device.dummy_driver.driver">
+<span id="autonet-drivers-device-dummy-driver-driver"></span><h1><a class="reference internal" href="#module-autonet.drivers.device.dummy_driver.driver" title="autonet.drivers.device.dummy_driver.driver"><code class="xref py py-mod docutils literal notranslate"><span class="pre">autonet.drivers.device.dummy_driver.driver</span></code></a><a class="headerlink" href="#module-autonet.drivers.device.dummy_driver.driver" title="Permalink to this heading">¶</a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading">¶</a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#autonet.drivers.device.dummy_driver.driver.DummyDriver" title="autonet.drivers.device.dummy_driver.driver.DummyDriver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DummyDriver</span></code></a></p></td>
+<td><p>Base class that defines the interface for a device driver.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="autonet.drivers.device.dummy_driver.driver.DummyDriver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autonet.drivers.device.dummy_driver.driver.</span></span><span class="sig-name descname"><span class="pre">DummyDriver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../../core/device/index.html#autonet.core.device.AutonetDevice" title="autonet.core.device.AutonetDevice"><span class="pre">autonet.core.device.AutonetDevice</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autonet.drivers.device.dummy_driver.driver.DummyDriver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../driver/index.html#autonet.drivers.device.driver.DeviceDriver" title="autonet.drivers.device.driver.DeviceDriver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">autonet.drivers.device.driver.DeviceDriver</span></code></a></p>
+<p>Base class that defines the interface for a device driver.</p>
+<p>The class <cite>__init__()</cite> method will be passed an <cite>AutonetDevice</cite> object to
+be used to establish communication with the device.  Any specialized
+information that the driver may need should be passed via the metadata
+dictionary on the <cite>AutonetDevice</cite>.</p>
+<p>The DeviceDriver class implements the <cite>execute()</cite> method for asking
+the driver to execute pre-defined task on the device and the <cite>capabilities</cite>
+property for enumerating what tasks the driver can support.  <cite>capabilities</cite>
+is defined as a class level attribute and should remain as such in child
+classes since its enumeration may be used to build documentation.</p>
+<p>The <cite>DeviceDriver</cite> class creates a reference implementation where each request
+type is mapped to a method on the class itself.  This allows for an easy starting
+point for inheriting from the base class and moving straight to implementing
+device specific functionality without having to work through any boilerplate
+requirements from Autonet. However, these things are optional and the driver
+author may override them since implementation details of the driver are
+ultimately up to the driver’s author.</p>
+<p>Device drivers need not support any specific subset of capabilities, though
+at a minimum it would be preferable to support basic interface and VLAN
+configuration actions.  If a driver does not support a given capability then
+it should raise a <cite>DriverOperationUnsupported</cite> exception.</p>
+<p>It’s important to note that <cite>capabilities</cite> defines what the driver is capable
+of doing and not necessarily the capabilities of the device itself.  For example
+a driver for Juniper Junos can be used to drive a QFX series or EX series switch.
+The driver can implement the <cite>vxlan*</cite> capability set for QFX switches, but would
+not be able to use it with EX series switches.  In this case the driver would
+report that it’s capable of performing <cite>vxlan*</cite> actions, but when asked to operate
+on an EX series switch it would raise a <cite>DeviceOperationUnsupported</cite> exception.</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../../../index.html">autonet</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../installation.html">Installation and Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../drivers.html">Drivers</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Connectria, LLC.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../../../../_sources/autoapi/autonet/drivers/device/dummy_driver/driver/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

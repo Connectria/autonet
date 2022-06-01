@@ -1,0 +1,14 @@
+:py:mod:`autonet.config`
+========================
+
+.. py:module:: autonet.config
+
+
+Module Contents
+---------------
+
+.. py:data:: opts
+   
+
+   
+
