@@ -19,7 +19,7 @@ from autonet.__version__ import __version__
 
 # -- Project information -----------------------------------------------------
 
-project = 'autonet-arista'
+project = 'autonet'
 copyright = '2022, Connectria, LLC'
 author = 'Ken Vondersaar'
 
@@ -42,7 +42,8 @@ extensions = [
 
 # Replaces autodoc
 autoapi_type = 'python'
-autoapi_dirs = ['../../autonet_arista']
+autoapi_dirs = ['../../autonet']
+autoapi_add_toctree_entry = False
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -50,7 +51,7 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['test_*']
+autoapi_ignore = ['*test_*.py', '*tests*']
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -58,7 +59,7 @@ exclude_patterns = ['test_*']
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'classic'
+html_theme = 'alabaster'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
