@@ -6,7 +6,7 @@ from autonet.core import exceptions as exc
 from autonet.config import config
 
 opts = [
-    StringOption('backend', default='yamlfile')
+    StringOption('backend', default='config')
 ]
 config.register_options(opts)
 
