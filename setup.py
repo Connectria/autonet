@@ -50,7 +50,7 @@ setuptools.setup(
     ],
     package_dir={"": "./"},
     packages=setuptools.find_packages(where='./'),
-    python_requires=">=3.8",
+    python_requires=">=3.9",
     install_requires=install_requires,
     test_requires=test_requires,
     test_suite='pytest',

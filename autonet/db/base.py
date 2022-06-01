@@ -5,7 +5,7 @@ from sqlalchemy.orm import registry, sessionmaker
 from autonet.config import config
 
 db_opts = [
-    StringOption('connection', default='sqlite://'),
+    StringOption('connection', default='sqlite:///'),
 ]
 
 config.register_options(db_opts, 'database')
