@@ -6,11 +6,19 @@ with open("README.rst", "r", encoding="utf-8") as fh:
 
 here = os.path.abspath(os.path.dirname(__file__))
 about = {}
-with open(here+'/autonet_ng/__version__.py', 'r') as f:
+with open(here+'/autonet/__version__.py', 'r') as f:
     exec(f.read(), about)
 
 install_requires = [
-    'requests'
+    'conf-engine>=1.0',
+    'Flask>=2.1.2',
+    'passlib>=1.7.0',
+    'pymysql>=1.0.2',
+    'PyYAML~=6.0',
+    'requests>=2.0.12',
+    'requests-cache>=0.9.4',
+    'SQLAlchemy>=1.4.36',
+    'macaddress>=1.2.0'
 ]
 
 test_requires = install_requires + [
@@ -20,7 +28,7 @@ test_requires = install_requires + [
 ]
 
 setuptools.setup(
-    name="autonet_ng",
+    name="autonet-api",
     version=about['__version__'],
     author="Ken Vondersaar",
     author_email="kvondersaar@connectria.com",
@@ -42,12 +50,23 @@ setuptools.setup(
     ],
     package_dir={"": "./"},
     packages=setuptools.find_packages(where='./'),
-    python_requires=">=3.7",
+    python_requires=">=3.8",
     install_requires=install_requires,
     test_requires=test_requires,
     test_suite='pytest',
-    exclude_package_data={'': ['autonet_ng/*/tests/test_*.py']},
+    exclude_package_data={'': ['autonet/*/tests/test_*.py']},
     entry_points={
-        'autonet_ng.drivers': ['dummy = autonet_ng.drivers.dummy_driver.driver:DummyDriver']
+        'console_scripts': [
+            'autonet-server = autonet.core.app:run_wsgi_app',
+            'autonet-createadmin = autonet.commands.createadmin:create_admin'
+                            ],
+        'autonet.drivers': [
+            'dummy = autonet.drivers.device.dummy_driver.driver:DummyDriver'
+        ],
+        'autonet.backends': [
+            'config = autonet.drivers.backend.deviceconf:DeviceConf',
+            'yamlfile = autonet.drivers.backend.yamlfile.yamlfile:YAMLFile',
+            'netbox = autonet.drivers.backend.netbox.netbox:NetBox'
+        ]
     }
 )
