@@ -1,0 +1,12 @@
+test_device1:
+  address: 198.18.0.1
+  username: test1
+  password: test1
+  driver: dummy
+test_device2:
+  address: 198.18.0.2
+  username: test2
+  password: test2
+  driver: dummy
+  metadata:
+    evpn_anycast_mac: fa:12:23:34:ab:cf
