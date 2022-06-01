@@ -5,3 +5,5 @@ autonet-ng.iml
 venv/
 */.pytest_cache/
 /autonet_ng.egg-info/
+/autonet_api.egg-info/
+/autonet/autonet.db

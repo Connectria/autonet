@@ -1,6 +1,8 @@
+import os
 import pytest
 
 
 @pytest.fixture
 def test_yamlfile_path():
-    return './drivers/backend/yamlfile/tests/test_inventory.yml'
+    cwd = os.path.dirname(os.path.abspath(__file__))
+    return f'{cwd}/test_inventory.yml'
