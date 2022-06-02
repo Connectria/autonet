@@ -9,14 +9,14 @@ from autonet.util.auth import generate_token, hash_password
 blueprint = Blueprint('users', __name__)
 
 
-@blueprint.route('', methods=['GET'])
+@blueprint.route('/', methods=['GET'])
 def get_users():
     with Session() as s:
         users = s.query(Users).all()
         return autonet_response(users)
 
 
-@blueprint.route('/<user_id>', methods=['GET'])
+@blueprint.route('/<user_id>/', methods=['GET'])
 def get_user(user_id: str):
     with Session() as s:
         try:
@@ -26,7 +26,7 @@ def get_user(user_id: str):
             return autonet_response(None, 404)
 
 
-@blueprint.route('', methods=['POST'])
+@blueprint.route('/', methods=['POST'])
 def create_user():
     with Session() as s:
         try:
@@ -40,7 +40,7 @@ def create_user():
         return autonet_response(None, status)
 
 
-@blueprint.route('/<user_id>', methods=['PATCH'])
+@blueprint.route('/<user_id>/', methods=['PATCH'])
 def update_user(user_id: str):
     with Session() as s:
         try:
@@ -52,7 +52,7 @@ def update_user(user_id: str):
             return autonet_response(None, 404)
 
 
-@blueprint.route('/<user_id>', methods=['DELETE'])
+@blueprint.route('/<user_id>/', methods=['DELETE'])
 def delete_user(user_id: str):
     with Session() as s:
         try:
@@ -64,14 +64,14 @@ def delete_user(user_id: str):
             return autonet_response(None, 404)
 
 
-@blueprint.route('/<user_id>/tokens', methods=['GET'])
+@blueprint.route('/<user_id>/tokens/', methods=['GET'])
 def get_user_tokens(user_id: str):
     with Session() as s:
         tokens = s.query(Tokens).where(Tokens.user_id == user_id).all()
         return autonet_response(tokens, 200)
 
 
-@blueprint.route('/<user_id>/tokens', methods=['POST'])
+@blueprint.route('/<user_id>/tokens/', methods=['POST'])
 def create_user_token(user_id: str):
     generated_token = generate_token()
     with Session() as s:
@@ -85,7 +85,7 @@ def create_user_token(user_id: str):
         return autonet_response(None, 201, {'X-API-Key': generated_token})
 
 
-@blueprint.route('/<user_id>/tokens/<token_id>', methods=['DELETE'])
+@blueprint.route('/<user_id>/tokens/<token_id>/', methods=['DELETE'])
 def delete_user_token(user_id: str, token_id: str):
     with Session() as s:
         try:
