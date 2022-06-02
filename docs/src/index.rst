@@ -14,6 +14,7 @@ framework.
    installation.rst
    configuration.rst
    drivers.rst
+   api/index.rst
 
 Indices and tables
 ==================
