@@ -36,6 +36,9 @@ release = __version__
 # ones.
 extensions = [
     'autoapi.extension',
+    'sphinxcontrib.httpdomain',
+    'sphinxcontrib.autohttp.flask',
+    'sphinxcontrib.autohttp.flaskqref'
 ]
 
 # -- AutoAPI -------------------------------------------------------------------

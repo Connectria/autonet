@@ -4,7 +4,7 @@ from autonet.core import exceptions as exc
 from autonet.core.objects import lag as an_lag
 from autonet.core.response import autonet_response
 
-blueprint = Blueprint('lag', __name__)
+blueprint = Blueprint('interface_lag', __name__)
 
 
 @blueprint.route('/', methods=['GET'])
