@@ -23,9 +23,9 @@ def get_tunnels(device_id):
     return autonet_response(result)
 
 
-@blueprint.route('/vxlan/<object_id>', methods=['GET'])
-def get_tunnel(device_id, object_id):
-    response = g.driver.execute('tunnels:vxlan', 'read', request_data=object_id)
+@blueprint.route('/vxlan/<vni>', methods=['GET'])
+def get_tunnel(device_id, vni):
+    response = g.driver.execute('tunnels:vxlan', 'read', request_data=vni)
     if not response:
         raise exc.ObjectNotFound()
     if not isinstance(response, an_vxlan.VXLAN):
@@ -44,11 +44,11 @@ def create_tunnel(device_id):
     return autonet_response(response, 201)
 
 
-@blueprint.route('/vxlan/<object_id>', methods=['DELETE'])
-def delete_tunnel(device_id, object_id):
-    if not g.driver.execute('tunnels:vxlan', 'read', request_data=object_id):
+@blueprint.route('/vxlan/<vni>', methods=['DELETE'])
+def delete_tunnel(device_id, vni):
+    if not g.driver.execute('tunnels:vxlan', 'read', request_data=vni):
         raise exc.ObjectNotFound()
-    response = g.driver.execute('tunnels:vxlan', 'delete', request_data=object_id)
+    response = g.driver.execute('tunnels:vxlan', 'delete', request_data=vni)
     if response is not None:
         raise exc.DriverResponseInvalid(g.driver)
     return autonet_response(None, 204)
