@@ -1,5 +1,5 @@
-Link Aggregation Groups
-=======================
+Virtual Extensible LAN
+======================
 
 .. qrefflask:: autonet.core.app:flask_app
    :blueprints: tunnels_vxlan
