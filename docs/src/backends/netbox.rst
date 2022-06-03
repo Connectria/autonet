@@ -4,7 +4,7 @@ NetBox Driver
 Autonet supports the popular DCIM NetBox via the NetBox backend driver.
 Connectivity to NetBox is defined in the driver configuration.  For details
 on setting NetBox up as an Autonet inventory source see the
-`NetBox setup <NetBox Setup>`_ section below.  The NetBox driver will
+`NetBox Setup`_ section below.  The NetBox driver will
 attempt to gather credentials from the `/secrets` endpoint for older
 versions of NetBox, or from the `plugins/netbox-secretstore` endpoint
 for newer versions with the Netbox-Secretstore plugin installed.
