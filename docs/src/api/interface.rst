@@ -46,6 +46,31 @@ driver and device dependent.
         "vrf": "The name of the VRF to which this interface belongs."
     }
 
+Bridged Interface Attributes
+++++++++++++++++++++++++++++
+
+Interfaces in bridge mode perform ethernet forwarding functions only and do
+not participate directly in IP routing.  These interfaces are typically physical
+interfaces.
+
+The bridge mode attributes object defines how the interface handles tagged and
+untagged traffic.  The `dot1q_enabled` property will determine if tagged traffic
+is accepted.  If `False` then the interface will only forward traffic from the
+VLAN ID specified in `dot1q_pvid`.  When `dot1q_enabled` is `True` then the
+`dot1q_pvid` property will dictate which VLAN handles untagged traffic and the
+`dot1q_vids` property will indicate which VLANs are permitted on the interface.
+If `dot1q_vids` is emtpy, then all VLANs are permitted.
+
+.. code-block:: json
+
+    {
+        "bool: dot1q_enabled": "Indicates interface uses 802.1Q VLAN tagging.",
+        "int: dot1q_pvid": "The VLAN for untagged traffic."},
+        "array: dot1q_vids": [
+            "Allowed VLAN IDs as integers."
+        ]
+    }
+
 .. qrefflask:: autonet.core.app:flask_app
    :blueprints: interfaces
    :autoquickref:
