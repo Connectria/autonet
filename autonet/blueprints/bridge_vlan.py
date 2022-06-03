@@ -63,7 +63,7 @@ def get_vlan(device_id, vlan_id):
     """
     .. :quickref: VLAN; Get a VLAN by its VLAN ID.
 
-    A VLAN objects will be returned.  Only mutable VLANs are
+    A VLAN object will be returned.  Only mutable VLANs are
     returned.  Any system reserved or dynamically generated VLANs
     should be omitted.
 
@@ -97,7 +97,7 @@ def create_vlan(device_id):
     """
     .. :quickref: VLAN; Create a VLAN.
 
-    A VLAN objects representing the committed version of the VLAN
+    A VLAN object representing the committed version of the VLAN
     will be returned.  If the VLAN conflicts with a system generated
     VLAN an :http:statuscode:`409` will be returned despite the same
     VLAN not being searchable via
