@@ -127,7 +127,7 @@ def get_interfaces(device_id):
     return autonet_response(response)
 
 
-@blueprint.route('/<interface_name>', methods=['GET'])
+@blueprint.route('/<interface_name>/', methods=['GET'])
 def get_interface(device_id, interface_name):
     """
     .. :quickref: Interface; Get an interface.
@@ -236,7 +236,7 @@ def create_interface(device_id):
     return autonet_response(response, 201)
 
 
-@blueprint.route('/<interface_name>', methods=['PUT', 'PATCH'])
+@blueprint.route('/<interface_name>/', methods=['PUT', 'PATCH'])
 def update_interface(device_id, interface_name):
     """
     .. :quickref: Interface; Update an interface.
@@ -316,7 +316,7 @@ def _update_interface(device_id, interface_name: str = None):
     return autonet_response(response)
 
 
-@blueprint.route('/<interface_name>', methods=['DELETE'])
+@blueprint.route('/<interface_name>/', methods=['DELETE'])
 def delete_interface(device_id, interface_name):
     """
     .. :quickref: Interface; Delete an interface.
