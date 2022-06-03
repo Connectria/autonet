@@ -15,7 +15,7 @@ framework.
    configuration.rst
    drivers.rst
    api/index.rst
-
+   Python API <autoapi/autonet/index.rst>
 Indices and tables
 ==================
 
