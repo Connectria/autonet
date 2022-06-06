@@ -277,7 +277,7 @@ def create_user_token(user_id: str):
 
     .. note::
 
-        An additional :http:header:`X-API-Key` will be set with the
+        An additional :http:header:`X-API-Key` header will be set with the
         plaintext value of the newly created token.
 
     **Response codes**
