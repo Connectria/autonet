@@ -7,7 +7,7 @@ from autonet.core.response import autonet_response
 blueprint = Blueprint('vrf', __name__)
 
 
-@blueprint.route('/', methods=['GET'])
+@blueprint.route('', methods=['GET'])
 def get_vrfs(device_id):
     """
     .. :quickref: VRF; Get a list of VRFs on the device.
@@ -88,7 +88,7 @@ def get_vrf(device_id, vrf_name):
     return autonet_response(response)
 
 
-@blueprint.route('/', methods=['POST'])
+@blueprint.route('', methods=['POST'])
 def create_vrf(device_id):
     """
     .. :quickref: VRF; Create a VRF on the device.

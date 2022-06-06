@@ -8,8 +8,8 @@ configuration.
 
 The LAG object describes the member interfaces on the given device.
 These members are identified by their interface names, as seen in the
-outputs of :http:get:`/(device_id)/interfaces/` and as used in calls to
-:http:get:`/(device_id)/interfaces/(interface_name)/`.  The LAG object
+outputs of :http:get:`/(device_id)/interfaces` and as used in calls to
+:http:get:`/(device_id)/interfaces/(interface_name)`.  The LAG object
 also has an `evpn_esi` property that can be used to define an EVPN MH
 ESI for the LAG so that it may participate in EVPN Multi-homing
 configurations.

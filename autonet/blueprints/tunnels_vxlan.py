@@ -7,7 +7,7 @@ from autonet.core.response import autonet_response
 blueprint = Blueprint('tunnels_vxlan', __name__)
 
 
-@blueprint.route('/vxlan/', methods=['GET'])
+@blueprint.route('/vxlan', methods=['GET'])
 def get_tunnels(device_id):
     """
     .. :quickref: VXLAN; Get a list of VXLAN Tunnels on the device.

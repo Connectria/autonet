@@ -9,7 +9,7 @@ from autonet.util.auth import generate_token, hash_password
 blueprint = Blueprint('users', __name__)
 
 
-@blueprint.route('/', methods=['GET'])
+@blueprint.route('', methods=['GET'])
 def get_users():
     """
     .. :quickref: User; Get a list of users.
@@ -50,7 +50,7 @@ def get_users():
         return autonet_response(users)
 
 
-@blueprint.route('/<user_id>/', methods=['GET'])
+@blueprint.route('/<user_id>', methods=['GET'])
 def get_user(user_id: str):
     """
     .. :quickref: User; Get a user by UUID.
@@ -93,14 +93,14 @@ def get_user(user_id: str):
             return autonet_response(None, 404)
 
 
-@blueprint.route('/', methods=['POST'])
+@blueprint.route('', methods=['POST'])
 def create_user():
     """
     .. :quickref: User; Create a user.
 
     The object representing the created user will be returned.  A user will be created
     with no tokens.  In order to assign a token to the user an additional call to
-    :http:post:`/admin/users/(user_id)/tokens/` will need to be made.
+    :http:post:`/admin/users/(user_id)/tokens` will need to be made.
 
     **Request data**
 
@@ -144,7 +144,7 @@ def create_user():
         return autonet_response(None, status)
 
 
-@blueprint.route('/<user_id>/', methods=['PATCH'])
+@blueprint.route('/<user_id>', methods=['PATCH'])
 def update_user(user_id: str):
     """
     .. :quickref: User; Update a user.
@@ -191,7 +191,7 @@ def update_user(user_id: str):
             return autonet_response(None, 404)
 
 
-@blueprint.route('/<user_id>/', methods=['DELETE'])
+@blueprint.route('/<user_id>', methods=['DELETE'])
 def delete_user(user_id: str):
     """
     .. :quickref: User; Delete a user.
@@ -213,7 +213,7 @@ def delete_user(user_id: str):
             return autonet_response(None, 404)
 
 
-@blueprint.route('/<user_id>/tokens/', methods=['GET'])
+@blueprint.route('/<user_id>/tokens', methods=['GET'])
 def get_user_tokens(user_id: str):
     """
     .. :quickref: Token; Get a list of a user's tokens.
@@ -244,7 +244,7 @@ def get_user_tokens(user_id: str):
         return autonet_response(tokens, 200)
 
 
-@blueprint.route('/<user_id>/tokens/', methods=['POST'])
+@blueprint.route('/<user_id>/tokens', methods=['POST'])
 def create_user_token(user_id: str):
     """
     .. :quickref: Token; Create a user token.
@@ -292,7 +292,7 @@ def create_user_token(user_id: str):
         return autonet_response(None, 201, {'X-API-Key': generated_token})
 
 
-@blueprint.route('/<user_id>/tokens/<token_id>/', methods=['DELETE'])
+@blueprint.route('/<user_id>/tokens/<token_id>', methods=['DELETE'])
 def delete_user_token(user_id: str, token_id: str):
     """
     .. :quickref: Token; Delete a user's token.

@@ -7,7 +7,7 @@ from autonet.core.response import autonet_response
 blueprint = Blueprint('interface_lag', __name__)
 
 
-@blueprint.route('/', methods=['GET'])
+@blueprint.route('', methods=['GET'])
 def get_lags(device_id):
     """
     .. :quickref: LAG; Get a list of LAGs on the device.
@@ -78,7 +78,7 @@ def get_lag(device_id, lag_id):
     return autonet_response(response)
 
 
-@blueprint.route('/', methods=['POST'])
+@blueprint.route('', methods=['POST'])
 def create_lag(device_id):
     """
     .. :quickref: LAG; Create a LAG on the device.

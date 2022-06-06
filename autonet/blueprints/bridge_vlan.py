@@ -18,7 +18,7 @@ def _prepare_defaults(request_data: dict) -> dict:
     return request_data
 
 
-@blueprint.route('/', methods=['GET'])
+@blueprint.route('', methods=['GET'])
 def get_vlans(device_id):
     """
     .. :quickref: VLAN; Get a list of VLANs on the device.
@@ -92,7 +92,7 @@ def get_vlan(device_id, vlan_id):
     return autonet_response(response)
 
 
-@blueprint.route('/', methods=['POST'])
+@blueprint.route('', methods=['POST'])
 def create_vlan(device_id):
     """
     .. :quickref: VLAN; Create a VLAN.
@@ -141,7 +141,7 @@ def create_vlan(device_id):
     return autonet_response(response, 201)
 
 
-@blueprint.route('/', methods=['PUT', 'PATCH'])
+@blueprint.route('', methods=['PUT', 'PATCH'])
 def _update_vlan(device_id):
     return update_vlan(device_id, None)
 

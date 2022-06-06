@@ -78,7 +78,7 @@ def _build_interface_from_request_data(request_data: dict) -> an_if.Interface:
     return an_if.Interface(**request_data)
 
 
-@blueprint.route('/', methods=['GET'])
+@blueprint.route('', methods=['GET'])
 def get_interfaces(device_id):
     """
     .. :quickref: Interface; Get a list of interfaces.
@@ -127,7 +127,7 @@ def get_interfaces(device_id):
     return autonet_response(response)
 
 
-@blueprint.route('/<interface_name>/', methods=['GET'])
+@blueprint.route('/<interface_name>', methods=['GET'])
 def get_interface(device_id, interface_name):
     """
     .. :quickref: Interface; Get an interface.
@@ -167,7 +167,7 @@ def get_interface(device_id, interface_name):
     return autonet_response(response)
 
 
-@blueprint.route('/', methods=['POST'])
+@blueprint.route('', methods=['POST'])
 def create_interface(device_id):
     """
     .. :quickref: Interface; Create an interface.
@@ -236,7 +236,7 @@ def create_interface(device_id):
     return autonet_response(response, 201)
 
 
-@blueprint.route('/<interface_name>/', methods=['PUT', 'PATCH'])
+@blueprint.route('/<interface_name>', methods=['PUT', 'PATCH'])
 def update_interface(device_id, interface_name):
     """
     .. :quickref: Interface; Update an interface.
@@ -291,7 +291,7 @@ def update_interface(device_id, interface_name):
     return _update_interface(device_id, interface_name)
 
 
-@blueprint.route('/', methods=['PUT', 'PATCH'])
+@blueprint.route('', methods=['PUT', 'PATCH'])
 def _update_interface(device_id, interface_name: str = None):
     request_data = request.json
     if interface_name and not request_data.get('name', None):
@@ -316,7 +316,7 @@ def _update_interface(device_id, interface_name: str = None):
     return autonet_response(response)
 
 
-@blueprint.route('/<interface_name>/', methods=['DELETE'])
+@blueprint.route('/<interface_name>', methods=['DELETE'])
 def delete_interface(device_id, interface_name):
     """
     .. :quickref: Interface; Delete an interface.
