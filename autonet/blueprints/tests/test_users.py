@@ -108,7 +108,7 @@ def test_get_user_tokens(client, db_session, test_auth_header):
 def test_create_user_token(client, db_session, test_auth_header):
     user_id = '2a575546-b5d1-44f0-a485-301305ff1be4'
     response = client.post(f'/admin/users/{user_id}/tokens', headers=test_auth_header)
-    assert not response.json['data']
+    assert response.json['data']
     assert 'X-API-Key' in response.headers
     token = response.headers.get('X-API-Key')
     assert len(token) == 32

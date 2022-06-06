@@ -39,37 +39,44 @@ class DeviceDriver(object):
     """
     Base class that defines the interface for a device driver.
 
-    The class `__init__()` method will be passed an `AutonetDevice` object to
-    be used to establish communication with the device.  Any specialized
-    information that the driver may need should be passed via the metadata
-    dictionary on the `AutonetDevice`.
+    The class :py:meth:`__init__()` method will be passed an
+    :py:class:`AutonetDevice` object to be used to establish
+    communication with the device.  Any specialized information that
+    the driver may need should be passed via the metadata dictionary
+    on the :py:meth:`AutonetDevice`.
 
-    The DeviceDriver class implements the `execute()` method for asking
-    the driver to execute pre-defined task on the device and the `capabilities`
-    property for enumerating what tasks the driver can support.  `capabilities`
-    is defined as a class level attribute and should remain as such in child
+    The DeviceDriver class implements the :py:meth:`execute()` method
+    for asking the driver to execute pre-defined task on the device
+    and the :py:attr:`capabilities` property for enumerating what
+    tasks the driver can support.  :py:attr:`capabilities` is defined
+    as a class level attribute and should remain as such in child
     classes since its enumeration may be used to build documentation.
 
-    The `DeviceDriver` class creates a reference implementation where each request
-    type is mapped to a method on the class itself.  This allows for an easy starting
-    point for inheriting from the base class and moving straight to implementing
-    device specific functionality without having to work through any boilerplate
-    requirements from Autonet. However, these things are optional and the driver
-    author may override them since implementation details of the driver are
-    ultimately up to the driver's author.
+    The :py:class:`DeviceDriver` class creates a reference
+    implementation where each request type is mapped to a method on
+    the class itself.  This allows for an easy starting point for
+    inheriting from the base class and moving straight to implementing
+    device specific functionality without having to work through any
+    boilerplate requirements from Autonet. However, these things are
+    optional and the driver author may override them since
+    implementation details of the driver are ultimately up to the
+    driver's author.
 
-    Device drivers need not support any specific subset of capabilities, though
-    at a minimum it would be preferable to support basic interface and VLAN
-    configuration actions.  If a driver does not support a given capability then
-    it should raise a `DriverOperationUnsupported` exception.
+    Device drivers need not support any specific subset of
+    capabilities, though at a minimum it would be preferable to support
+    basic interface and VLAN configuration actions.  If a driver does
+    not support a given capability then it should raise a
+    :py:exc:`DriverOperationUnsupported` exception.
 
-    It's important to note that `capabilities` defines what the driver is capable
-    of doing and not necessarily the capabilities of the device itself.  For example
-    a driver for Juniper Junos can be used to drive a QFX series or EX series switch.
-    The driver can implement the `vxlan*` capability set for QFX switches, but would
-    not be able to use it with EX series switches.  In this case the driver would
-    report that it's capable of performing `vxlan*` actions, but when asked to operate
-    on an EX series switch it would raise a `DeviceOperationUnsupported` exception.
+    It's important to note that :py:attr:`capabilities` defines what
+    the driver is capable of doing and not necessarily the capabilities
+    of the device itself.  For example a driver for Juniper Junos can
+    be used to drive a QFX series or EX series switch. The driver can
+    implement the `vxlan*` capability set for QFX switches, but would
+    not be able to use it with EX series switches.  In this case the
+    driver would report that it's capable of performing `vxlan*`
+    actions, but when asked to operate on an EX series switch it would
+    raise a :py:exc:`DeviceOperationUnsupported` exception.
     """
 
     _enumerated_capabilities = {}
@@ -99,6 +106,7 @@ class DeviceDriver(object):
     def _generate_func_name(capability, action) -> str:
         """
         Determine the function name to call for a given capability and action.
+
         :param capability: The capability to be utilized
         :param action: The requested action.
         :return:
@@ -111,6 +119,7 @@ class DeviceDriver(object):
         Returns the function appropriate to the capability and action requested.
         If the function doesn't exist (or the capability isn't mapped) then it will
         return a factory that raises the appropriate exception.
+
         :param capability: The capability to be utilized
         :param action: The requested action.
         :return:
@@ -137,6 +146,7 @@ class DeviceDriver(object):
         request_data object will be a `Interface` object with appropriate details
         filled out.  The function would then need to return an appropriate object
         and response or raise (or bubble up) and appropriate exception.
+
         :param capability: The capability to be utilized
         :param action: The request action
         :param request_data: The request data
@@ -151,6 +161,7 @@ class DeviceDriver(object):
         interface name provided by the user.  If so, then only that interface
         should be returned.  Otherwise, the driver should return all
         interfaces.
+
         :param request_data: The name of the interface, if requested.
         :return:
         """
@@ -163,6 +174,7 @@ class DeviceDriver(object):
         device.  The driver should return a completed `Interface` object that
         represents the interface as created once any defaults or other modifications
         have been made by the driver.
+
         :param request_data: An `Interface` object.
         :return:
         """
@@ -177,6 +189,7 @@ class DeviceDriver(object):
 
         The driver should return a complete `Interface` object that represents the updated
         configuration of the interface.
+
         :param request_data: An `Interface` object.
         :param update: True if called with HTTP PATCH. False if called with HTTP PUT.
         :return:
@@ -188,6 +201,7 @@ class DeviceDriver(object):
         The driver should determine if the interface is virtual, or physical and then take
         action to remove or reset to default respectively.  Return should be `None` on
         success or an exception should be raised.
+
         :param request_data: Interface name, as a string.
         :return:
         """
@@ -198,8 +212,9 @@ class DeviceDriver(object):
         unless called with `request_data` set, in which case only the requested
         VXLAN should be returned. Autonet will check for None or [] and raise an
         appropriate exception if the requested VXLAN is not defined.
+
         :param request_data: The VXLAN VNID, as a string.  Used to filter results
-                             for a specific VXLAN object.
+            for a specific VXLAN object.
         :return:
         """
 
@@ -209,6 +224,7 @@ class DeviceDriver(object):
         formed `VXLAN` object.  The driver should process the object accordingly
         and return a `VXLAN` object that is complete with any default values that
         may have been applied during the resultant configuration process.
+
         :param request_data: A `VXLAN` object.
         :return:
         """
@@ -221,6 +237,7 @@ class DeviceDriver(object):
         HTTP verb. Rreplace operations should set to their default values or
         removed, as appropriate. any attributes passed as `None` Update
         operations should ignore attributes set to `None`.
+
         :param request_data: A `VXLAN` object.
         :param update: True if called with HTTP PATCH. False if called with HTTP PUT.
         :return:
@@ -232,6 +249,7 @@ class DeviceDriver(object):
         driver should take care of any tunnel configuration removal as well as
         removal of any related BGP EVPN configuration.  VRF configuration should
         be left in-tact, except as relates to EVPN-VXLAN.
+
         :param request_data: The VXLAN VNID, as a string.
         :return:
         """
@@ -242,6 +260,7 @@ class DeviceDriver(object):
         `request_data` is set, then only the requested VRF should be returned.
         Otherwise, a list of all mutable VRFs should be returned.  Immutable VRFs,
         such as the default VRF, or a management-only VRF, should be omitted.
+
         :param request_data: The VRF name, as a string.
         :return:
         """
@@ -252,6 +271,7 @@ class DeviceDriver(object):
         the driver has completed configuration of the VRF it should return
         a `VRF` object representative of the created VRF including any
         default values that may have been set during the request process.
+
         :param request_data: A `VRF` object.
         :return:
         """
@@ -266,6 +286,7 @@ class DeviceDriver(object):
 
         When the configuration is complete the driver should return a `VRF`
         object that represents the resultant configuration state for the VRF.
+
         :param request_data: A `VRF` object.
         :param update: True if called with HTTP PATCH. False if called with HTTP PUT.
         :return:
@@ -276,6 +297,7 @@ class DeviceDriver(object):
         VRF delete will receive the name of the VRF to be deleted as a
         string via `request_data`.  A successful delete operation should
         return `None`
+
         :param request_data: The VRF name, as a string.
         :return:
         """
@@ -286,6 +308,7 @@ class DeviceDriver(object):
         received then only the `VLAN` object for that VLAN ID should be returned.
         Otherwise, a list of all mutable VLANs should be returned.  Immutable VLANs
         such as dynamic VLANs and device reserved VLANs should not be exposed.
+
         :param request_data: The VLAN ID requested, or `None` for all VLANs.
         :return:
         """
@@ -295,6 +318,7 @@ class DeviceDriver(object):
         VLAN create will receive a `VLAN` object as `request_data`.  The driver should
         return a `VLAN` object that represents the final configured state of the VLAN
         including any default values.
+
         :param request_data: A `VLAN` object.
         :return:
         """
@@ -308,6 +332,7 @@ class DeviceDriver(object):
         values any only modify configuration related to attribute that have a value
         other than `None`.  The driver should return a `VLAN` object that reflects the
         final configuration state.
+
         :param request_data: A `VLAN` object.
         :param update: True if called with HTTP PATCH. False if called with HTTP PUT.
         :return:
@@ -319,6 +344,7 @@ class DeviceDriver(object):
         Removal of the VLAN is required, and removal of any related configuration is
         up to the driver implementation as required by the target device's constraints.
         The driver should return `None` on success.
+
         :param request_data: The VLAN ID, as a string.
         :return:
         """
@@ -327,6 +353,7 @@ class DeviceDriver(object):
         """
         LAG read may receive a LAG name as a string via `request_data`.  If so, then only
         the requested LAG should be returned.  Otherwise, all LAGs should be returned.
+
         :param request_data: The LAG name, or `None` for all LAGs.
         :return:
         """
@@ -337,6 +364,7 @@ class DeviceDriver(object):
         configuration is completed the driver needs to return a `LAG` object
         that represents the final configuration state on the device including
         any generated defaults.
+
         :param request_data: A `LAG` object.
         :return:
         """
@@ -347,6 +375,7 @@ class DeviceDriver(object):
         indicates if the request is a replace or update operation.  Replace operations
         should default or remove configuration for any attributes that are set to `None`.
         Update operations should ignore attributes that are set to `None`.
+
         :param request_data: A `LAG` object.
         :param update: True if called with HTTP PATCH. False if called with HTTP PUT.
         :return:
@@ -358,6 +387,7 @@ class DeviceDriver(object):
         configuration should include resetting or defaulting the configuration
         of any member interfaces as well.  The driver should return `None` in
         the event of a successful removal.
+
         :param request_data: The LAG name, as as string.
         :return:
         """

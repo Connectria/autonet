@@ -78,8 +78,41 @@ def _build_interface_from_request_data(request_data: dict) -> an_if.Interface:
     return an_if.Interface(**request_data)
 
 
-@blueprint.route('/', methods=['GET'])
+@blueprint.route('', methods=['GET'])
 def get_interfaces(device_id):
+    """
+    .. :quickref: Interface; Get a list of interfaces.
+
+    A list interfaces on the device and their current configuration state
+    and attributes will be returned.  Specialized system interfaces, such
+    as management interfaces or tunnel termination interfaces, will not
+    be returned.
+
+    **Response data**
+
+    .. code-block:: json
+
+        [
+            {
+                "bool: admin_enabled": "Indicates the admin state of the interface.",
+                "object: attributes": {},
+                "bool: child": "Indicates if this is a child interface.",
+                "str: description": "The description of the interface from the device configuration.",
+                "str: duplex": "The current duplex state of the interface.",
+                "str: mode": "The current interface configuration mode.",
+                "int: mtu": "The current interface MTU in bytes.",
+                "str: name": "The interface name or identifier.",
+                "str: parent": "The name of the parent interface if this interface is a child interface.",
+                "str: physical_address": "The interface's MAC address.",
+                "int: speed": "The interface speed in Megabits/sec.",
+                "bool: virtual": "Indicates if the interface is physical or virtual."
+            }   
+        ]
+
+    **Response codes**
+
+    * :http:statuscode:`200`
+    """
     def verify(driver_response):
         if not isinstance(driver_response, list):
             return False
@@ -96,6 +129,36 @@ def get_interfaces(device_id):
 
 @blueprint.route('/<interface_name>', methods=['GET'])
 def get_interface(device_id, interface_name):
+    """
+    .. :quickref: Interface; Get an interface.
+    
+    The named interfaces on the device and its current configuration state
+    and attributes will be returned.
+    
+    **Response data**
+    
+    .. code-block:: json
+        
+        {
+            "bool: admin_enabled": "Indicates the admin state of the interface.",
+            "object: attributes": {},
+            "bool: child": "Indicates if this is a child interface.",
+            "str: description": "The description of the interface from the device configuration.",
+            "str: duplex": "The current duplex state of the interface.",
+            "str: mode": "The current interface configuration mode.",
+            "int: mtu": "The current interface MTU in bytes.",
+            "str: name": "The interface name or identifier.",
+            "str: parent": "The name of the parent interface if this interface is a child interface.",
+            "str: physical_address": "The interface's MAC address.",
+            "int: speed": "The interface speed in Megabits/sec.",
+            "bool: virtual": "Indicates if the interface is physical or virtual."
+        }   
+
+    **Response codes**
+    
+    * :http:statuscode:`200`
+    * :http:statuscode:`404`
+    """
     response = g.driver.execute('interface', 'read', request_data=interface_name)
     if not response:
         raise exc.ObjectNotFound()
@@ -104,8 +167,56 @@ def get_interface(device_id, interface_name):
     return autonet_response(response)
 
 
-@blueprint.route('/', methods=['POST'])
+@blueprint.route('', methods=['POST'])
 def create_interface(device_id):
+    """
+    .. :quickref: Interface; Create an interface.
+    
+    Create an interface on the device.  This allows for the creation of
+    virtual interfaces or sub-interfaces of existing physical interfaces.
+    
+    **Request data**
+    
+    .. code-block:: json
+    
+        {
+            "bool: admin_enabled": "Indicates the admin state of the interface.",
+            "object: attributes": {},
+            "str: description": "The description of the interface from the device configuration.",
+            "str: duplex": "The current duplex state of the interface.",
+            "str: mode": "The current interface configuration mode.",
+            "int: mtu": "The current interface MTU in bytes.",
+            "str: name": "The interface name or identifier.",
+            "str: parent": "The name of the parent interface if this interface is a child interface.",
+            "str: physical_address": "The interface's MAC address.",
+            "int: speed": "The interface speed in Megabits/sec.",
+            "bool: virtual": "Indicates if the interface is physical or virtual."
+        }   
+    
+    **Response data**
+    
+    .. code-block:: json
+    
+        {
+            "bool: admin_enabled": "Indicates the admin state of the interface.",
+            "object: attributes": {},
+            "bool: child": "Indicates if this is a child interface.",
+            "str: description": "The description of the interface from the device configuration.",
+            "str: duplex": "The current duplex state of the interface.",
+            "str: mode": "The current interface configuration mode.",
+            "int: mtu": "The current interface MTU in bytes.",
+            "str: name": "The interface name or identifier.",
+            "str: parent": "The name of the parent interface if this interface is a child interface.",
+            "str: physical_address": "The interface's MAC address.",
+            "int: speed": "The interface speed in Megabits/sec.",
+            "bool: virtual": "Indicates if the interface is physical or virtual."
+        }   
+    
+    **Response codes**
+    
+    * :http:statuscode:`201`
+    * :http:statuscode:`409`
+    """
     request_data = request.json
     if g.driver.execute('interface', 'read', request_data=request_data['name']):
         raise exc.ObjectExists()
@@ -127,13 +238,60 @@ def create_interface(device_id):
 
 @blueprint.route('/<interface_name>', methods=['PUT', 'PATCH'])
 def update_interface(device_id, interface_name):
+    """
+    .. :quickref: Interface; Update an interface.
+    
+    Create an interface on the device.  Any interface may be updated
+    in this manner.  Interfaces cannot be renamed in this manner, nor
+    can they be assigned a new parent.
+    
+    **Request data**
+    
+    .. code-block:: json
+    
+        {
+            "bool: admin_enabled": "Indicates the admin state of the interface.",
+            "object: attributes": {},
+            "str: description": "The description of the interface from the device configuration.",
+            "str: duplex": "The current duplex state of the interface.",
+            "str: mode": "The current interface configuration mode.",
+            "int: mtu": "The current interface MTU in bytes.",
+            "str: physical_address": "The interface's MAC address.",
+            "int: speed": "The interface speed in Megabits/sec.",
+            "bool: virtual": "Indicates if the interface is physical or virtual."
+        }   
+    
+    **Response data**
+    
+    .. code-block:: json
+    
+        {
+            "bool: admin_enabled": "Indicates the admin state of the interface.",
+            "object: attributes": {},
+            "bool: child": "Indicates if this is a child interface.",
+            "str: description": "The description of the interface from the device configuration.",
+            "str: duplex": "The current duplex state of the interface.",
+            "str: mode": "The current interface configuration mode.",
+            "int: mtu": "The current interface MTU in bytes.",
+            "str: name": "The interface name or identifier.",
+            "str: parent": "The name of the parent interface if this interface is a child interface.",
+            "str: physical_address": "The interface's MAC address.",
+            "int: speed": "The interface speed in Megabits/sec.",
+            "bool: virtual": "Indicates if the interface is physical or virtual."
+        }   
+    
+    **Response codes**
+    
+    * :http:statuscode:`200`
+    * :http:statuscode:`404`
+    """
     request_if_name = request.json.get('name', None)
     if not _verify_name_match(request_if_name, interface_name):
         raise exc.RequestValueError('name', request_if_name, [interface_name])
     return _update_interface(device_id, interface_name)
 
 
-@blueprint.route('/', methods=['PUT', 'PATCH'])
+@blueprint.route('', methods=['PUT', 'PATCH'])
 def _update_interface(device_id, interface_name: str = None):
     request_data = request.json
     if interface_name and not request_data.get('name', None):
@@ -160,6 +318,22 @@ def _update_interface(device_id, interface_name: str = None):
 
 @blueprint.route('/<interface_name>', methods=['DELETE'])
 def delete_interface(device_id, interface_name):
+    """
+    .. :quickref: Interface; Delete an interface.
+
+    Delete an interface on the device.  This can be called against
+    a physical interface or a virtual interface.  In the case of a
+    virtual interface, it will be destroyed.  In the case of a
+    physical interface, it will be set back to the default configuration
+    as determined by the device's driver.  It should not be expected
+    that references to the deleted interface in other parts of the
+    configuration will be deleted as well.
+
+    **Response codes**
+
+    * :http:statuscode:`204`
+    * :http:statuscode:`404`
+    """
     if not g.driver.execute('interface', 'read', request_data=interface_name):
         raise exc.ObjectNotFound()
     response = g.driver.execute('interface', 'delete', request_data=interface_name)
