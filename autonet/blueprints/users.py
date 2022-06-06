@@ -275,6 +275,11 @@ def create_user_token(user_id: str):
             "str: user_id": "The UUID of the token's user."
         }
 
+    .. note::
+
+        An additional :http:header:`X-API-Key` will be set with the
+        plaintext value of the newly created token.
+
     **Response codes**
 
     * :http:statuscode:`201`
@@ -289,7 +294,7 @@ def create_user_token(user_id: str):
         token = Tokens(token=hash_password(generated_token), description='Default Token', user_id=user.id)
         s.add(token)
         s.commit()
-        return autonet_response(None, 201, {'X-API-Key': generated_token})
+        return autonet_response(token, 201, {'X-API-Key': generated_token})
 
 
 @blueprint.route('/<user_id>/tokens/<token_id>', methods=['DELETE'])
