@@ -60,6 +60,7 @@ class InterfaceBridgeAttributes(object):
 class InterfaceRouteAttributes(object):
     addresses: list[InterfaceAddress]
     vrf: Optional[str] = field(default=None)
+    evpn_anycast_mac: Optional[str] = field(default=None)
 
     def __post_init__(self):
         v.validate(self)
