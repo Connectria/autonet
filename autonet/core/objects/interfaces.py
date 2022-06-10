@@ -13,7 +13,8 @@ import autonet.core.objects.validators as v
 class InterfaceAddress(object):
     family: str
     address: str
-    virtual: bool
+    family: Optional[str] = field(default=None)
+    virtual: Optional[bool] = field(default=False)
     virtual_type: Union[str, None] = field(default=None)
 
     def __post_init__(self):
