@@ -22,7 +22,16 @@ class InterfaceAddress(object):
 
         valid_families = ['ipv4', 'ipv6']
         valid_virtual_types = ['anycast', 'vrrp']
-        # Verify family
+        # Set family if not provided, then verify.
+        family = f"ipv{ip_interface(self.address).version}"
+        if not self.family:
+            self.family = family
+        # Verify that the family provided matches the actual
+        # address family.
+        if self.family and self.family != family:
+            raise exc.RequestValueError('family', self.family,
+                                        valid_values=[family])
+        # Verify family is a valid family type.
         if self.family not in valid_families:
             raise exc.RequestValueError('family', self.family,
                                         valid_values=valid_families)
