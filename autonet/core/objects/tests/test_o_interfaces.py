@@ -57,7 +57,7 @@ from autonet.core.objects import interfaces as an_if
 def test_interface_address(test_kwargs, expected, raises):
     if raises:
         with pytest.raises(raises):
-            interface = an_if.InterfaceAddress(**test_kwargs)
+            an_if.InterfaceAddress(**test_kwargs)
     else:
         interface = an_if.InterfaceAddress(**test_kwargs)
         for key, value in expected.items():
