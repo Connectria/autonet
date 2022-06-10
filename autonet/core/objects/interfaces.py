@@ -11,7 +11,6 @@ import autonet.core.objects.validators as v
 
 @dataclass
 class InterfaceAddress(object):
-    family: str
     address: str
     family: Optional[str] = field(default=None)
     virtual: Optional[bool] = field(default=False)
@@ -73,6 +72,13 @@ class InterfaceRouteAttributes(object):
 
     def __post_init__(self):
         v.validate(self)
+
+        try:
+            if self.evpn_anycast_mac:
+                self.evpn_anycast_mac = str(macaddress.parse(
+                    self.evpn_anycast_mac, macaddress.EUI48))
+        except Exception:
+            raise exc.RequestValueError('evpn_anycast_mac', self.evpn_anycast_mac)
 
     def merge(self, update: 'InterfaceRouteAttributes'):
         if update.vrf is not None:
