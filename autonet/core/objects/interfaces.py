@@ -62,6 +62,7 @@ class InterfaceBridgeAttributes(object):
             self.dot1q_pvid = update.dot1q_pvid
         if update.dot1q_vids is not None and update.dot1q_enabled:
             self.dot1q_vids = update.dot1q_vids
+        return self
 
 
 @dataclass
@@ -87,7 +88,7 @@ class InterfaceRouteAttributes(object):
             # For addresses, we convert to a set for the merge action so that
             # duplicates are removed. Then cast back to a list on assignment.
             self.addresses = list(set(self.addresses).union(set(update.addresses)))
-
+        return self
 
 @dataclass
 class Interface(object):
@@ -156,3 +157,4 @@ class Interface(object):
         else:
             self.mode = update.mode
             self.attributes = update.attributes
+        return self
