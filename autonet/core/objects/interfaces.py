@@ -122,12 +122,16 @@ class Interface(object):
         if self.mode and self.mode not in valid_modes:
             raise exc.RequestValueError('parent', self.mode, valid_values=valid_modes)
         # Validate attribute matches mode
-        if self.mode == 'routed' and not isinstance(
-                self.attributes, InterfaceRouteAttributes):
-            raise exc.RequestTypeError('attributes', self.attributes, type(self.attributes))
-        if self.mode == 'bridged' and not isinstance(
-                self.attributes, InterfaceBridgeAttributes):
-            raise exc.RequestTypeError('attributes', self.attributes, type(self.attributes))
+        if isinstance(self.attributes, InterfaceRouteAttributes):
+            if self.mode is None:
+                self.mode = 'routed'
+            if self.mode != 'routed':
+                raise exc.RequestTypeError('attributes', self.attributes, type(self.attributes))
+        if isinstance(self.attributes, InterfaceBridgeAttributes):
+            if self.mode is None:
+                self.mode = 'bridged'
+            if self.mode != 'bridged':
+                raise exc.RequestTypeError('attributes', self.attributes, type(self.attributes))
         if self.mode == 'aggregated' and self.attributes:
             raise exc.RequestTypeError('mode', self.attributes, type(self.attributes),
                                        None)
