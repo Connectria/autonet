@@ -31,10 +31,15 @@ backend     string    config    Specifies the backend driver to be used for
 
 **[database]**
 
-=========== ========= ========== ===============================================
-Option      Type      Default    Description
-=========== ========= ========== ===============================================
-connection  string    sqlite:/// Database connection string that points to
-                                 the user database.
-=========== ========= ========== ===============================================
+============== ========= ========== ===============================================
+Option         Type      Default    Description
+============== ========= ========== ===============================================
+connection     string    sqlite:/// Database connection string that points to
+                                    the user database.
+pool_recycle   integer   3600       Seconds that a connection may be present in the
+                                    connection pool before being invalidated and
+                                    recycled.
+pool_pre_ping  boolean   True       Verify the connection is viable during pool
+                                    checkout.
+============== ========= ========== ===============================================
 
