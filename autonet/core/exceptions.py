@@ -47,6 +47,16 @@ class DriverNotFound(AutonetException):
         super().__init__(f"Could not load driver {driver_name}")
 
 
+class DriverLoadError(AutonetException):
+    """
+    Raised when a driver module fails to import.
+    """
+
+    def __init__(self, driver_name, message):
+        super().__init__(f"Failed to import driver {driver_name}.  Module "
+                         f"load failed with message: {message}")
+
+
 class DeviceOperationUnsupported(AutonetException):
     """
     Raised when the driver for a device determines that a device does not

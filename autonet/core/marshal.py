@@ -22,6 +22,7 @@ def marshal_driver(driver_ns: str, driver_name: str):
                 return driver_ep.load()
     except Exception as e:
         logging.exception(e)
+        raise exc.DriverLoadError(driver_name, e)
     raise exc.DriverNotFound(driver_name)
 
 
