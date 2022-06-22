@@ -1,4 +1,4 @@
-from flask import Blueprint, g, request, Request
+from flask import Blueprint, g, request
 
 from autonet.core import exceptions as exc
 from autonet.core.objects import lag as an_lag
@@ -164,6 +164,8 @@ def update_lag(device_id, lag_id):
     if update and not g.driver.execute('interface:lag', 'read', request_data=lag_id):
         raise exc.ObjectNotFound()
     lag = an_lag.LAG(**request.json)
+    if lag.name != lag_id:
+        raise exc.RequestValueError('name', lag.name, [lag_id])
     response = g.driver.execute('interface:lag', 'update', request_data=lag, update=update)
     if not isinstance(response, an_lag.LAG):
         raise exc.DriverResponseInvalid(g.driver)
