@@ -21,6 +21,7 @@ Application Configuration
 Option      Type      Default   Description
 =========== ========= ========= ===============================================
 debug       boolean   False     Enables debug mode.
+log_level   string    warning   Application log level.  Superseded by `debug`.
 bind_host   string    0.0.0.0   Sets the IP address that Autonet will
                                 attempt to listen on.  By default Autonet will
                                 listen on all available interfaces.

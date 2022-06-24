@@ -33,6 +33,7 @@ class NetBox(AutonetDeviceBackend):
         self.__session_key = None
         self._session = self._setup_session()
         self._session.verify = config.backend_netbox.tls_verify
+        super().__init__()
 
     def __str__(self):
         return f"{self.__class__.__name__}@{self._api}"

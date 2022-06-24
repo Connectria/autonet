@@ -50,6 +50,7 @@ def run_wsgi_app():
 def setup_request():
     g.errors = []
     g.request_id = str(uuid4())
+    logging.debug(f'Initial request setup for request_id {g.request_id}')
 
 
 @flask_app.before_request
@@ -57,6 +58,7 @@ def setup_device_object():
     """
     Middleware will retrieve the AutonetDevice object for any request
     that has a `device_id` arg defined and place it in `g.device`
+
     :return:
     """
     if request.view_args and 'device_id' in request.view_args:

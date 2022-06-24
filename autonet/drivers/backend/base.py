@@ -1,3 +1,5 @@
+import logging
+
 from typing import Union
 from autonet.core.device import AutonetDevice, AutonetDeviceCredentials
 
@@ -11,6 +13,9 @@ class AutonetDeviceBackend:
     explicitly by Autonet but there maybe be core changes in the future which
     will use the method.
     """
+    def __init__(self):
+        logging.info(f'Initializing backend driver {self}')
+
     @staticmethod
     def get_device(self, device_id) -> Union[None, AutonetDevice]:
         return None
