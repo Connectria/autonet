@@ -9,6 +9,7 @@ from autonet.core.response import autonet_response
 from autonet.blueprints.bridge_vlan import blueprint as bridge_vlan_blueprint
 from autonet.blueprints.interface import blueprint as interfaces_blueprint
 from autonet.blueprints.interface_lag import blueprint as interface_lag_blueprint
+from autonet.blueprints.options import blueprint as options_blueprint
 from autonet.blueprints.tunnels_vxlan import blueprint as tunnels_vxlan_blueprint
 from autonet.blueprints.vrf import blueprint as vrf_blueprint
 from autonet.blueprints.users import blueprint as admin_users_blueprint
@@ -28,6 +29,7 @@ opts = [
 config.register_options(opts)
 
 flask_app = Flask(__name__)
+flask_app.register_blueprint(options_blueprint, url_prefix='/')
 flask_app.register_blueprint(bridge_vlan_blueprint, url_prefix='/<device_id>/bridge/vlans')
 flask_app.register_blueprint(interfaces_blueprint, url_prefix='/<device_id>/interfaces')
 flask_app.register_blueprint(interface_lag_blueprint, url_prefix='/<device_id>/interfaces/lags')
