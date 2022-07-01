@@ -136,6 +136,12 @@ class Interface(object):
         if self.mode == 'aggregated' and self.attributes:
             raise exc.RequestTypeError('mode', self.attributes, type(self.attributes),
                                        None)
+        if self.mode == 'aggregated' and not self.parent:
+            # This error may present to the user if they try to use
+            # interface configuration to manage LAG membership, though
+            # it is unsupported.  Primarily, this message is meant to
+            # serve as a consistency check for driver outputs.
+            raise ValueError("'parent' must be set when mode is 'aggregated'")
 
     def merge(self, update: 'Interface'):
         """
