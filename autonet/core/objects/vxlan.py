@@ -16,7 +16,7 @@ class VXLAN(object):
     bound_object_id: Optional[Union[str, int]] = field(default=None)
 
     def __post_init__(self):
-        if self.source_address:
+        if self.source_address and self.source_address != 'auto':
             if not v.is_ipv4_address(self.source_address):
                 raise exc.RequestValueError('source_address', self.source_address)
         if self.layer:
