@@ -28,7 +28,7 @@ opts = [
 ]
 config.register_options(opts)
 
-flask_app = Flask(__name__)
+flask_app = Flask(__name__, static_folder=None)
 flask_app.register_blueprint(options_blueprint, url_prefix='/')
 flask_app.register_blueprint(bridge_vlan_blueprint, url_prefix='/<device_id>/bridge/vlans')
 flask_app.register_blueprint(interfaces_blueprint, url_prefix='/<device_id>/interfaces')
