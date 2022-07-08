@@ -3,7 +3,7 @@ def test_404_returns_empty_dict(netbox, netbox_404_mock):
 
 
 def test_get_session_key(netbox, netbox_get_session_key_mock):
-    assert netbox._get_session_key() == 'test_session_key'
+    assert netbox._refresh_session_key() == 'test_session_key'
 
 
 def test_session_key_attr(netbox, netbox_get_session_key_mock):

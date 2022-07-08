@@ -55,7 +55,8 @@ class NetBox(AutonetDeviceBackend):
             return requests_cache.CachedSession('netbox_cache', use_memory=True, expire_after=60)
 
     def _exec_request(self, uri, params: dict = None, headers=None,
-                      json: dict = None, data: dict = None, method: str = 'GET'):
+                      json: dict = None, data: dict = None, method: str = 'GET',
+                      refresh_key: bool = False):
         """
         Execute a request against the NetBox API.  This helper function will
         apply all necessary headers for auth and content-type, etc.
@@ -65,6 +66,7 @@ class NetBox(AutonetDeviceBackend):
         :param json: Payload to send as JSON.
         :param data: Payload to send as URL encoded form.
         :param method: HTTP Method.
+        :param refresh_key: Attempt to refresh session key before executing.
         :return: NetBox response as `dict`.
         """
         if json or data and method == 'GET':
@@ -72,6 +74,10 @@ class NetBox(AutonetDeviceBackend):
         url = f'{self._api}{uri}'
         headers = headers or {}
         headers = {**headers, **{'Accept': 'application/json'}, **self._auth_header}
+        if refresh_key and 'X-Session-Key' in headers:
+            self._refresh_session_key()
+            headers['X-Session-Key'] = self._session_key
+
         kwargs = {'headers': headers, 'params': params, 'verify': config.backend_netbox.tls_verify}
         if json:
             kwargs['json'] = json
@@ -80,6 +86,13 @@ class NetBox(AutonetDeviceBackend):
 
         response = self._session.request(method, url, **kwargs)
         result = response.json()
+        # Sometimes key lookups fail because the session key needs a refresh.
+        if (not refresh_key
+                and response.status_code == 400
+                and isinstance(response.json(), list)
+                and 'Invalid session key.' in response.json()):
+            return self._exec_request(uri, params, headers, json,
+                                      data, method, refresh_key=True)
         # Netbox has a standard format where the data is contained in
         # the result key except for a few endpoints.  We'll return
         # the raw result for those exceptions, and otherwise remove
@@ -97,10 +110,10 @@ class NetBox(AutonetDeviceBackend):
         :return:
         """
         if not self.__session_key:
-            self.__session_key = self._get_session_key()
+            self._refresh_session_key()
         return self.__session_key
 
-    def _get_session_key(self):
+    def _refresh_session_key(self):
         """
         Fetch and store the session key.
         :return:
@@ -108,7 +121,8 @@ class NetBox(AutonetDeviceBackend):
         data = {'private_key': self._private_key}
         response = self._exec_request('/plugins/netbox_secretstore/get-session-key/',
                                       data=data, method='POST')
-        return response['session_key']
+        self.__session_key = response['session_key']
+        return self.__session_key
 
     def _get_device_from_netbox(self, device_id) -> dict:
         """
