@@ -9,6 +9,7 @@ from autonet.core.response import autonet_response
 from autonet.blueprints.bridge_vlan import blueprint as bridge_vlan_blueprint
 from autonet.blueprints.interface import blueprint as interfaces_blueprint
 from autonet.blueprints.interface_lag import blueprint as interface_lag_blueprint
+from autonet.blueprints.options import blueprint as options_blueprint
 from autonet.blueprints.tunnels_vxlan import blueprint as tunnels_vxlan_blueprint
 from autonet.blueprints.vrf import blueprint as vrf_blueprint
 from autonet.blueprints.users import blueprint as admin_users_blueprint
@@ -27,7 +28,8 @@ opts = [
 ]
 config.register_options(opts)
 
-flask_app = Flask(__name__)
+flask_app = Flask(__name__, static_folder=None)
+flask_app.register_blueprint(options_blueprint, url_prefix='/')
 flask_app.register_blueprint(bridge_vlan_blueprint, url_prefix='/<device_id>/bridge/vlans')
 flask_app.register_blueprint(interfaces_blueprint, url_prefix='/<device_id>/interfaces')
 flask_app.register_blueprint(interface_lag_blueprint, url_prefix='/<device_id>/interfaces/lags')
@@ -50,6 +52,7 @@ def run_wsgi_app():
 def setup_request():
     g.errors = []
     g.request_id = str(uuid4())
+    logging.debug(f'Initial request setup for request_id {g.request_id}')
 
 
 @flask_app.before_request
@@ -57,6 +60,7 @@ def setup_device_object():
     """
     Middleware will retrieve the AutonetDevice object for any request
     that has a `device_id` arg defined and place it in `g.device`
+
     :return:
     """
     if request.view_args and 'device_id' in request.view_args:

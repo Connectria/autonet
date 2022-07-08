@@ -1,8 +1,11 @@
+import logging
+
 from flask import g, jsonify
 from werkzeug.exceptions import MethodNotAllowed, NotFound
 
 import autonet.core.exceptions as exc
 
+from autonet.config import config
 
 def autonet_response(response=None, status=None, headers=None):
     if g.errors and not status:
@@ -20,6 +23,8 @@ def autonet_response(response=None, status=None, headers=None):
                 or isinstance(error, exc.DeviceOperationUnsupported):
             status = 501
     errors = [str(error) for error in g.errors]
+    if errors and config.debug:
+        logging.debug(errors)
     response = jsonify({
         "request-id": g.request_id,
         "data": response,

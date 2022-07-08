@@ -11,9 +11,9 @@ import autonet.core.objects.validators as v
 
 @dataclass
 class InterfaceAddress(object):
-    family: str
     address: str
-    virtual: bool
+    family: Optional[str] = field(default=None)
+    virtual: Optional[bool] = field(default=False)
     virtual_type: Union[str, None] = field(default=None)
 
     def __post_init__(self):
@@ -21,7 +21,16 @@ class InterfaceAddress(object):
 
         valid_families = ['ipv4', 'ipv6']
         valid_virtual_types = ['anycast', 'vrrp']
-        # Verify family
+        # Set family if not provided, then verify.
+        family = f"ipv{ip_interface(self.address).version}"
+        if not self.family:
+            self.family = family
+        # Verify that the family provided matches the actual
+        # address family.
+        if self.family and self.family != family:
+            raise exc.RequestValueError('family', self.family,
+                                        valid_values=[family])
+        # Verify family is a valid family type.
         if self.family not in valid_families:
             raise exc.RequestValueError('family', self.family,
                                         valid_values=valid_families)
@@ -53,15 +62,24 @@ class InterfaceBridgeAttributes(object):
             self.dot1q_pvid = update.dot1q_pvid
         if update.dot1q_vids is not None and update.dot1q_enabled:
             self.dot1q_vids = update.dot1q_vids
+        return self
 
 
 @dataclass
 class InterfaceRouteAttributes(object):
     addresses: list[InterfaceAddress]
     vrf: Optional[str] = field(default=None)
+    evpn_anycast_mac: Optional[str] = field(default=None)
 
     def __post_init__(self):
         v.validate(self)
+
+        try:
+            if self.evpn_anycast_mac:
+                self.evpn_anycast_mac = str(macaddress.parse(
+                    self.evpn_anycast_mac, macaddress.EUI48))
+        except Exception:
+            raise exc.RequestValueError('evpn_anycast_mac', self.evpn_anycast_mac)
 
     def merge(self, update: 'InterfaceRouteAttributes'):
         if update.vrf is not None:
@@ -70,7 +88,7 @@ class InterfaceRouteAttributes(object):
             # For addresses, we convert to a set for the merge action so that
             # duplicates are removed. Then cast back to a list on assignment.
             self.addresses = list(set(self.addresses).union(set(update.addresses)))
-
+        return self
 
 @dataclass
 class Interface(object):
@@ -105,15 +123,25 @@ class Interface(object):
         if self.mode and self.mode not in valid_modes:
             raise exc.RequestValueError('parent', self.mode, valid_values=valid_modes)
         # Validate attribute matches mode
-        if self.mode == 'routed' and not isinstance(
-                self.attributes, InterfaceRouteAttributes):
-            raise exc.RequestTypeError('attributes', self.attributes, type(self.attributes))
-        if self.mode == 'bridged' and not isinstance(
-                self.attributes, InterfaceBridgeAttributes):
-            raise exc.RequestTypeError('attributes', self.attributes, type(self.attributes))
+        if isinstance(self.attributes, InterfaceRouteAttributes):
+            if self.mode is None:
+                self.mode = 'routed'
+            if self.mode != 'routed':
+                raise exc.RequestTypeError('attributes', self.attributes, type(self.attributes))
+        if isinstance(self.attributes, InterfaceBridgeAttributes):
+            if self.mode is None:
+                self.mode = 'bridged'
+            if self.mode != 'bridged':
+                raise exc.RequestTypeError('attributes', self.attributes, type(self.attributes))
         if self.mode == 'aggregated' and self.attributes:
             raise exc.RequestTypeError('mode', self.attributes, type(self.attributes),
                                        None)
+        if self.mode == 'aggregated' and not self.parent:
+            # This error may present to the user if they try to use
+            # interface configuration to manage LAG membership, though
+            # it is unsupported.  Primarily, this message is meant to
+            # serve as a consistency check for driver outputs.
+            raise ValueError("'parent' must be set when mode is 'aggregated'")
 
     def merge(self, update: 'Interface'):
         """
@@ -135,3 +163,4 @@ class Interface(object):
         else:
             self.mode = update.mode
             self.attributes = update.attributes
+        return self

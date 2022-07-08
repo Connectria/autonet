@@ -16,12 +16,14 @@ def marshal_driver(driver_ns: str, driver_name: str):
     Returns the class defined by the driver's registered entrypoint.
     :return:
     """
+    logging.debug(f'Attempting to load driver {driver_name} from namespace {driver_ns}')
     try:
         for driver_ep in __import__('pkg_resources').iter_entry_points(group=driver_ns):
             if driver_ep.name == driver_name:
                 return driver_ep.load()
     except Exception as e:
         logging.exception(e)
+        raise exc.DriverLoadError(driver_name, e)
     raise exc.DriverNotFound(driver_name)
 
 
@@ -36,12 +38,14 @@ def marshal_device(device_id):
     """
     # Future versions of autonet may allow multiple, possibly simultaneous, backends
     # for devices and credentials.  This function is the intended breakout point for that.
-    nb_device = DEVICE_BACKEND.get_device(device_id)
-    if not nb_device:
+    device = DEVICE_BACKEND.get_device(device_id)
+    if not device:
         raise exc.DeviceNotFound(device_id, DEVICE_BACKEND)
-    if not nb_device.credentials:
+    if not device.credentials:
         raise exc.DeviceCredentialsNotFound(device_id, DEVICE_BACKEND)
-    if not nb_device.driver:
+    if not device.driver:
         raise exc.AutonetException(f"Device driver for device_id "
                                    f"{device_id} is not defined.")
-    return nb_device
+    logging.info(f"Backend found device with ID: {device_id}")
+    logging.debug(device)
+    return device

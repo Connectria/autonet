@@ -21,6 +21,7 @@ Application Configuration
 Option      Type      Default   Description
 =========== ========= ========= ===============================================
 debug       boolean   False     Enables debug mode.
+log_level   string    warning   Application log level.  Superseded by `debug`.
 bind_host   string    0.0.0.0   Sets the IP address that Autonet will
                                 attempt to listen on.  By default Autonet will
                                 listen on all available interfaces.
@@ -31,10 +32,15 @@ backend     string    config    Specifies the backend driver to be used for
 
 **[database]**
 
-=========== ========= ========== ===============================================
-Option      Type      Default    Description
-=========== ========= ========== ===============================================
-connection  string    sqlite:/// Database connection string that points to
-                                 the user database.
-=========== ========= ========== ===============================================
+============== ========= ========== ===============================================
+Option         Type      Default    Description
+============== ========= ========== ===============================================
+connection     string    sqlite:/// Database connection string that points to
+                                    the user database.
+pool_recycle   integer   3600       Seconds that a connection may be present in the
+                                    connection pool before being invalidated and
+                                    recycled.
+pool_pre_ping  boolean   True       Verify the connection is viable during pool
+                                    checkout.
+============== ========= ========== ===============================================
 
